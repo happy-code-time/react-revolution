@@ -73,6 +73,8 @@ import { Breadcrumbs } from 'react-revolution';
     DarkLines404
     DragDropArea
     DragDropList
+    Filter
+    FilterMapping
     FullScreenListArray
     FullScreenListObject
     FullScreenOverlay
@@ -136,3 +138,9 @@ import { Breadcrumbs } from 'react-revolution';
     scrollTopListener
     urlExtract
     uuid
+    copyArray
+    copyObject
+    isBoolean
+    isFunction
+    isNumber
+    isString

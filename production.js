@@ -86,8 +86,13 @@ import scrollTopListener from './_Functions/scrollTopListener';
 import urlExtract from './_Functions/urlExtract';
 import isObject from './_Functions/isObject';
 import isArray from './_Functions/isArray';
-import copyArray from './_Functions/copyArray';
 import isInViewport from './_Functions/isInViewport';
+import copyArray from './_Functions/copyArray';
+import copyObject from './_Functions/copyObject';
+import isBoolean from './_Functions/isBoolean';
+import isFunction from './_Functions/isFunction';
+import isNumber from './_Functions/isNumber';
+import isString from './_Functions/isString';
 
 export {
     /**
@@ -179,5 +184,10 @@ export {
     isObject,
     isArray,
     isInViewport,
-    copyArray
+    copyArray,
+    copyObject,
+    isBoolean,
+    isFunction,
+    isNumber,
+    isString,
 };

@@ -1,11 +1,12 @@
-_Configurations
-package-lock.json
-node_modules
-.npmignore
-react-revolution.js
-css
-scss
-Functions
+# Files
+/package-lock.json
+/node_modules
+/.npmignore
+/react-revolution.js
+# Style
+/css
+/scss
+# Components
 /Accordion
 /Articles
 /ArticlesImages
@@ -20,6 +21,7 @@ Functions
 /Clouds404
 /CloudsMountains404
 /Container
+/ContainerCompact
 /ContainerPopup
 /ContainerSidebar
 /CustomSuggestion
@@ -79,3 +81,5 @@ Functions
 /TextWriter
 /Timeline
 /Water404
+# Functions
+/Functions

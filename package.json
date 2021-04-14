@@ -1,6 +1,6 @@
 {
   "name": "react-revolution",
-  "version": "5.4.6",
+  "version": "5.4.7",
   "description": "React Revolution - interactive react components",
   "main": "react-revolution.js",
   "scripts": {
@@ -90,7 +90,13 @@
     "Functions/isObject",
     "Functions/scrollTopListener",
     "Functions/urlExtract",
-    "Functions/uuid"
+    "Functions/uuid",
+    "Functions/copyArray",
+    "Functions/copyObject",
+    "Functions/isBoolean",
+    "Functions/isFunction",
+    "Functions/isNumber",
+    "Functions/isString"
   ],
   "author": "David Janitzek",
   "email": "david.janitzek@gmail.com",
