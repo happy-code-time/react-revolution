@@ -1,0 +1,98 @@
+@import './globals.scss';
+
+.rr-articles-images{
+
+    .single-entry{
+        box-sizing: border-box;
+        border-radius: $border-radius;
+        border:1px solid $border-color;
+        margin: 10px;
+        width: 100%;
+        position: relative;
+        min-height: 200px;
+
+        .title,
+        .text{
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .image-holder{
+            float: left;
+            width: 40%;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .image{
+            z-index: 1;
+            min-height: 200px;
+            border-radius: $border-radius;
+        }
+
+        .image-data{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .title{
+            padding: 10px 0;
+        }
+
+        .text{
+            padding: 10px 0;
+            display: contents;
+        }
+
+        .text,
+        .title{
+            float: left;
+            width: 60%;
+        }
+
+        .border{
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left:0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    // Animation: opacity
+    .toggling.animation-opacity{
+
+        @keyframes toggleArticlesOpacity {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        opacity: 0;
+        animation: toggleArticlesOpacity $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-opacity{
+        opacity: 1;
+    }
+
+    .animation-opacity-back {
+        @keyframes toggleArticlesOpacityBack {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        opacity: 1;
+        animation: toggleArticlesOpacityBack $default-transition ease-in forwards;
+    }
+}

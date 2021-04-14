@@ -1,0 +1,74 @@
+/**
+ * Vars
+ */
+ $default-transition: 300ms;
+
+ /**
+  * Colors
+  */
+  $dodgerblue: rgb(24,115,204);
+  $dodgerblue-light: rgba(24,115,204, 0.7);
+  $dodgerblue-light-xl: rgba(30, 144, 255, 0.1);
+  $orange: rgba(248, 165, 27, 1);
+  $white: rgb(255, 255, 255);
+  $border-color: rgba(218,220,224, 0.8);
+  $draggedColor: rgba(122, 122, 122, 0.74);
+  $hover-gray-background: rgba(199, 199, 199, 0.4);
+  $hover-gray-background-light: rgba(199, 199, 199, 0.2);
+  $text-color: rgb(114,119,122);
+  $border-radius-s: 5px;
+  $border-radius: 7px;
+  $border-radius-m: 10px;
+  $border-radius-l: 15px;
+  $border-radius-xl: 20px;
+  $border-radius-xxl: 25px;
+ /**
+  * Classes
+  */
+ .flex {
+   display: flex;
+ }
+ 
+ .flex-row {
+   flex-direction: row;
+ }
+ 
+ .flex-column {
+   flex-direction: column;
+ }
+ 
+ .w-100 {
+   width: 100%;
+ }
+ 
+ .d-none {
+   display: none;
+ }
+ 
+ .d-inline{
+   display: inline !important;
+ }
+ 
+ .user-select-none {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   user-select: none;
+ }
+ 
+ .white-space-pre-wrap {
+   white-space: pre-wrap;
+ }
+ 
+ .float-right{
+     float: right;
+ }
+ 
+ .float-left{
+     float: left;
+ }
+ 
+ .cursor-pointer{
+     cursor: pointer;
+ }
+ 
+ 

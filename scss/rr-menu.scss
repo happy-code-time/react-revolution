@@ -1,0 +1,206 @@
+@import './globals.scss';
+
+.rr-menu{
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+    .parent .hasChildren{
+        position: relative;
+        user-select: none;
+    }
+
+    .single-entry{
+        box-sizing: border-box;
+        border-radius: $border-radius;
+
+        a{
+            text-decoration: none;
+        }
+        
+        .data{
+            margin: 10px 0;
+        }
+
+        .text{
+            padding: 8px;
+        }
+
+        .child{
+            display: block;
+        }
+
+        .hasChildren:hover{
+            cursor: pointer;
+        }
+    }
+
+    .children-n-1,
+    .children-n-2,
+    .children-n-3,
+    .children-n-4,
+    .children-n-5,
+    .children-n-6,
+    .children-n-7,
+    .children-n-8,
+    .children-n-9,
+    .children-n-10{
+        box-sizing: border-box;
+    } 
+
+    .children-n-1{
+        .child{
+          padding-left: 25px;
+        }
+    } 
+
+    .children-n-2{
+        .child{
+          padding-left: 40px;
+        }
+    } 
+
+    .children-n-3{
+        .child{
+          padding-left: 55px;
+        }
+    } 
+
+    .children-n-4{
+        .child{
+          padding-left: 70px;
+        }
+    } 
+
+    .children-n-5{
+        .child{
+          padding-left: 85px;
+        }
+    } 
+
+    .children-n-6{
+        .child{
+          padding-left: 100px;
+        }
+    } 
+
+    .children-n-7{
+        .child{
+          padding-left: 115px;
+        }
+    } 
+
+    .children-n-8{
+        .child{
+          padding-left: 130px;
+        }
+    } 
+
+    .children-n-9{
+        .child{
+          padding-left: 145px;
+        }
+    } 
+
+    .children-n-10{
+        .child{
+          padding-left: 160px;
+        }
+    } 
+
+    // If dashed option are true
+    .dashed{
+        padding-left: 10px !important;
+        border-left: 1px dashed rgba(122,122,122,.43);
+        margin-left: 10px;
+    }
+
+    // Animation: height
+    .animation-height .children{
+
+        @keyframes toggleMenuEntriesHeight {
+            0%{
+                max-height: 0px;
+            }
+            100%{
+                max-height: 300px;
+                overflow: hidden;
+            }
+        }
+
+        max-height: 0px;
+        overflow: hidden;
+        animation: toggleMenuEntriesHeight $default-transition ease-in forwards;
+    }
+
+    .animation-height-back .children{
+        @keyframes toggleMenuEntriesHeightBack {
+            0%{
+                max-height: 300px;
+                overflow: hidden;
+            }
+            100%{
+                max-height: 0px;
+            }
+        }
+        overflow: hidden;
+        animation: toggleMenuEntriesHeightBack $default-transition ease-in forwards;
+    }
+
+    // Animation: scale
+    .animation-scale .children{
+
+        @keyframes toggleMenuEntriesScale {
+            0%{
+                transform: scaleY(0);
+            }
+            100%{
+                transform: scaleY(1);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(0);
+        animation: toggleMenuEntriesScale $default-transition ease-in forwards;
+    }
+
+    .animation-scale-back .children{
+        @keyframes toggleMenuEntriesScaleBack {
+            0%{
+                transform: scaleY(1);
+            }
+            100%{
+                transform: scaleY(0);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(1);
+        animation: toggleMenuEntriesScaleBack $default-transition ease-in forwards;
+    }
+
+    // Animation: opacity
+    .animation-opacity .children{
+
+        @keyframes toggleMenuEntriesOpacity {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        opacity: 0;
+        animation: toggleMenuEntriesOpacity $default-transition ease-in forwards;
+    }
+
+    .animation-opacity-back .children{
+        @keyframes toggleMenuEntriesOpacityBack {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        opacity: 1;
+        animation: toggleMenuEntriesOpacityBack $default-transition ease-in forwards;
+    }
+}
