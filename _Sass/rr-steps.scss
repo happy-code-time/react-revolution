@@ -1,0 +1,163 @@
+.rr-steps {
+
+  .content {
+    box-sizing: border-box;
+    padding: 20px 0;
+  }
+
+  .justify-content-between{
+      justify-content: space-between;
+  }
+
+  ul,
+  ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+  }
+
+  li {
+    display: inline-block;
+    position: relative;
+  }
+
+  li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: 15px; // .icon = (height*0.5)
+    z-index: -1;
+  }
+
+  .icon,
+  .text {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 0.87rem;
+  }
+
+  .text {
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+    display: none;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  // Not filled li
+  .step {
+    .icon {
+      background-color: rgb(211, 211, 211);
+      transition-duration: 300ms;
+    }
+    .text {
+      color: rgb(211, 211, 211);
+      transition-duration: 300ms;
+      overflow: hidden;
+      white-space: nowrap;
+      word-wrap: none;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .step:after {
+    transition-duration: 300ms;
+    background-color: rgb(211, 211, 211);
+  }
+
+  // Buttons
+  .btn-next,
+  .btn-previous,
+  .btn-submit {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--buttons-bg);
+    user-select: none;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+  }
+
+  // Filled li
+  .step-filled:after {
+    background-color: var(--stripes-filled);
+  }
+  .step-filled {
+    .icon {
+      background-color: var(--stripes-filled);
+    }
+    .text {
+      color: var(--stripes-filled);
+    }
+  }
+  // Progress bar
+  .progress-bar-wrapper {
+    width: 100%;
+    position: relative;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+  .progress-bar {
+    border-radius: 60px;
+    overflow: hidden;
+    width: 100%;
+    background-color: rgb(211, 211, 211);
+
+    span {
+      display: block;
+    }
+  }
+
+  @keyframes animate-stripes {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 60px 0;
+    }
+  }
+
+  .stripes.animated {
+    animation: animate-stripes 1.5s linear infinite;
+    animation-direction: forwards;
+  }
+
+  .bar {
+    background: rgba(0, 0, 0, 0.075);
+  }
+
+  .progress {
+    transition-duration: 300ms;
+    color: #fff;
+    padding: 5px;
+    width: 0;
+  }
+}

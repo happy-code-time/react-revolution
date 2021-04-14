@@ -1,0 +1,30 @@
+@import './globals.scss';
+
+.rr-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  border-right: 1px solid $border-color;
+  overflow: hidden;
+  transition-duration: $default-transition;
+  z-index: 1;
+
+  .logo-text {
+    width: 100%;
+    border-bottom: 1px solid $border-color;
+    height: auto;
+  }
+
+  .rr-menu {
+    padding: 0;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+}

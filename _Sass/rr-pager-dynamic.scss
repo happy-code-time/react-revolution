@@ -1,0 +1,147 @@
+.rr-pager-dynamic {
+    display: block;
+    min-height: 70px;
+  
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  
+      li {
+        list-style: none;
+        min-height: 30px;
+        box-sizing: border-box;
+        padding: 5px 0;
+      }
+    }
+  
+    .line-number {
+      display: inline-block;
+      min-width: 50px;
+    }
+  
+    .h1 {
+      font-size: 1.4rem;
+      margin: 5px 0;
+      padding: 0;
+    }
+  
+    .buttons {
+      float: left;
+    }
+  
+    .icon-next,
+    .icon-previous {
+      position: relative;
+    }
+  
+    .icon-next:after,
+    .icon-previous:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      line-height: 35px;
+      height: 100%;
+    }
+  
+    .icon-next:after {
+      content: "↪";
+    }
+  
+    .icon-previous:after {
+      content: "↩";
+    }
+  
+    .previous-button,
+    .next-button {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      font-size: 0.75rem;
+      margin: 0 10px;
+      border-radius: 3px;
+      background-color: rgba(69, 69, 69, 0.1);
+      color: #72777a;
+    }
+  
+    .previous-button:hover,
+    .next-button:hover {
+      cursor: pointer;
+    }
+  
+    .previous-button.disabled,
+    .next-button.disabled {
+      color: rgba(69, 69, 69, 0.2);
+    }
+  
+    .current-page,
+    .previous-page,
+    .next-page {
+      display: inline-block;
+    }
+  
+    .current-page:hover,
+    .previous-page:hover,
+    .next-page:hover {
+      cursor: pointer;
+    }
+  
+    .input-holder {
+      border: 1px solid rgba(69, 69, 69, 0.2);
+      border-radius: 10px;
+      width: 100%;
+      overflow: hidden;
+      min-height: 30px;
+      height: auto;
+  
+      input {
+        float: left;
+        width: calc(100% - 70px);
+        box-sizing: border-box;
+        padding: 10px 15px;
+        border: none;
+        line-height: 25px;
+        overflow: hidden;
+        height: auto;
+        min-height: 15px;
+        font-size: 0.87rem;
+        color: rgba(69, 69, 69, 0.8);
+      }
+  
+      input:focus {
+        outline: none;
+      }
+  
+      .icon,
+      .icon-search {
+        float: left;
+        width: 70px;
+        text-align: center;
+        color: rgba(69, 69, 69, 0.8);
+        display: block;
+        box-sizing: border-box;
+        padding: 5px;
+        position: relative;
+        height: 100%;
+      }
+  
+      .icon-search:after {
+        content: "🔍";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70px;
+        text-align: center;
+        line-height: 50px;
+        height: 50px;
+      }
+  
+      .icon:hover {
+        cursor: pointer;
+      }
+    }
+  }
