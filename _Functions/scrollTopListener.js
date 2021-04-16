@@ -1,6 +1,10 @@
+import scrollToTop from './scrollToTop';
+import isNumber from "./isNumber";
+import isString from "./isString";
+
 var globalRemoveListenerRemoveListener = false;
 
-class ScrollToTop 
+class _ScrollToTop 
 {
     constructor(){
         this.setScrollTime = this.setScrollTime.bind(this);
@@ -15,7 +19,6 @@ class ScrollToTop
         this.setScrollBehavior = this.setScrollBehavior.bind(this);
         this.scrollToTopTime = this.scrollToTopTime.bind(this);
         this.clearScrollTopInterval = this.clearScrollTopInterval.bind(this);
-        this.setScrollTopInterval = this.setScrollTopInterval.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
 
         this.state = {
@@ -158,10 +161,10 @@ class ScrollToTop
         this.clearScrollTopInterval();
 
         if(!time){
-            return this.setScrollTopInterval(0);
+            return scrollToTop(0);
         }
 
-        this.setScrollTopInterval(time);
+        scrollToTop(time);
     }
 
     /**
@@ -187,50 +190,6 @@ class ScrollToTop
             document.addEventListener('wheel', this.handleScroll); 
             document.addEventListener('touchmove', this.handleScroll);
         }
-    }
-
-    /**
-     * Main scroll to top interval
-     */
-    setScrollTopInterval(intervalTime){
-
-        if(!globalRemoveListenerRemoveListener){
-            this.clearScrollTopInterval();
-        }
-
-        if(0 == intervalTime){
-            return document.documentElement.scrollTop = 0;
-        }
-
-        if(this.getScrollBehavior()){
-            document.documentElement.scrollTop = 0;
-
-            return setTimeout( () => {
-                this.cutStringFromAttributeValue(document.documentElement, 'style', `scroll-behavior: ${this.getScrollBehavior()};`);
-            }, 500);
-        }
-
-        this.setListener();
-
-        intervalTime = intervalTime/10;
-        let userOnXPosition = document.documentElement.scrollTop;
-
-        if(0 == userOnXPosition){
-            return null;
-        }
-
-        let pxToAdd = (userOnXPosition / intervalTime);
-        this.scrollTopInterval = setInterval( () => {
-
-            userOnXPosition -= (pxToAdd);
-            document.documentElement.scrollTop = userOnXPosition;
-
-            if(-10 >= userOnXPosition){
-                this.setListener(false);
-                return this.clearScrollTopInterval();
-            }
-
-        }, 1 );
     }
 
     /**
@@ -278,13 +237,13 @@ class ScrollToTop
 
 const scrollTopListener = (time = 0, scrollBehavior = '', removeListener = false) => {
     globalRemoveListenerRemoveListener = removeListener;
-    const scrollToTop = new ScrollToTop();
+    const scrollToTop = new _ScrollToTop();
 
-    if(time && typeof 8 == typeof time && !globalRemoveListenerRemoveListener){
+    if(isNumber(time) && 0 < time && !globalRemoveListenerRemoveListener){
         scrollToTop.setScrollTime(time);
     }
 
-    if(scrollBehavior && typeof '8' == typeof scrollBehavior && !globalRemoveListenerRemoveListener){
+    if(isString(scrollBehavior) && '' !== scrollBehavior && !globalRemoveListenerRemoveListener){
         scrollToTop.setScrollBehavior(scrollBehavior);
     }
 
@@ -294,11 +253,16 @@ const scrollTopListener = (time = 0, scrollBehavior = '', removeListener = false
             return scrollToTop.scrollTop(false);
         }
 
+        if(window.location.href === scrollToTop.getCurrentHref())
+        {
+            return;            
+        }
+
         scrollToTop.scrollTop(true);
 
     }, 500);
 
-    if(!globalRemoveListenerRemoveListener)
+    if(globalRemoveListenerRemoveListener)
     {
         clearInterval(check);
         scrollToTop.scrollTop(false);

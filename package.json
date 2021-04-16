@@ -1,6 +1,6 @@
 {
   "name": "react-revolution",
-  "version": "5.4.8",
+  "version": "5.4.9",
   "description": "React Revolution - interactive react components",
   "main": "react-revolution.js",
   "scripts": {
@@ -101,7 +101,7 @@
   ],
   "author": "David Janitzek",
   "email": "david.janitzek@gmail.com",
-  "license": "GNU",
+  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.10.4",
     "babel-preset-es2015": "^6.24.1",
