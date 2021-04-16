@@ -83,6 +83,7 @@ import uuid from './_Functions/uuid';
 import disableHtmlScroll from './_Functions/disableHtmlScroll';
 import enableHtmlScroll from './_Functions/enableHtmlScroll';
 import scrollTopListener from './_Functions/scrollTopListener';
+import scrollToTop from './_Functions/scrollToTop';
 import urlExtract from './_Functions/urlExtract';
 import isObject from './_Functions/isObject';
 import isArray from './_Functions/isArray';
@@ -180,6 +181,7 @@ export {
     disableHtmlScroll,
     enableHtmlScroll,
     scrollTopListener,
+    scrollToTop,
     urlExtract,
     isObject,
     isArray,

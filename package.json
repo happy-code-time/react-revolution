@@ -1,6 +1,6 @@
 {
   "name": "react-revolution",
-  "version": "5.4.7",
+  "version": "5.4.8",
   "description": "React Revolution - interactive react components",
   "main": "react-revolution.js",
   "scripts": {
@@ -89,6 +89,7 @@
     "Functions/isInViewport",
     "Functions/isObject",
     "Functions/scrollTopListener",
+    "Functions/scrollToTop",
     "Functions/urlExtract",
     "Functions/uuid",
     "Functions/copyArray",

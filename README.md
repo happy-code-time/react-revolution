@@ -136,6 +136,7 @@ import { Breadcrumbs } from 'react-revolution';
     isInViewport
     isObject
     scrollTopListener
+    scrollToTop
     urlExtract
     uuid
     copyArray

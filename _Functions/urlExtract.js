@@ -160,14 +160,14 @@ class UrlExtractor {
             {
                 "path": {
                     "name": "path",
-                    "origin": "https://www.neubaukompass.de3/neubau/garbsen-bosse-see/eigentmswohnung-78367?data1=1111111&data2=222222",
+                    "origin": "https://www.example.com/path/to/target-78367?data1=1111111&data2=222222",
                     "paths": [
                         {
                             "path": "https:",
                             "keyValues": []
                         },
                         {
-                            "path": "www.neubaukompass.de3",
+                            "path": "www.example.com",
                             "keyValues": []
                         },
                         {
