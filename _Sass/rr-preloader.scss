@@ -1,0 +1,57 @@
+@import './globals.scss';
+
+.rr-preloader
+{
+    div{
+        box-sizing: border-box;
+    }
+
+    .preloader-item
+    {
+        padding: 5px 10px;
+    }
+
+    .preloader-default
+    {
+        position: relative;
+        background-color: var(--rr-preloader-bg-color);
+        display: inline-block;
+        overflow: hidden;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+    }
+
+    .preloader-loading:after 
+    {
+        display: block;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        transform: translateX(-100%);
+        background: linear-gradient(90deg, transparent, var(--rr-preloader-bg-loader), transparent);
+        animation: preloader-loading-default 500ms infinite;
+    }
+
+    @keyframes preloader-loading-default 
+    {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    /* ###########################
+     * Circle
+     */
+    .preloader-circle-xs,
+    .preloader-circle-s,
+    .preloader-circle,
+    .preloader-circle-l,
+    .preloader-circle-xl,
+    .preloader-circle-xxl
+    {
+        border-radius: 50%;
+    }
+}

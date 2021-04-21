@@ -1,6 +1,6 @@
 {
   "name": "react-revolution",
-  "version": "5.4.9",
+  "version": "5.5.0",
   "description": "React Revolution - interactive react components",
   "main": "react-revolution.js",
   "scripts": {
@@ -62,6 +62,7 @@
     "PopupBox",
     "PopupData",
     "PopupHover",
+    "Preloader",
     "ReadMore",
     "ReadMoreCallback",
     "Ribbon",

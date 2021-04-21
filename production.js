@@ -55,6 +55,7 @@ import Pills from './_Modules/Pills';
 import PopupBox from './_Modules/PopupBox';
 import PopupData from './_Modules/PopupData';
 import PopupHover from './_Modules/PopupHover';
+import Preloader from './_Modules/Preloader';
 import ReadMore from './_Modules/ReadMore';
 import ReadMoreCallback from './_Modules/ReadMoreCallback';
 import Ribbon from './_Modules/Ribbon';
@@ -153,6 +154,7 @@ export {
     PopupBox,
     PopupData,
     PopupHover,
+    Preloader,
     ReadMore,
     ReadMoreCallback,
     Ribbon,

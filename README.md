@@ -106,6 +106,7 @@ import { Breadcrumbs } from 'react-revolution';
     PopupBox
     PopupData
     PopupHover
+    Preloader
     ReadMore
     ReadMoreCallback
     Ribbon
