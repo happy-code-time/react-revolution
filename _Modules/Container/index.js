@@ -57,6 +57,7 @@ class Container extends React.Component {
             animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
             sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
             sidebarMinWidth: (typeof 8 == typeof props.sidebarMinWidth && 0 < props.sidebarMinWidth) ? props.sidebarMinWidth : 50,
+            locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
         };
 
         this.nodeSideBar = React.createRef();
@@ -72,7 +73,7 @@ class Container extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'minifyAt', 'animationDuration', 'maxifyAt', 'hideAt', 'displayMinifyMaxifyIcon', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'closeMenuHtml', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'sidebarMinWidth'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'minifyAt', 'animationDuration', 'maxifyAt', 'hideAt', 'displayMinifyMaxifyIcon', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'closeMenuHtml', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'sidebarMinWidth', 'locationInterval'], props, state)) {
             return {
                 addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
                 defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container',
@@ -96,6 +97,7 @@ class Container extends React.Component {
                 animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
                 sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
                 sidebarMinWidth: (typeof 8 == typeof props.sidebarMinWidth && 0 < props.sidebarMinWidth) ? props.sidebarMinWidth : 50,
+                locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
             };
         }
 
@@ -107,11 +109,12 @@ class Container extends React.Component {
         window.addEventListener('mousedown', this.handleClick);
         window.addEventListener('focus', this.handleFocus);
         window.addEventListener('blur', this.handleBlur);
-        this.resizeView();
         this.setLocationChecker();
 
         setTimeout( () => {
-            this.setState({ mounted: true });
+            this.setState({
+                mounted: true
+            }, this.resizeView);
         }, this.state.animationDuration);
     }
 
@@ -123,7 +126,8 @@ class Container extends React.Component {
         window.removeEventListener('blur', this.handleBlur);
     }
 
-    componentDidUpdate(){
+    componentDidUpdate()
+    {
         if (isArray(this.state.minifySidebarOn) && 0 === this.state.minifySidebarOn.length) {
             return this.setLocationChecker();
         }
@@ -139,7 +143,8 @@ class Container extends React.Component {
         this.setLocationChecker(false);
     }
 
-    setLocationChecker(init = true) {
+    setLocationChecker(init = true) 
+    {
         clearInterval(this.locationCheckInterval);
 
         if(!init){
@@ -147,10 +152,11 @@ class Container extends React.Component {
         }
 
         this.locationCheckInterval = setInterval( () => {
-            if(this.state.href !== window.location.href){
+            if(this.state.href !== window.location.href)
+            {
                 this.handleLocationChange();
             }
-        }, 500);
+        }, this.state.locationInterval);
     }
 
     handleLocationChange(){
@@ -189,18 +195,28 @@ class Container extends React.Component {
         }, 300);
     }
 
-    resizeView(e, persistCurrentSelection = false, isInterval = false) {
-        const { minifySidebarOn, forceHidingSidebar } = this.state;
+    checkSidebarOn()
+    {
+        const { minifySidebarOn } = this.state;
 
         // If the container should be fullscreen on selected locations
-        if (minifySidebarOn && minifySidebarOn.length) {
+        if (isArray(minifySidebarOn) && minifySidebarOn.length) {
             
-            for (let x = 0; x <= minifySidebarOn.length - 1; x++) {
-
-                if (typeof '8' == typeof minifySidebarOn[x] && (window.location.href == minifySidebarOn[x] || window.location.hash == minifySidebarOn[x])) {
-                    return this.setState(forceHidingSidebar);
-                }
+            if (minifySidebarOn.includes(window.location.href) || minifySidebarOn.includes(window.location.hash)) 
+            {
+                return true;
             }
+        } 
+
+        return false;
+    }
+
+    resizeView(e, persistCurrentSelection = false, isInterval = false) {
+        const { forceHidingSidebar } = this.state;
+
+        // If the container should be fullscreen on selected locations
+        if (this.checkSidebarOn()) {
+            return this.setState(forceHidingSidebar);
         }
 
         /**
@@ -208,7 +224,7 @@ class Container extends React.Component {
          */
         if (isInterval && this.containesOldStaffHolder) {
             const { isMax, isMin, isHidden, isHiddenClass } = this.containesOldStaffHolder;
-            return this.setState({ isMax, isMin, isHidden, isHiddenClass });
+            return this.setState({ isMax, isMin, isHidden, isHiddenClass, href: window.location.href });
         }
 
         if (persistCurrentSelection) {
@@ -218,8 +234,14 @@ class Container extends React.Component {
         this.resize();
     }
 
-    resize(){
+    resize()
+    {
         const documentWidth = document.documentElement.getBoundingClientRect().width;
+
+        // If the container should be fullscreen on selected locations
+        if (this.checkSidebarOn()) {
+            return this.setState(forceHidingSidebar);
+        }
 
         /**
          * Maxify the sidebar

@@ -2,8 +2,10 @@ import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
 
-class ContainerPopup extends React.Component {
-    constructor(props) {
+class ContainerPopup extends React.Component 
+{
+    constructor(props) 
+    {
         super(props);
         this.resizeView = this.resizeView.bind(this);
         this.setLocationChecker = this.setLocationChecker.bind(this);
@@ -43,6 +45,7 @@ class ContainerPopup extends React.Component {
             headerDataRight: (typeof true == typeof props.headerDataRight) ? props.headerDataRight : false,
             animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
             sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
+            locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
         };
 
         this.locationCheckInterval = undefined;
@@ -55,7 +58,7 @@ class ContainerPopup extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
             return {
                 addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
                 defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-popup',
@@ -74,6 +77,7 @@ class ContainerPopup extends React.Component {
                 headerDataRight: (typeof true == typeof props.headerDataRight) ? props.headerDataRight : false,
                 animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
                 sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
+                locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
             };
         }
 
@@ -141,35 +145,45 @@ class ContainerPopup extends React.Component {
                     }, this.state.animationDuration);
                 });
             }
-        }, 500);
+        }, this.state.locationInterval);
+    }
+
+    checkSidebarOn()
+    {
+        const { minifySidebarOn } = this.state;
+
+        // If the container should be fullscreen on selected locations
+        if (isArray(minifySidebarOn) && minifySidebarOn.length) {
+            
+            if (minifySidebarOn.includes(window.location.href) || minifySidebarOn.includes(window.location.hash)) 
+            {
+                return true;
+            }
+        } 
+
+        return false;
     }
 
     resizeView() {
-        const { minifySidebarOn, hideAt, animationDuration } = this.state;
+        const { hideAt, animationDuration } = this.state;
 
         // If the container should be fullscreen on selected locations
-        if (minifySidebarOn && minifySidebarOn.length) {
-
-            for (let x = 0; x <= minifySidebarOn.length - 1; x++) {
-
-                if (typeof '8' == typeof minifySidebarOn[x] && (window.location.href == minifySidebarOn[x] || window.location.hash == minifySidebarOn[x])) {
-                    return this.setState({ 
-                        isHidden: true, 
-                        animation: true,
-                        hiddenBackwards: true,
-                        isHiddenSidebar:false
-                    }, () => {
-                        setTimeout( () => {
-                            this.setState({ 
-                                isHiddenSidebar: true, 
-                                animation: false,
-                                hiddenBackwards: false,
-                                hiddenForwards: false
-                            });
-                        }, animationDuration);
+        if (this.checkSidebarOn()) {
+            return this.setState({ 
+                isHidden: true, 
+                animation: true,
+                hiddenBackwards: true,
+                isHiddenSidebar:false
+            }, () => {
+                setTimeout( () => {
+                    this.setState({ 
+                        isHiddenSidebar: true, 
+                        animation: false,
+                        hiddenBackwards: false,
+                        hiddenForwards: false
                     });
-                }
-            }
+                }, this.state.animationDuration);
+            });
         }
 
         const documentWidth = document.documentElement.getBoundingClientRect().width;
@@ -177,7 +191,7 @@ class ContainerPopup extends React.Component {
         /**
          * Maxify the sidebar
          */
-        if (documentWidth >= hideAt && true === this.state.isHidden) {
+        if (documentWidth >= hideAt) {
             return this.setState({ 
                 isHidden: false, 
                 animation: true,
@@ -198,7 +212,7 @@ class ContainerPopup extends React.Component {
         /**
          * Hide the sidebar
          */
-        if (documentWidth < hideAt && false === this.state.isHidden) {
+        if (documentWidth < hideAt) {
             return this.setState({ 
                 isHidden: true, 
                 animation: true,

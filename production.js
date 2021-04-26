@@ -72,6 +72,7 @@ import StepsGenerator from './_Modules/StepsGenerator';
 import StepsGeneratorDragDrop from './_Modules/StepsGeneratorDragDrop';
 import SourceCode from './_Modules/SourceCode';
 import Suggestions from './_Modules/Suggestions';
+import Range from './_Modules/Range';
 import Table from './_Modules/Table';
 import TextWriter from './_Modules/TextWriter';
 import Timeline from './_Modules/Timeline';
@@ -171,6 +172,7 @@ export {
     StepsGeneratorDragDrop,
     SourceCode,
     Suggestions,
+    Range,
     Table,
     TextWriter,
     Timeline,

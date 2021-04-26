@@ -107,7 +107,6 @@ class ContainerCompact extends React.Component {
 
                 minifySidebarOn: isArray(props.minifySidebarOn) ? props.minifySidebarOn : [],
                 locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
-
             };
         }
 
@@ -123,7 +122,7 @@ class ContainerCompact extends React.Component {
 
         this.setState({
             mounted: true
-        });
+        }, this.resizeView);
     }
 
     componentWillUnmount() {
@@ -179,27 +178,36 @@ class ContainerCompact extends React.Component {
         }
     }
 
-    resizeView() {
+    checkSidebarOn()
+    {
         const { minifySidebarOn } = this.state;
 
         // If the container should be fullscreen on selected locations
         if (isArray(minifySidebarOn) && minifySidebarOn.length) {
-
-            for (let x = 0; x <= minifySidebarOn.length - 1; x++) {
-
-                if (typeof '8' == typeof minifySidebarOn[x] && (window.location.href == minifySidebarOn[x] || window.location.hash == minifySidebarOn[x])) {
-                    clearTimeout(this.animationTimeoutCloseIcon);
-
-                    if (false == this.state.isMinified) {
-                        return this.setState({
-                            isMinified: true,
-                            href: window.location.href
-                        });
-                    }
-
-                    return this.setState({ href: window.location.href });
-                }
+            
+            if (minifySidebarOn.includes(window.location.href) || minifySidebarOn.includes(window.location.hash)) 
+            {
+                return true;
             }
+        } 
+
+        return false;
+    }
+
+    resizeView() 
+    {
+        // If the container should be fullscreen on selected locations
+        if (this.checkSidebarOn()) {
+            clearTimeout(this.animationTimeoutCloseIcon);
+
+            if (false == this.state.isMinified) {
+                return this.setState({
+                    isMinified: true,
+                    href: window.location.href
+                });
+            }
+
+            return this.setState({ href: window.location.href });
         }
 
         const { hideAt } = this.state;
@@ -210,27 +218,21 @@ class ContainerCompact extends React.Component {
          */
         if (documentWidth >= hideAt) {
 
-            if (true === this.state.isMinified) {
-                return this.setState({
-                    isMinified: false,
-                    href: window.location.href
-                }, this.callbackShow);
-            }
-
-            return this.setState({ href: window.location.href });
+            return this.setState({
+                isMinified: false,
+                href: window.location.href
+            }, this.callbackShow);
         }
 
         /**
          * Hide the sidebar
          */
-        if (documentWidth < hideAt && false === this.state.isMinified) {
+        if (documentWidth < hideAt) {
             return this.setState({
                 isMinified: true,
                 href: window.location.href
             }, this.callbackHide);
         }
-
-        this.setState({ href: window.location.href });
     }
 
     render() {
