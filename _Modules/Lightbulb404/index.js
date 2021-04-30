@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import isString from '../../_Functions/isString';
 
 class Lightbulb404 extends React.Component {
 
@@ -14,9 +15,9 @@ class Lightbulb404 extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-lightbulb-404',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Lightbulb404',
+            id: isString(props.id) ? props.id : '',
             reactRouter: this.props.reactRouter ? this.props.reactRouter : false,
             link: props.link && typeof {} == typeof props.link ? props.link : {},
             text404: props.text404 && typeof '8' == typeof props.text404 ? props.text404 : '404',
@@ -60,7 +61,7 @@ class Lightbulb404 extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div className='holder-404'>
                     <div className="content-404">

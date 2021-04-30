@@ -1,6 +1,8 @@
 import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class ContainerSidebar extends React.Component {
     constructor(props) {
@@ -34,9 +36,9 @@ class ContainerSidebar extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-sidebar',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerSidebar',
+            id: isString(props.id) ? props.id : '',
             moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
             closeMenuHtml: props.closeMenuHtml ? props.closeMenuHtml : '',
             hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
@@ -69,11 +71,10 @@ class ContainerSidebar extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'closeMenuHtml', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'moduleSidebar', 'closeMenuHtml', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-sidebar',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
                 hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
                 headerProps: (props.headerProps && typeof {} == typeof props.headerProps) ? props.headerProps : {},
@@ -287,10 +288,10 @@ class ContainerSidebar extends React.Component {
         const { isHidden } = this.state;
 
         if (isHidden) {
-            return `SideBar SideBar-hidden`;
+            return `area-sidebar area-sidebar-hidden`;
         }
 
-        return `SideBar`;
+        return `area-sidebar`;
     }
 
     /**
@@ -300,10 +301,10 @@ class ContainerSidebar extends React.Component {
         const { isHidden } = this.state;
 
         if (isHidden) {
-            return `Content Content-hidden`;
+            return `area-content area-content-hidden`;
         }
 
-        return `Content`;
+        return `area-content`;
     }
 
     /**
@@ -366,7 +367,7 @@ class ContainerSidebar extends React.Component {
 
         return (
             <div 
-                id={id} 
+                {...isString(id) && '' !== id && { id: id } } 
                 className={`${defaultClass} ${direction} ${animation ? 'zIndex' : ''} ${!animationDuration || !this.state.mounted ? 'td0' : ''} ${addClass}`}
                 style={constainerStyle}
             >   

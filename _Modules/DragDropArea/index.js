@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import copyFunctions from '../internalFunctions/copyFunctions';
 import internalUuid from '../internalFunctions/internalUuid';
 
@@ -35,13 +37,13 @@ class DragDropArea extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-drag-drop-area',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'DragDropArea',
+            id: isString(props.id) ? props.id : '',
             data: (props.data && typeof {} == typeof props.data) ? props.data : {},
             itemsPerLine: (props.itemsPerLine && typeof 8 == typeof props.itemsPerLine) ? props.itemsPerLine : 2,
             mediaBreak: props.mediaBreak && typeof 8 == typeof props.mediaBreak ? props.mediaBreak : undefined,
-            callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackProps: props.callbackProps ? props.callbackProps : undefined,
             callbackAllowDrop: (props.callbackAllowDrop && typeof function(){} == typeof props.callbackAllowDrop) ? props.callbackAllowDrop : undefined,
             callbackAllowDropProps: props.callbackAllowDropProps ? props.callbackAllowDropProps : undefined,
@@ -57,14 +59,13 @@ class DragDropArea extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'itemsPerLine', 'callbackAllowDrop', 'callbackAllowDropProps', 'lineNumber', 'lineNumberChar'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'itemsPerLine', 'callbackAllowDrop', 'callbackAllowDropProps', 'lineNumber', 'lineNumberChar'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-drag-drop-area',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof {} == typeof props.data ? props.data : {},
                 itemsPerLine: (props.itemsPerLine && typeof 8 == typeof props.itemsPerLine) ? props.itemsPerLine : 2,
-                callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+                callback: isFunction(props.callback) ? props.callback : undefined,
                 callbackProps: props.callbackProps ? props.callbackProps : undefined,
                 callbackAllowDrop: (props.callbackAllowDrop && typeof function(){} == typeof props.callbackAllowDrop) ? props.callbackAllowDrop : undefined,
                 callbackAllowDropProps: props.callbackAllowDropProps ? props.callbackAllowDropProps : undefined,
@@ -606,7 +607,7 @@ class DragDropArea extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     this.buildDragDropItems()

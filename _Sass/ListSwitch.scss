@@ -1,0 +1,191 @@
+@import './globals.scss';
+
+.ListSwitch{
+    display: inline-block;
+
+    .ctx{
+        position: relative;
+
+        .text{
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    .ctx .text:hover{
+        cursor: pointer;
+    }
+
+    .loading{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: $white;
+        white-space: nowrap;
+        border: 1px solid $border-color;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        z-index: 10;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    .data-list-switch{
+        position: relative;
+        clear: both;
+        display: block;
+        position: relative;
+        top: 100%;
+    }
+
+    .data{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        z-index: 10;
+    }
+
+    .area-title{
+        display: flex;
+        box-sizing: border-box;
+        padding: 5px;
+        background-color: transparent;
+        transition-duration: $default-transition;
+    }
+
+    .title{
+        box-sizing: border-box;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .navigation{
+        display: inline-block;
+    }
+
+    .navigation-previous{
+        box-sizing: border-box;
+        padding: 5px 10px;
+    }
+
+    .navigation-previous:hover{
+        cursor: pointer;
+        background-color: $border-color;
+    }
+
+    .navigation-next{
+        float: right;
+    }
+
+    .area-entry{
+        box-sizing: border-box;
+        padding: 5px 10px;
+        margin: 5px 0;
+    }
+
+    .has-children{
+        display: flex;
+        justify-content: space-between;
+        background-color: transparent;
+        transition-duration: $default-transition;
+    }
+
+    .has-children:hover{
+        cursor: pointer;
+        background-color: $border-color;
+    }
+
+    // Slide behavior
+    .slide-wrapper{
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background-color: $white;
+        white-space: nowrap;
+        border: 1px solid $border-color;
+        overflow: hidden;
+    }
+
+    .slider{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        
+        .area{
+            float: left;
+            width: 100%;
+        }
+    }
+
+    .slide-animate{
+
+        .slider{
+            width: 200%;
+
+            .area,
+            .old-data{
+                float: left;
+                width: 50%;
+            }
+
+            .old-data-next{
+                left: 100%;
+            }
+
+            .old-data-prev{
+                left: 0;
+            }
+        }
+    }
+
+    @keyframes rrSliderSwitchNext {
+        0%{
+            left: 0%;
+        }
+        100%{
+            left: -100%;
+        }
+    }
+
+    .slide-next{
+        .slider{
+            animation: rrSliderSwitchNext $default-transition ease-in forwards;
+        }
+    }
+
+    @keyframes rrSliderSwitchPrevious {
+        0%{
+            left: -100%;
+        }
+        100%{
+            left: 0%;
+        }
+    }
+
+    .slide-previous{
+        .slider{
+            animation: rrSliderSwitchPrevious $default-transition ease-in forwards;
+        }
+    }
+
+    // Right site
+    .data-list-switch.right{
+        right: 0;
+    }
+
+    .slide-wrapper.right{
+        left: auto;
+        right: 0;
+    }
+    
+    .text.right{
+        float: right;
+    }
+}

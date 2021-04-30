@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class ListSwitch extends React.Component {
@@ -26,9 +28,9 @@ class ListSwitch extends React.Component {
             classForSlide: '',
             disableClick: false,
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-list-switch',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ListSwitch',
+            id: isString(props.id) ? props.id : '',
             placeholder: props.placeholder ? props.placeholder : '',
             data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],
             closeOnEsc: (typeof true == typeof props.closeOnEsc) ? props.closeOnEsc : true,
@@ -54,11 +56,10 @@ class ListSwitch extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'holderLoading', 'direction', 'callback', 'callbackProps', 'animation', 'animationTimeout', 'closeAfterCallback', 'arrowNextClick', 'defaultClass', 'placeholder', 'data', 'closeOnEsc', 'closeOnOutsideClick', 'previous', 'next', 'title'], props, state)) {
+        if (PropsCheck(['addClass', 'id', 'holderLoading', 'direction', 'callback', 'callbackProps', 'animation', 'animationTimeout', 'closeAfterCallback', 'arrowNextClick',  'placeholder', 'data', 'closeOnEsc', 'closeOnOutsideClick', 'previous', 'next', 'title'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-list-switch',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 placeholder: props.placeholder ? props.placeholder : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : state.data,
                 closeOnEsc: (typeof true == typeof props.closeOnEsc) ? props.closeOnEsc : true,
@@ -425,7 +426,7 @@ class ListSwitch extends React.Component {
         return (
             <span
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <span className='ctx'>
                     {

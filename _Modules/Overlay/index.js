@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Overlay extends React.Component
 {
@@ -8,11 +10,11 @@ class Overlay extends React.Component
         this.EscListener = this.EscListener.bind(this);
 
         this.state = {
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-overlay',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Overlay',
+            id: isString(props.id) ? props.id : '',
             display: typeof true == typeof props.display ? props.display : false,
-            callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackProps: props.callbackProps,
             data: props.data,
         };
@@ -25,13 +27,12 @@ class Overlay extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'display', 'callback', 'callbackProps'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'display', 'callback', 'callbackProps'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-overlay',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 display: typeof true == typeof props.display ? props.display : false,
-                callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+                callback: isFunction(props.callback) ? props.callback : undefined,
                 callbackProps: props.callbackProps,
                 data: props.data,
             };
@@ -80,7 +81,7 @@ class Overlay extends React.Component
         return (
             <div 
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div className="dimmed" onClick={ () => this.cancel()}></div>
                 {

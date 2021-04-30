@@ -1,25 +1,25 @@
 /**
  * _Modules
  */
-import Articles from './_Modules/Articles';
-import ArticlesImages from './_Modules/ArticlesImages';
+import Article from './_Modules/Article';
+import ArticleImage from './_Modules/ArticleImage';
 import Accordion from './_Modules/Accordion';
 import Astronaut404 from './_Modules/Astronaut404';
-import Boxes from './_Modules/Boxes';
-import Breadcrumbs from './_Modules/Breadcrumbs';
-import Cards from './_Modules/Cards';
-import CardsScroll from './_Modules/CardsScroll';
-import CardsScrollCallback from './_Modules/CardsScrollCallback';
+import Box from './_Modules/Box';
+import Breadcrumb from './_Modules/Breadcrumb';
+import Card from './_Modules/Card';
+import CardScroll from './_Modules/CardScroll';
+import CardScrollCallback from './_Modules/CardScrollCallback';
 import Carousel from './_Modules/Carousel';
 import CustomSuggestion from './_Modules/CustomSuggestion';
 import Clipboard from './_Modules/Clipboard';
-import Clouds404 from './_Modules/Clouds404';
-import CloudsMountains404 from './_Modules/CloudsMountains404';
+import Cloud404 from './_Modules/Cloud404';
+import CloudMountain404 from './_Modules/CloudMountain404';
 import Container from './_Modules/Container';
 import ContainerCompact from './_Modules/ContainerCompact';
 import ContainerPopup from './_Modules/ContainerPopup';
 import ContainerSidebar from './_Modules/ContainerSidebar';
-import DarkLines404 from './_Modules/DarkLines404';
+import DarkLine404 from './_Modules/DarkLine404';
 import DragDropArea from './_Modules/DragDropArea';
 import DragDropList from './_Modules/DragDropList';
 import Filter from './_Modules/Filter';
@@ -27,8 +27,9 @@ import FilterMapping from './_Modules/FilterMapping';
 import FullScreenListArray from './_Modules/FullScreenListArray';
 import FullScreenListObject from './_Modules/FullScreenListObject';
 import FullScreenOverlay from './_Modules/FullScreenOverlay';
-import GlobalMessages from './_Modules/GlobalMessages';
-import Icons from './_Modules/Icons';
+import GlobalMessage from './_Modules/GlobalMessage';
+import Icon from './_Modules/Icon';
+import IconText from './_Modules/IconText';
 import ImageBanner from './_Modules/ImageBanner';
 import ImageBox from './_Modules/ImageBox';
 import ImageCarousel from './_Modules/ImageCarousel';
@@ -51,7 +52,7 @@ import Overlay from './_Modules/Overlay';
 import PagerStatic from './_Modules/PagerStatic';
 import PagerDynamic from './_Modules/PagerDynamic';
 import Picture404 from './_Modules/Picture404';
-import Pills from './_Modules/Pills';
+import Pill from './_Modules/Pill';
 import PopupBox from './_Modules/PopupBox';
 import PopupData from './_Modules/PopupData';
 import PopupHover from './_Modules/PopupHover';
@@ -61,17 +62,17 @@ import ReadMoreCallback from './_Modules/ReadMoreCallback';
 import Ribbon from './_Modules/Ribbon';
 import RibbonMultiple from './_Modules/RibbonMultiple';
 import ScrollTo from './_Modules/ScrollTo';
-import SideBar from './_Modules/SideBar';
+import Sidebar from './_Modules/Sidebar';
 import Slider from './_Modules/Slider';
-import SliderCards from './_Modules/SliderCards';
+import SliderCard from './_Modules/SliderCard';
 import SliderFullscreen from './_Modules/SliderFullscreen';
-import SliderItems from './_Modules/SliderItems';
-import Stars from './_Modules/Stars';
-import Steps from './_Modules/Steps';
-import StepsGenerator from './_Modules/StepsGenerator';
-import StepsGeneratorDragDrop from './_Modules/StepsGeneratorDragDrop';
+import SliderItem from './_Modules/SliderItem';
+import Star from './_Modules/Star';
+import Step from './_Modules/Step';
+import StepGenerator from './_Modules/StepGenerator';
+import StepGeneratorDragDrop from './_Modules/StepGeneratorDragDrop';
 import SourceCode from './_Modules/SourceCode';
-import Suggestions from './_Modules/Suggestions';
+import Suggestion from './_Modules/Suggestion';
 import Range from './_Modules/Range';
 import Table from './_Modules/Table';
 import TextWriter from './_Modules/TextWriter';
@@ -102,24 +103,24 @@ export {
      * _Modules
      */
     Accordion,
-    Articles,
-    ArticlesImages,
+    Article,
+    ArticleImage,
     Astronaut404,
-    Boxes,
-    Breadcrumbs,
-    Cards,
-    CardsScroll,
-    CardsScrollCallback,
+    Box,
+    Breadcrumb,
+    Card,
+    CardScroll,
+    CardScrollCallback,
     Carousel,
     CustomSuggestion,
     Clipboard,
-    Clouds404,
-    CloudsMountains404,
+    Cloud404,
+    CloudMountain404,
     Container,
     ContainerCompact,
     ContainerPopup,
     ContainerSidebar,
-    DarkLines404,
+    DarkLine404,
     DragDropArea,
     DragDropList,
     Filter,
@@ -127,8 +128,9 @@ export {
     FullScreenListArray,
     FullScreenListObject,
     FullScreenOverlay,
-    GlobalMessages,
-    Icons,
+    GlobalMessage,
+    Icon,
+    IconText,
     ImageBanner,
     ImageBox,
     ImageCarousel,
@@ -151,28 +153,28 @@ export {
     PagerStatic,
     PagerDynamic,
     Picture404,
-    Pills,
+    Pill,
     PopupBox,
     PopupData,
     PopupHover,
     Preloader,
+    Range,
     ReadMore,
     ReadMoreCallback,
     Ribbon,
     RibbonMultiple,
     ScrollTo,
-    SideBar,
+    Sidebar,
     Slider,
     SliderFullscreen,
-    SliderCards,
-    SliderItems,
-    Stars,
-    Steps,
-    StepsGenerator,
-    StepsGeneratorDragDrop,
+    SliderCard,
+    SliderItem,
+    Star,
+    Step,
+    StepGenerator,
+    StepGeneratorDragDrop,
     SourceCode,
-    Suggestions,
-    Range,
+    Suggestion,
     Table,
     TextWriter,
     Timeline,

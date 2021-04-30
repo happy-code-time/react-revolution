@@ -1,0 +1,158 @@
+@import './globals.scss';
+
+.Article{
+
+    .single-entry{
+        box-sizing: border-box;
+        padding: 5px 15px;
+        border-radius: $border-radius;
+        border:1px solid $border-color;
+        margin: 10px;
+        width: 100%;
+        position: relative;
+
+        .title,
+        .text{
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .left{
+            width: 40%;
+            height: 100%;
+            position: relative;
+
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top:0;
+                left:0;
+                z-index: 1;
+            }
+
+            .image-data{
+                position: absolute;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+            }
+        }
+
+        .right{
+            width: 100%;
+        }
+
+        .border{
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left:0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    // Animation: height
+    .toggling.animation-height{
+
+        @keyframes toggleArticlesHeight {
+            0%{
+                max-height: 0px;
+            }
+            100%{
+                max-height: 1000vh;
+                overflow: visible;
+            }
+        }
+
+        max-height: 0px;
+        overflow: hidden;
+        animation: toggleArticlesHeight $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-height{
+        max-height: 1000vh;
+    }
+
+    .animation-height-back{
+        @keyframes toggleArticlesHeightBack {
+            0%{
+                max-height: 500px;
+            }
+            100%{
+                max-height: 0px;
+            }
+        }
+        animation: toggleArticlesHeightBack $default-transition ease-in forwards;
+    }
+
+    // Animation: scale
+    .toggling.animation-scale{
+
+        @keyframes toggleArticlesScale {
+            0%{
+                transform: scaleY(0);
+            }
+            100%{
+                transform: scaleY(1);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(0);
+        animation: toggleArticlesScale $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-scale{
+        transform: scaleY(1);
+    }
+
+    .animation-scale-back{
+        @keyframes toggleArticlesScaleBack {
+            0%{
+                transform: scaleY(1);
+            }
+            100%{
+                transform: scaleY(0);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(1);
+        animation: toggleArticlesScaleBack $default-transition ease-in forwards;
+    }
+
+    // Animation: opacity
+    .toggling.animation-opacity{
+
+        @keyframes toggleArticlesOpacity {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        opacity: 0;
+        animation: toggleArticlesOpacity $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-opacity{
+        opacity: 1;
+    }
+
+    .animation-opacity-back {
+        @keyframes toggleArticlesOpacityBack {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        opacity: 1;
+        animation: toggleArticlesOpacityBack $default-transition ease-in forwards;
+    }
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class InputFile extends React.Component 
 {
@@ -30,9 +32,9 @@ class InputFile extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-file',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputFile',
+            id: isString(props.id) ? props.id : '',
             allowedFileSize: props.allowedFileSize,
             allowedFileSizeDescriptor: props.sizeDescriptor,
             allowedFiles: props.allowedFiles,
@@ -52,11 +54,10 @@ class InputFile extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'label', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'multiple'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'label', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'multiple'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-file',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 label: (props.label && typeof '8' == typeof props.label) ? props.label : '',
                 readFileCallback: (props.readFileCallback && typeof function(){} == typeof props.readFileCallback) ? props.readFileCallback : undefined,
                 errorCallback: (props.errorCallback && typeof function(){} == typeof props.errorCallback) ? props.errorCallback : undefined,
@@ -195,7 +196,7 @@ class InputFile extends React.Component
         };
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 <input
                     ref={node => this.inputNode = node}
                     type="file"

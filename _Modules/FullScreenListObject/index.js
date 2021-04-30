@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class FullScreenListObject extends React.Component
 {
@@ -25,9 +27,9 @@ class FullScreenListObject extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
             defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? this.getDefaultClass(props) : this.getDefaultClass(props),
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            id: isString(props.id) ? props.id : '',
             animation: typeof '8' === typeof props.animation ? props.animation.toLowerCase() : '',
             data: (props.data && typeof [] === typeof props.data) ? props.data : [],
             display: typeof true === typeof props.display ? props.display : false,
@@ -36,7 +38,7 @@ class FullScreenListObject extends React.Component
             inputActive: typeof true === typeof props.inputActive ? props.inputActive : false,
             noDataText: (props.noDataText && typeof '8' === typeof props.noDataText) ? props.noDataText : 'No data found',
             inputPlaceholder: (props.inputPlaceholder && typeof '8' === typeof props.inputPlaceholder) ? props.inputPlaceholder : 'Search here...',
-            callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackClose: props.callbackClose && typeof function(){} == typeof props.callbackClose ? props.callbackClose : undefined,
             closeOnCallback: typeof true === typeof props.closeOnCallback ? props.closeOnCallback : false,
             closeOnDimmedClick: typeof true === typeof props.closeOnDimmedClick ? props.closeOnDimmedClick : false,
@@ -54,8 +56,8 @@ class FullScreenListObject extends React.Component
     static getDerivedStateFromProps(props, state) {
         if (PropsCheck(['id', 'data', 'display', 'lineNumber', 'iconClose', 'inputActive', 'closeOnDimmed', 'noDataText', 'inputPlaceholder', 'animation', 'callback', 'callbackClose', 'closeOnEsc', 'inputEmptyOnCallback'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] === typeof props.data) ? props.data : [],
                 display: typeof true === typeof props.display ? props.display : false,
                 lineNumber: typeof true === typeof props.lineNumber ? props.lineNumber : false,
@@ -64,7 +66,7 @@ class FullScreenListObject extends React.Component
                 noDataText: (props.noDataText && typeof '8' === typeof props.noDataText) ? props.noDataText : 'No data found',
                 inputPlaceholder: (props.inputPlaceholder && typeof '8' === typeof props.inputPlaceholder) ? props.inputPlaceholder : 'Search here...',
                 animation: typeof '8' === typeof props.animation ? props.animation.toLowerCase() : '',
-                callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+                callback: isFunction(props.callback) ? props.callback : undefined,
                 callbackClose: props.callbackClose && typeof function(){} == typeof props.callbackClose ? props.callbackClose : undefined,
                 closeOnCallback: typeof true === typeof props.closeOnCallback ? props.closeOnCallback : false,
                 closeOnDimmedClick: typeof true === typeof props.closeOnDimmedClick ? props.closeOnDimmedClick : false,
@@ -124,7 +126,7 @@ class FullScreenListObject extends React.Component
             return `${defaultClass} ${animation ? `${animation}` : ''}`;
         }
 
-        return `rr-full-screen-list-object ${animation ? `${animation}` : ''}`;
+        return `FullScreenListObject ${animation ? `${animation}` : ''}`;
     }
 
     /**
@@ -293,7 +295,7 @@ class FullScreenListObject extends React.Component
             <div 
                 ref={ (node) => this.FullSceenListNode = node }
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     iconClose &&

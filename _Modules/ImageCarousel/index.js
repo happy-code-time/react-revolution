@@ -1,6 +1,8 @@
 import React from 'react';
 import isObject from '../../_Functions/isObject';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class ImageCarousel extends React.Component {
@@ -21,9 +23,9 @@ class ImageCarousel extends React.Component {
             animationPlayState: 'running',
             uuid: `${internalUuid()}`,
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-image-carousel',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ImageCarousel',
+            id: isString(props.id) ? props.id : '',
             data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],
             allowMouseTouch: typeof true === typeof props.allowMouseTouch ? props.allowMouseTouch : true,
             inlineStyle: typeof true === typeof props.inlineStyle ? props.inlineStyle : false,
@@ -63,11 +65,10 @@ class ImageCarousel extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'defaultClass', 'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
+        if (PropsCheck(['addClass', 'id',  'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-image-carousel',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],
                 allowMouseTouch: typeof true === typeof props.allowMouseTouch ? props.allowMouseTouch : true,
                 inlineStyle: typeof true === typeof props.inlineStyle ? props.inlineStyle : false,
@@ -308,7 +309,7 @@ class ImageCarousel extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass} flex`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 ref={x => this.rootNode = x}
                 {...(this.state.allowMouseTouch && this.state.nodeListener) && { onMouseLeave: () => this.handleMouseLeave() }}
             >

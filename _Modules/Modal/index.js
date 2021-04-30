@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Modal extends React.Component 
 {
@@ -14,13 +16,13 @@ class Modal extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-modal',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Modal',
+            id: isString(props.id) ? props.id : '',
             data: props.data ? props.data : undefined,
             close: props.close ? props.close : undefined,
             display: typeof true == typeof props.display ? props.display : false,
-            callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             closeOnKeyDown: typeof true == typeof props.closeOnKeyDown ? props.closeOnKeyDown : true,
             closeOnClickDimmed: typeof true == typeof props.closeOnClickDimmed ? props.closeOnClickDimmed : true,
         };
@@ -51,14 +53,13 @@ class Modal extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'display', 'callback'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'display', 'callback'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-modal',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data ? props.data : undefined,
                 display: typeof true == typeof props.display ? props.display : false,
-                callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+                callback: isFunction(props.callback) ? props.callback : undefined,
             };
         }
 
@@ -109,7 +110,7 @@ class Modal extends React.Component
             <div
                 ref={this.ref}
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 
                 <div className="holder" {...(closeOnClickDimmed) && { onClick: (e) => this.close(e) }}></div>

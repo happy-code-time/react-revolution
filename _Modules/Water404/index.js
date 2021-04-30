@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import isString from '../../_Functions/isString';
 
 class Water404 extends React.Component {
 
@@ -7,9 +8,9 @@ class Water404 extends React.Component {
         super(props);
 
         this.state = {
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-water-404',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Water404',
+            id: isString(props.id) ? props.id : '',
             reactRouter: this.props.reactRouter ? this.props.reactRouter : false,
             link: props.link && typeof {} == typeof props.link ? props.link : {},
             text404: props.text404 && typeof '8' == typeof props.text404 ? props.text404 : '404',
@@ -39,7 +40,7 @@ class Water404 extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div className="holder-404">
                     <div className="water">

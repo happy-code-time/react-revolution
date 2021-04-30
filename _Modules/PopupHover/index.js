@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 import Center from './Center';
 
@@ -15,9 +17,9 @@ class PopupHover extends React.Component {
             dataClass: '',
             dataAnimationClass: '',
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popup-hover',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupHover',
+            id: isString(props.id) ? props.id : '',
             holderData: props.holderData,
             contentData: props.contentData,
             direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'center', 'right'].includes(props.direction)) ? props.direction : 'left',
@@ -34,11 +36,10 @@ class PopupHover extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'useMouseEnter'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'useMouseEnter'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popup-hover',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 holderData: props.holderData,
                 contentData: props.contentData,
                 direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'center', 'right'].includes(props.direction)) ? props.direction : 'left',
@@ -290,7 +291,7 @@ class PopupHover extends React.Component {
             <div
                 ref={e => this.refNode = e}
                 className={`${defaultClass} ${direction} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 onMouseLeave={() => this.toggleMenu(true)}
             >
                 <div className={`data-holder data-outside`}>

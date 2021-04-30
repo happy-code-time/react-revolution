@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import buildDropDownStructure from '../internalFunctions/buildDropDownStructure';
 
-class Menu extends React.Component {
+class MenuHeight extends React.Component {
     constructor(props) {
         super(props);
         this.buildDataRecursive = this.buildDataRecursive.bind(this);
@@ -23,9 +25,9 @@ class Menu extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-height',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuHeight',
+            id: isString(props.id) ? props.id : '',
             data: (props.data && typeof [] == typeof props.data) ? buildDropDownStructure(props.data) : [],
             reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,
             dashed: typeof true == typeof props.dashed ? props.dashed : false,
@@ -59,11 +61,10 @@ class Menu extends React.Component {
             };
         }
 
-        if (PropsCheck(['defaultClass', 'id', 'reactRouter', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon', 'singleItemsHeight', 'animationTime'], props, state)) {
+        if (PropsCheck([ 'id', 'reactRouter', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon', 'singleItemsHeight', 'animationTime'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-height',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,
                 dashed: typeof true == typeof props.dashed ? props.dashed : false,
                 headData: props.headData ? props.headData : '',
@@ -605,7 +606,7 @@ class Menu extends React.Component {
             <div
                 ref={this.refNode}
                 className={`${defaultClass} ${direction} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     headData && headData
@@ -618,4 +619,4 @@ class Menu extends React.Component {
     }
 }
 
-export default Menu;
+export default MenuHeight;

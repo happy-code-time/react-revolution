@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import tagMatcher from './functions/tagMatcher';
 import propsMatcher from './functions/propsMatcher';
 import varMatcher from './functions/varMatcher';
@@ -21,7 +23,7 @@ const defaultSourceCodeSteps = [
     'brackets',
 ];
 
-class ModuleSourceCode extends React.Component {
+class SourceCode extends React.Component {
 
     constructor(props) {
         super(props);
@@ -39,9 +41,9 @@ class ModuleSourceCode extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-sourcecode',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SourceCode',
+            id: isString(props.id) ? props.id : '',
             code: (props.code && typeof '8' == typeof props.code) ? props.code : undefined,
             lineNumber: typeof true === typeof props.lineNumber ? props.lineNumber : false,
             promise: typeof true === typeof props.promise ? props.promise : false,
@@ -69,11 +71,10 @@ class ModuleSourceCode extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['defaultClass', 'id', 'code', 'lineNumber', 'promise', 'promiseLine', 'matcher', 'inputActive', 'inputCallback', 'inputPlaceholder', 'searchSensitive', 'promiseTime', 'lineNumberNewLine', 'noDataText', 'sourceCode', 'fallbackNoData', 'fallbackNoDataSearch'], props, state)) {
+        if (PropsCheck([ 'id', 'code', 'lineNumber', 'promise', 'promiseLine', 'matcher', 'inputActive', 'inputCallback', 'inputPlaceholder', 'searchSensitive', 'promiseTime', 'lineNumberNewLine', 'noDataText', 'sourceCode', 'fallbackNoData', 'fallbackNoDataSearch'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-sourcecode',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 code: (props.code && typeof '8' == typeof props.code) ? props.code : undefined,
                 lineNumber: typeof true === typeof props.lineNumber ? props.lineNumber : false,
                 promise: typeof true === typeof props.promise ? props.promise : false,
@@ -504,7 +505,7 @@ class ModuleSourceCode extends React.Component {
         let emptyLines = 0;
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 {
                     inputActive &&
                     <div className="search">
@@ -610,4 +611,4 @@ class ModuleSourceCode extends React.Component {
         );
     }
 }
-export default ModuleSourceCode;
+export default SourceCode;

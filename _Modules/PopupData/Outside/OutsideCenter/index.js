@@ -1,4 +1,5 @@
 import React from 'react';
+import isString from '../../../../_Functions/isString';
 import PropsCheck from '../../../internalFunctions/PropsCheck';
 
 class OutsideCenter extends React.Component {
@@ -252,7 +253,7 @@ class OutsideCenter extends React.Component {
                 ref={e => this.refNode = e}
                 tabIndex="0"
                 className={`${defaultClass} center ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div 
                     ref={e => this.holderOutside = e}

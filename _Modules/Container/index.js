@@ -1,6 +1,8 @@
 import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Container extends React.Component {
     constructor(props) {
@@ -35,9 +37,9 @@ class Container extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Container',
+            id: isString(props.id) ? props.id : '',
             moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
             maxifyAt: (typeof 8 == typeof props.maxifyAt) ? props.maxifyAt : 1024,
             minifyAt: (typeof 8 == typeof props.minifyAt) ? props.minifyAt : 820,
@@ -73,11 +75,10 @@ class Container extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'minifyAt', 'animationDuration', 'maxifyAt', 'hideAt', 'displayMinifyMaxifyIcon', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'closeMenuHtml', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'sidebarMinWidth', 'locationInterval'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'moduleSidebar', 'minifyAt', 'animationDuration', 'maxifyAt', 'hideAt', 'displayMinifyMaxifyIcon', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'closeMenuHtml', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'sidebarMinWidth', 'locationInterval'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
                 maxifyAt: (typeof 8 == typeof props.maxifyAt) ? props.maxifyAt : 1024,
                 minifyAt: (typeof 8 == typeof props.minifyAt) ? props.minifyAt : 820,
@@ -310,14 +311,14 @@ class Container extends React.Component {
         const { isMin, isHidden } = this.state;
 
         if (isHidden) {
-            return 'SideBar SideBar-hidden';
+            return 'area-sidebar area-sidebar-hidden';
         }
 
         if (isMin) {
-            return 'SideBar SideBar-min';
+            return 'area-sidebar area-sidebar-min';
         }
 
-        return 'SideBar';
+        return 'area-sidebar';
     }
 
     /**
@@ -327,14 +328,14 @@ class Container extends React.Component {
         const { isMin, isHidden } = this.state;
 
         if (isHidden) {
-            return 'Content Content-hidden';
+            return 'area-content area-content-hidden';
         }
 
         if (isMin) {
-            return 'Content Content-min';
+            return 'area-content area-content-min';
         }
 
-        return 'Content';
+        return 'area-content';
     }
 
     /**
@@ -410,7 +411,7 @@ class Container extends React.Component {
 
         return (
             <div 
-                id={id} 
+                {...isString(id) && '' !== id && { id: id } } 
                 className={`${defaultClass} ${direction} ${animation ? 'zIndex' : ''} ${!animationDuration || !this.state.mounted ? 'td0' : ''} ${addClass}`}
                 style={constainerStyle}
             >

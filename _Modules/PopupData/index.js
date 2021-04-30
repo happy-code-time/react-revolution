@@ -1,5 +1,6 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
 import internalUuid from '../internalFunctions/internalUuid';
 import OutsideLeft from './Outside/OutsideLeft';
 import OutsideCenter from './Outside/OutsideCenter';
@@ -17,9 +18,9 @@ class PopupData extends React.Component {
             displayMenu: false,
             uuid: internalUuid(),
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popup-data',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupData',
+            id: isString(props.id) ? props.id : '',
             holderData: props.holderData,
             contentData: props.contentData,
             direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'center', 'right'].includes(props.direction)) ? props.direction : 'left',
@@ -38,11 +39,10 @@ class PopupData extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'closeOnEsc', 'closeOnOutsideClick', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'holderInside'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'closeOnEsc', 'closeOnOutsideClick', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'holderInside'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popup-data',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 holderData: props.holderData,
                 contentData: props.contentData,
                 direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'center', 'right'].includes(props.direction)) ? props.direction : 'left',

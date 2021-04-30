@@ -2,6 +2,8 @@ import React from 'react';
 import isArray from '../../_Functions/isArray';
 import isObject from '../../_Functions/isObject';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class ContainerCompact extends React.Component {
     constructor(props) {
@@ -20,9 +22,9 @@ class ContainerCompact extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-compact',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerCompact',
+            id: isString(props.id) ? props.id : '',
             hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
 
             headerProps: isObject(props.headerProps) ? props.headerProps : {},
@@ -61,7 +63,6 @@ class ContainerCompact extends React.Component {
     static getDerivedStateFromProps(props, state) {
         if (PropsCheck([
             'addClass',
-            'defaultClass',
             'id',
             'hideAt',
             'headerProps',
@@ -81,9 +82,8 @@ class ContainerCompact extends React.Component {
             'headerHeight'
         ], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-compact',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
                 
                 headerProps: isObject(props.headerProps) ? props.headerProps : {},
@@ -244,12 +244,12 @@ class ContainerCompact extends React.Component {
 
         return (
             <div
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 className={`${defaultClass} ${direction} ${addClass} ${!this.state.mounted ? 'td0' : ''}`}
                 style={constainerStyle}
             >
                 <div
-                    className={`Header`}
+                    className={`area-header`}
                     {...(isObject(headerProps)) && { ...headerProps }}
                 >
                     {
@@ -259,7 +259,7 @@ class ContainerCompact extends React.Component {
                 {
                     !this.state.isMinified &&
                     <div
-                        className={`Sidebar`}
+                        className={`area-sidebar`}
                         {...(isObject(sidebarProps)) && { ...sidebarProps }}
                     >
                         {
@@ -268,7 +268,7 @@ class ContainerCompact extends React.Component {
                     </div>
                 }
                 <div
-                    className={`Content ${this.state.isMinified ? 'w-100' : ''}`}
+                    className={`area-content ${this.state.isMinified ? 'w-100' : ''}`}
                     {...(isObject(contentProps)) && { ...contentProps }}
                 >
                     {

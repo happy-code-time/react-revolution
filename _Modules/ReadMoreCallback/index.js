@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class ReadMoreCallback extends React.Component 
 {
@@ -20,9 +22,9 @@ class ReadMoreCallback extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-read-more-callback',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ReadMoreCallback',
+            id: isString(props.id) ? props.id : '',
             animation: (props.animation && typeof '8' == typeof props.animation) ? props.animation : undefined,
             toggleForwards: props.toggleForwards ? props.toggleForwards : '...',
             toggleBackwards: props.toggleBackwards ? props.toggleBackwards : undefined,
@@ -42,13 +44,12 @@ class ReadMoreCallback extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass', 'id', 'animation', 'toggleForwards', 'toggleBackwards', 'toggleOnReject', 'toggleReject', 'callback', 'callbackProps', 'loading', 'data'], props, state)) {
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'animation', 'toggleForwards', 'toggleBackwards', 'toggleOnReject', 'toggleReject', 'callback', 'callbackProps', 'loading', 'data'], props, state)) {
             return {
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-read-more-callback',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 animation: (props.animation && typeof '8' == typeof props.animation) ? props.animation : undefined,
                 toggleForwards: props.toggleForwards ? props.toggleForwards : '...',
                 toggleBackwards: props.toggleBackwards ? props.toggleBackwards : undefined,
@@ -182,7 +183,7 @@ class ReadMoreCallback extends React.Component
         return (
             <span
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     data &&

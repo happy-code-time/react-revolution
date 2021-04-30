@@ -23,54 +23,67 @@
   $border-radius-xl: 20px;
   $border-radius-xxl: 25px;
   $box-shadow: 0px 0px 6px rgba(188, 188, 188, 0.77);
+  $background-gray-l: rgba(222, 222, 222, 0.33);
+  $background-gray-m: rgba(128, 128, 128, 0.88);
   
  /**
   * Classes
   */
- .flex {
+ .flex 
+ {
    display: flex;
  }
  
- .flex-row {
+ .flex-row 
+ {
    flex-direction: row;
  }
  
- .flex-column {
+ .flex-column 
+ {
    flex-direction: column;
  }
  
- .w-100 {
+ .w-100 
+ {
    width: 100%;
  }
  
- .d-none {
+ .d-none 
+ {
    display: none;
  }
  
- .d-inline{
+ .d-inline
+ {
    display: inline !important;
  }
  
- .user-select-none {
+ .user-select-none 
+ {
    -moz-user-select: none;
    -khtml-user-select: none;
    user-select: none;
  }
  
- .white-space-pre-wrap {
+ .white-space-pre-wrap 
+ {
    white-space: pre-wrap;
  }
  
- .float-right{
-     float: right;
+ .float-right
+ {
+  float: right;
  }
  
- .float-left{
-     float: left;
+ .float-left
+ {
+  float: left;
  }
  
- .cursor-pointer{
-     cursor: pointer;
+ .cursor-pointer
+ {
+  cursor: pointer;
  }
  
  

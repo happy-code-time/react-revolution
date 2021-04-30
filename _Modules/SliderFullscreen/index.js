@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class SliderFullscreen extends React.Component {
@@ -50,9 +52,9 @@ class SliderFullscreen extends React.Component {
             autoplay: false,
             isUserCurrentlySliding: false,
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-slider-fullscreen',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SliderFullscreen',
+            id: isString(props.id) ? props.id : '',
             data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
             slidersUuid: props.slidersUuid && typeof '8' === typeof props.slidersUuid ? props.slidersUuid : `${internalUuid()}`,
             displayPagination: typeof true == typeof props.displayPagination ? props.displayPagination : true,
@@ -76,7 +78,7 @@ class SliderFullscreen extends React.Component {
             toggleDirection: (props.toggleDirection && typeof '8' == typeof props.toggleDirection && ['left', 'right'].includes(props.toggleDirection)) ? props.toggleDirection : 'right',
             next: props.next ? props.next : '>>',
             previous: props.previous ? props.previous : '<<',
-            autoplayIcon: props.autoplayIcon ? props.autoplayIcon : '🎞',
+            autoplayIcon: props.autoplayIcon ? props.autoplayIcon : '🎥',
             closeIcon: props.closeIcon ? props.closeIcon : 'x',
             autoplayStopIcon: props.autoplayStopIcon ? props.autoplayStopIcon : '🛑',
             closeCallback: props.closeCallback && typeof function () { } === typeof props.closeCallback ? props.closeCallback : undefined,
@@ -122,7 +124,7 @@ class SliderFullscreen extends React.Component {
     static getDerivedStateFromProps(props, state) {
         if (PropsCheck([
             'addClass',
-            'defaultClass',
+            
             'id',
             'displayPagination',
             'slideAfterMove',
@@ -155,9 +157,8 @@ class SliderFullscreen extends React.Component {
         ], props, state)) {
 
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-slider-fullscreen',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
                 displayPagination: typeof true == typeof props.displayPagination ? props.displayPagination : true,
                 slideAfterMove: typeof 8 == typeof props.slideAfterMove ? props.slideAfterMove : 50,
@@ -179,7 +180,7 @@ class SliderFullscreen extends React.Component {
                 toggleDirection: (props.toggleDirection && typeof '8' == typeof props.toggleDirection && ['left', 'right'].includes(props.toggleDirection)) ? props.toggleDirection : 'right',
                 next: props.next ? props.next : '>>',
                 previous: props.previous ? props.previous : '<<',
-                autoplayIcon: props.autoplayIcon ? props.autoplayIcon : '🎞',
+                autoplayIcon: props.autoplayIcon ? props.autoplayIcon : '🎥',
                 closeIcon: props.closeIcon ? props.closeIcon : 'x',
                 autoplayStopIcon: props.autoplayStopIcon ? props.autoplayStopIcon : '🛑',
                 closeCallback: props.closeCallback && typeof function () { } === typeof props.closeCallback ? props.closeCallback : undefined,
@@ -1080,7 +1081,7 @@ class SliderFullscreen extends React.Component {
         } = this.state;
 
         return (
-            <div className={`${defaultClass} ${addClass} animate-${animationTime}`} id={id}>
+            <div className={`${defaultClass} ${addClass} animate-${animationTime}`} {...isString(id) && '' !== id && { id: id } }>
                 {/* Need this wrapper to set a z-index lower then the page to avoid (on desktop the version) to execute the mousedown function (while using the pager). */}
                 <div
                     key={`wrapper-${slidersUuid}`}

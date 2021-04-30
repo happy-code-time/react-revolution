@@ -1,0 +1,74 @@
+@import './globals.scss';
+
+.PopupBox {
+  position: relative;
+
+  .box {
+    @keyframes displayBoxEasyIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+  
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  
+    animation: displayBoxEasyIn $default-transition forwards ease-in;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(122, 122, 122, 0.44);
+    opacity: 0;
+    transition-duration: $default-transition;
+    z-index: 2;
+    transform: scale(0);
+    position: absolute;
+
+    h1 {
+      font-weight: bold;
+      color: #313435;
+      font-size: 0.97rem;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+  }
+
+  .box.top-left{
+    top: 100%;
+    left:0;
+    transform-origin: top left;
+  }
+
+  .box.top-right{
+    top: 100%;
+    right: 0;
+    transform-origin: top right;
+  }
+
+  .box.bottom-left{
+    left:0;
+    transform-origin: bottom left;
+  }
+
+  .box.bottom-right{
+    right: 0;
+    transform-origin: bottom right;
+  }
+
+  .box.fade-out {
+    @keyframes displayBoxEasyOut {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+  
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+    animation: displayBoxEasyOut $default-transition forwards ease-in;
+  }
+  
+}

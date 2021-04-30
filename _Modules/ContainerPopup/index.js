@@ -1,6 +1,9 @@
 import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
+
 
 class ContainerPopup extends React.Component 
 {
@@ -28,9 +31,9 @@ class ContainerPopup extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-popup',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerPopup',
+            id: isString(props.id) ? props.id : '',
             moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
             hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
             headerProps: (props.headerProps && typeof {} == typeof props.headerProps) ? props.headerProps : {},
@@ -58,11 +61,10 @@ class ContainerPopup extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'moduleSidebar', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'moduleSidebar', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-container-popup',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
                 hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
                 headerProps: (props.headerProps && typeof {} == typeof props.headerProps) ? props.headerProps : {},
@@ -241,20 +243,20 @@ class ContainerPopup extends React.Component
 
         return (
             <div
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 className={`${defaultClass} ${direction} ${animation ? 'zIndex' : ''} ${!animationDuration ? 'td0' : ''} ${addClass}`}
                 style={constainerStyle}
             >
                 {
                     !isHiddenSidebar &&
-                    <div className={`SideBar ${!isHidden && hiddenForwards ? 'SideBarShow' : ''} ${isHidden && hiddenBackwards ? 'SideBarHide' : ''}`}>
+                    <div className={`area-sidebar ${!isHidden && hiddenForwards ? 'area-sidebar-show' : ''} ${isHidden && hiddenBackwards ? 'area-sidebar-hide' : ''}`}>
                         {
                             moduleSidebar && moduleSidebar
                         }
                     </div>
                 }
                 <div 
-                    className={`Content ${isHidden ? 'Content-hidden' : ''} ${!isHidden && hiddenForwards ? 'ContentShow' : ''} ${isHidden && hiddenBackwards ? 'ContentHide' : ''}`} 
+                    className={`area-content ${isHidden ? 'area-content-hidden' : ''} ${!isHidden && hiddenForwards ? 'area-content-show' : ''} ${isHidden && hiddenBackwards ? 'area-content-hide' : ''}`} 
                     {...contentProps}
                 >
                     <div className={`data-header`} {...headerProps}>

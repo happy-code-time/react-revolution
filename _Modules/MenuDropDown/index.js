@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class MenuDropDown extends React.Component {
     constructor(props) {
@@ -19,9 +21,9 @@ class MenuDropDown extends React.Component {
             cancleAsync: false,
             menuClicked: false,
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-dropdown',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuDropDown',
+            id: isString(props.id) ? props.id : '',
             placeholder: props.placeholder ? props.placeholder : '',
             holderLoading: props.holderLoading ? props.holderLoading : '',
             callback: props.callback && typeof function () { } == typeof props.callback ? props.callback : undefined,
@@ -40,11 +42,10 @@ class MenuDropDown extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'defaultClass', 'closeOnOutsideClick', 'closeOnEsc', 'callback', 'callbackProps', 'holderLoading', 'placeholder'], props, state)) {
+        if (PropsCheck(['addClass', 'id',  'closeOnOutsideClick', 'closeOnEsc', 'callback', 'callbackProps', 'holderLoading', 'placeholder'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-dropdown',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 placeholder: props.placeholder ? props.placeholder : '',
                 holderLoading: props.holderLoading ? props.holderLoading : '',
                 callback: props.callback && typeof function () { } == typeof props.callback ? props.callback : undefined,
@@ -181,7 +182,7 @@ class MenuDropDown extends React.Component {
             <span
                 ref={this.setWrapperRef}
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div
                     className='placeholder'

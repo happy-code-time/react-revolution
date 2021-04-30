@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class InputFileDragDrop extends React.Component 
 {
@@ -30,9 +32,9 @@ class InputFileDragDrop extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-file-drag-drop',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputFileDragDrop',
+            id: isString(props.id) ? props.id : '',
             allowedFileSize: props.allowedFileSize,
             allowedFileSizeDescriptor: props.sizeDescriptor,
             allowedFiles: props.allowedFiles,
@@ -55,11 +57,10 @@ class InputFileDragDrop extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'isDraggingData', 'multiple', 'uploadOnClick'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'isDraggingData', 'multiple', 'uploadOnClick'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-file-drag-drop',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 readFileCallback: (props.readFileCallback && typeof function(){} == typeof props.readFileCallback) ? props.readFileCallback : undefined,
                 errorCallback: (props.errorCallback && typeof function(){} == typeof props.errorCallback) ? props.errorCallback : undefined,
                 inputPlaceholder: (props.inputPlaceholder && typeof '8' == typeof props.inputPlaceholder) ? props.inputPlaceholder : '',
@@ -276,7 +277,7 @@ class InputFileDragDrop extends React.Component
         };
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
 
                 {
                     uploadOnClick &&

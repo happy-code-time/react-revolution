@@ -1,8 +1,8 @@
 import React from 'react';
 import isArray from '../../_Functions/isArray';
 import isString from '../../_Functions/isString';
-import isBoolean from '../../_Functions/isBoolean';
 import isFunction from '../../_Functions/isFunction';
+import isBoolean from '../../_Functions/isBoolean';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isObject from '../../_Functions/isObject';
 import isNumber from '../../_Functions/isNumber';
@@ -31,7 +31,7 @@ class Filter extends React.Component
              * User
              */
             addClass: isString(props.addClass) ? props.addClass : '',
-            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'rr-filter',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Filter',
             id: isString(props.id) ? props.id : '',
             data: isArray(props.data) ? props.data : [],
             reset: isBoolean(props.reset) ? props.reset : true,
@@ -54,10 +54,9 @@ class Filter extends React.Component
      */
     static getDerivedStateFromProps(props, state) 
     {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'reset', 'disabled', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'reset', 'disabled', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
-                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'rr-filter',
                 id: isString(props.id) ? props.id : '',
                 data: isArray(props.data) ? props.data : [],
                 reset: isBoolean(props.reset) ? props.reset : true,
@@ -659,7 +658,7 @@ class Filter extends React.Component
 
         return (
             <span
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 className={`${defaultClass} ${addClass}`}
                 ref={this.refNode}
             >

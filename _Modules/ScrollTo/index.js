@@ -1,4 +1,5 @@
 import React from 'react';
+import isString from '../../_Functions/isString';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class ScrollTo extends React.Component 
@@ -7,8 +8,8 @@ class ScrollTo extends React.Component
         super(props);
 
         this.state = {
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-scroll-to',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ScrollTo',
             id: (props.id && typeof '8' == typeof props.id) ? props.id : internalUuid(),
             navigationTime: (props.navigationTime && typeof 8 == typeof props.navigationTime) ? props.navigationTime : 300,
             navigationTarget: (props.navigationTarget && typeof '8' == typeof props.navigationTarget) ? props.navigationTarget : '',
@@ -152,7 +153,7 @@ class ScrollTo extends React.Component
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 onClick={(e) => this.navigateWindowToElement(e, id)}
             >
                 {

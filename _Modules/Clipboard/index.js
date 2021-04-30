@@ -1,6 +1,9 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
+
 class Clipboard extends React.Component 
 {
     
@@ -24,10 +27,10 @@ class Clipboard extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-clipboard',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
-            callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Clipboard',
+            id: isString(props.id) ? props.id : '',
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackProps: props.callbackProps,
             data: props.data && typeof [] == typeof props.data ? props.data : [],
             clipboard: props.clipboard,
@@ -42,12 +45,11 @@ class Clipboard extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['defaultClass', 'id', 'callback', 'callbackProps', 'data', 'clipboard'], props, state)) {
+        if (PropsCheck([ 'id', 'callback', 'callbackProps', 'data', 'clipboard'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-clipboard',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
-                callback: props.callback && typeof function(){} == typeof props.callback ? props.callback : undefined,
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
+                callback: isFunction(props.callback) ? props.callback : undefined,
                 callbackProps: props.callbackProps,
                 data: props.data && typeof [] == typeof props.data ? props.data : [],
                 clipboard: props.clipboard
@@ -114,7 +116,7 @@ class Clipboard extends React.Component
             <div 
                 ref={ node => this.clipboardNodeForAnimation = node}
                 className={`${defaultClass} ${addClass}`} 
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 onClick={ (e) => this.copyToClipboard(e)}
             >
                 {

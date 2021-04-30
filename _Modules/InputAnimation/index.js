@@ -1,5 +1,6 @@
 import React from 'react';
-
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 class InputAnimation extends React.Component 
 {
     constructor (props) {
@@ -15,12 +16,12 @@ class InputAnimation extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-animation',
-            defaultClassOrigin: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-animation',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputAnimation',
+            defaultClassOrigin: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'InputAnimation',
+            id: isString(props.id) ? props.id : '',
             plainValue: (props.value && typeof '8' == typeof props.value) ? props.value : '',
-            callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             inputType: (props.type && typeof '8' == typeof props.type) ? props.type : 'text',
             props: (props.props && typeof {} == typeof props.props) ? props.props : {},
             inputPlaceholder: (props.inputPlaceholder && typeof '8' == typeof props.inputPlaceholder) ? props.inputPlaceholder : '',
@@ -196,7 +197,7 @@ class InputAnimation extends React.Component
                         value={ plainValue }
                         onChange={ (e) => this.setValue(e) }
                         placeholder={animatePlaceholder ? '' : inputPlaceholder}
-                        id={id}
+                        {...isString(id) && '' !== id && { id: id } }
                         { ...props }
                     />
                 }
@@ -216,7 +217,7 @@ class InputAnimation extends React.Component
                         } }
                         ref={ (node) => this.inputNode = node }
                         placeholder={animatePlaceholder ? '' : inputPlaceholder}
-                        id={id}
+                        {...isString(id) && '' !== id && { id: id } }
                         { ...props }
                     />
                 }

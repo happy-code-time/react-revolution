@@ -1,6 +1,8 @@
 import React from 'react';
 import uuid from '../../_Functions/uuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 let PagerStaticUpdatedCountPropsCheck = 0;
 
@@ -29,9 +31,9 @@ class PagerStatic extends React.Component
             /**
              * User passed props
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-pager-static',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PagerStatic',
+            id: isString(props.id) ? props.id : '',
             data: (props.data && typeof [] === typeof props.data) ? props.data.slice(0, itemsPerSite) : [],
             searchOnKeys: (props.searchOnKeys && typeof [] === typeof props.searchOnKeys) ? props.searchOnKeys : [],
             itemsPerSite,
@@ -142,16 +144,15 @@ class PagerStatic extends React.Component
             }
         }
 
-        if (PropsCheck(['defaultClass', 'id', 'data', 'searchOnKeys','itemsPerSite','keysToRender', 'totalSufix', 'lineNumber','liCallback','inputCallback','displayTotal','paginationPages','totalPrefix','paginationTextPrefix','paginationTextMiddle','prevPages','nextPages','alignPagesItems','alignPagination','resetLineNumber','nextButton','previousButton','searchActive','searchPlaceholder','searchIcon','searchSensitive','searchValue','searchOnKeyDown','searchTitle','paginationTitle','fallbackLoading','fallbackLoadingTime','fallbackNoData','fallbackNoDataSearch','fallbackMounting', 'minPages' ], props, state)) {
+        if (PropsCheck([ 'id', 'data', 'searchOnKeys','itemsPerSite','keysToRender', 'totalSufix', 'lineNumber','liCallback','inputCallback','displayTotal','paginationPages','totalPrefix','paginationTextPrefix','paginationTextMiddle','prevPages','nextPages','alignPagesItems','alignPagination','resetLineNumber','nextButton','previousButton','searchActive','searchPlaceholder','searchIcon','searchSensitive','searchValue','searchOnKeyDown','searchTitle','paginationTitle','fallbackLoading','fallbackLoadingTime','fallbackNoData','fallbackNoDataSearch','fallbackMounting', 'minPages' ], props, state)) {
             const prevPages = (props.prevPages && typeof 8 === typeof props.prevPages) ? props.prevPages : 2;
             const nextPages = (props.nextPages && typeof 8 === typeof props.nextPages) ? props.nextPages : 2;
             const minPages = prevPages + nextPages + 1;
             const itemsPerSite = (props.itemsPerSite && typeof 8 === typeof props.itemsPerSite) ? props.itemsPerSite : 10;
 
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-pager-static',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] === typeof props.data) ? props.data.slice(0, itemsPerSite) : [],
                 searchOnKeys: (props.searchOnKeys && typeof [] === typeof props.searchOnKeys) ? props.searchOnKeys : [],
                 itemsPerSite,
@@ -782,7 +783,7 @@ class PagerStatic extends React.Component
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     searchActive &&

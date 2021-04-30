@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 
 class PopupBox extends React.Component 
@@ -23,9 +25,9 @@ class PopupBox extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popupbox',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupBox',
+            id: isString(props.id) ? props.id : '',
             data: props.data ? props.data : '',
             icon: props.icon ? props.icon : '',
             iconCallback: (props.iconCallback && typeof function(){} == typeof props.iconCallback) ? props.iconCallback : undefined,
@@ -43,11 +45,10 @@ class PopupBox extends React.Component
     static getDerivedStateFromProps(props, state) {
         const defaultAnimationTypes = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
-        if (PropsCheck(['defaultClass', 'id', 'data', 'icon', 'iconCallback', 'animationTime', 'animation'], props, state)) {
+        if (PropsCheck([ 'id', 'data', 'icon', 'iconCallback', 'animationTime', 'animation'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-popupbox',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data ? props.data : '',
                 icon: props.icon ? props.icon : '',
                 iconCallback: (props.iconCallback && typeof function(){} == typeof props.iconCallback) ? props.iconCallback : undefined,
@@ -138,7 +139,7 @@ class PopupBox extends React.Component
         const { addClass, defaultClass, id, displayBoxClassNames, animation, icon, displayBox, data } = this.state;
 
         return (
-            <span ref={node => (this.nodeData = node)} id={id} className={`${defaultClass} ${addClass}`}>
+            <span ref={node => (this.nodeData = node)} {...isString(id) && '' !== id && { id: id } } className={`${defaultClass} ${addClass}`}>
                 <span className="icon" onClick={e => this.togglePopupBox()}>
                     {
                         icon

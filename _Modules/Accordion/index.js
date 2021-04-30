@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import buildDropDownStructure from '../internalFunctions/buildDropDownStructure';
 
 class Accordion extends React.Component {
@@ -12,9 +14,9 @@ class Accordion extends React.Component {
         this.toggleAllBack = this.toggleAllBack.bind(this);
 
         this.state = {
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-accordion',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Accordion',
+            id: isString(props.id) ? props.id : '',
             data: (props.data && typeof [] == typeof props.data) ? buildDropDownStructure(props.data) : [],
             animation: (props.animation && typeof '8' == typeof props.animation) ? props.animation : undefined,
             animationTimeout: (props.animationTimeout && typeof 8 == typeof props.animationTimeout) ? props.animationTimeout : 300,
@@ -32,11 +34,10 @@ class Accordion extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['data', 'defaultClass', 'id', 'closeOnClickOutside', 'animation', 'animationTimeout'], props, state)) {
+        if (PropsCheck(['data', 'id', 'closeOnClickOutside', 'animation', 'animationTimeout'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-accordion',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] == typeof props.data) ? buildDropDownStructure(props.data) : [],
                 animation: (props.animation && typeof '8' == typeof props.animation) ? props.animation : undefined,
                 closeOnClickOutside: typeof true == typeof props.closeOnClickOutside ? props.closeOnClickOutside : false,
@@ -489,7 +490,7 @@ class Accordion extends React.Component {
             <div
                 ref={this.refNode}
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id && '' !== id) && { id: id } }
                 tabIndex="0"
             >
                 {

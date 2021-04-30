@@ -1,0 +1,63 @@
+.Breadcrumb{
+    list-style: none;
+    margin:0;
+    padding: 0;
+    
+    .single-entry-li,
+    .Menu,
+    .single-entry-delimiter{
+        float: left;
+    }
+
+    .single-entry-li{
+        list-style: none;
+        margin:0;
+        padding: 0;
+
+        .menu-span{
+            .Menu{
+                display: inline-block;
+                position: relative;
+            }
+        
+            .Menu,
+            .parent{
+                padding:0;
+                margin:0 5px !important;
+                height: auto !important;
+            }
+            .text,
+            .hasChildren{
+                padding:0;
+            }
+
+            .children{
+                .single-entry{
+                    padding:0;
+                    margin:0;
+                    min-height: 30px;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+
+    .single-entry-delimiter{
+        display: inline-block;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .menu-span{
+        
+        a{
+            float: left;
+        }
+
+        .text{
+            width: 100%;
+        }
+    }
+}

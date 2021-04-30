@@ -1,6 +1,8 @@
 import React from 'react';
 import uuid from '../../_Functions/uuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class InputSuggestionArray extends React.Component 
 {
@@ -27,11 +29,11 @@ class InputSuggestionArray extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-suggestion-array',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputSuggestionArray',
+            id: isString(props.id) ? props.id : '',
             plainValue: (props.value && typeof '8' == typeof props.value) ? props.value : '',
-            callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackSelection: (props.callbackSelection && typeof function(){} == typeof props.callbackSelection) ? props.callbackSelection : undefined,
             selected: (props.selected && typeof [] == typeof props.selected) ? props.selected : [],
             suggestionsToFilter: (props.suggestions && typeof [] == typeof props.suggestions) ? props.suggestions : [],
@@ -91,16 +93,15 @@ class InputSuggestionArray extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'singleLiHeight',  'defaultClass', 'id','value', 'suggestions', 'suggestionsToFilter', 'callback', 'callbackSelection', 'applySelected', 'inputPlaceholder', 'props', 'inputType', 'getValueFromCallback', 'emptySuggestionAfterSelection', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'loading'], props, state)) {
+        if (PropsCheck(['addClass', 'singleLiHeight',   'id','value', 'suggestions', 'suggestionsToFilter', 'callback', 'callbackSelection', 'applySelected', 'inputPlaceholder', 'props', 'inputType', 'getValueFromCallback', 'emptySuggestionAfterSelection', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'loading'], props, state)) {
             const getValueFromCallback = (typeof true == typeof props.getValueFromCallback) ? props.getValueFromCallback : false;
 
             if (getValueFromCallback) {
                 return {
-                    addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                    defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-suggestion-array',
+                    addClass: isString(props.addClass) ? props.addClass : '',
                     suggestionsToFilter: (props.suggestions && typeof [] == typeof props.suggestions) ? props.suggestions : [],
                     plainValue: props.value,
-                    callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+                    callback: isFunction(props.callback) ? props.callback : undefined,
                     callbackSelection: (props.callbackSelection && typeof function(){} == typeof props.callbackSelection) ? props.callbackSelection : undefined,
                     inputPlaceholder: (props.inputPlaceholder && typeof '8' == typeof props.inputPlaceholder) ? props.inputPlaceholder : '',
                     props: (props.props && typeof {} == typeof props.props) ? props.props : {},
@@ -117,11 +118,10 @@ class InputSuggestionArray extends React.Component
             }
 
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-input-suggestion-array',
+                addClass: isString(props.addClass) ? props.addClass : '',
                 suggestionsToFilter: (props.suggestions && typeof [] == typeof props.suggestions) ? props.suggestions : [],
                 plainValue: state.plainValue,
-                callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+                callback: isFunction(props.callback) ? props.callback : undefined,
                 callbackSelection: (props.callbackSelection && typeof function(){} == typeof props.callbackSelection) ? props.callbackSelection : undefined,
                 inputPlaceholder: (props.inputPlaceholder && typeof '8' == typeof props.inputPlaceholder) ? props.inputPlaceholder : '',
                 props: (props.props && typeof {} == typeof props.props) ? props.props : {},
@@ -526,7 +526,7 @@ class InputSuggestionArray extends React.Component
         const { addClass, selected, defaultClass, id, props, suggestions, plainValue, inputPlaceholder, inputType, selectedArrow, loading, isLoading } = this.state;
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 <div className="input">
                     {
                         0 !== selected.length &&

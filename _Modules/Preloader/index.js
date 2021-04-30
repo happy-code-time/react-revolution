@@ -4,6 +4,7 @@ import isBoolean from '../../_Functions/isBoolean';
 import isNumber from '../../_Functions/isNumber';
 import isObject from '../../_Functions/isObject';
 import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import PropsCheck from '../internalFunctions/PropsCheck';
 
 class Preloader extends React.Component 
@@ -15,7 +16,7 @@ class Preloader extends React.Component
         this.state = {
             // User
             addClass: isString(props.addClass) ? props.addClass : '',
-            defaultClass: isString(props.defaultClass) ? props.defaultClass: 'rr-preloader',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Preloader',
             id: isString(props.id) ? props.id : '',
             data: isArray(props.data) ? props.data : [],
             size: isString(props.size) && ['xs', 's', 'l', 'xl', 'xxl'].includes(props.size) ? props.size : '',
@@ -155,11 +156,10 @@ class Preloader extends React.Component
      */
     static getDerivedStateFromProps(props, state) 
     {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'items', 'itemsPerLine', 'data', 'size', 'backgroundColor', 'backgroundLoader'], props, state)) 
+        if (PropsCheck(['addClass',  'id', 'items', 'itemsPerLine', 'data', 'size', 'backgroundColor', 'backgroundLoader'], props, state)) 
         {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
-                defaultClass: isString(props.defaultClass) ? props.defaultClass: 'rr-preloader',
                 id: isString(props.id) ? props.id : '',
                 data: isArray(props.data) ? props.data : [],
                 size: isString(props.size) && ['xs', 's', 'l', 'xl', 'xxl'].includes(props.size) ? props.size : '',

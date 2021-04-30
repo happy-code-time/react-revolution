@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import disableHtmlScroll from '../../_Functions/disableHtmlScroll';
 import enableHtmlScroll from '../../_Functions/enableHtmlScroll';
 
@@ -16,9 +18,9 @@ class FullScreenOverlay extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-full-screen-overlay',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'FullScreenOverlay',
+            id: isString(props.id) ? props.id : '',
             closeOnClick: (typeof true == typeof props.closeOnClick) ? props.closeOnClick : true,
             closeOnEsc: (typeof true == typeof props.closeOnEsc) ? props.closeOnEsc : true,
             data: props.data ? props.data : '',
@@ -40,11 +42,10 @@ class FullScreenOverlay extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['defaultClass', 'id', 'disableScroll', 'callbackClose', 'animation', 'closeOnClick', 'closeOnEsc', 'data', 'iconClose', 'display'], props, state)) {
+        if (PropsCheck([ 'id', 'disableScroll', 'callbackClose', 'animation', 'closeOnClick', 'closeOnEsc', 'data', 'iconClose', 'display'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-full-screen-overlay',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 closeOnClick: (typeof true == typeof props.closeOnClick) ? props.closeOnClick : true,
                 closeOnEsc: (typeof true == typeof props.closeOnEsc) ? props.closeOnEsc : true,
                 data: props.data ? props.data : '',
@@ -176,7 +177,7 @@ class FullScreenOverlay extends React.Component
         }
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 {
                     iconClose &&
                     <div className="icon-close" onClick={(e) => this.closeClick(e, true)}>

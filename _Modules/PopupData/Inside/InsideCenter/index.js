@@ -1,5 +1,7 @@
 import React from 'react';
+import isString from '../../../../_Functions/isString';
 import PropsCheck from '../../../internalFunctions/PropsCheck';
+
 class InsideCenter extends React.Component {
     constructor(props) {
         super(props);
@@ -248,7 +250,7 @@ class InsideCenter extends React.Component {
                 ref={e => this.refNode = e}
                 tabIndex="0"
                 className={`${defaultClass} center d-inline ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div 
                     className={`${displayMenu ? 'menu-inside-enabled' : 'menu-inside-disabled'}`}

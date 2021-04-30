@@ -50,12 +50,12 @@ class Range extends React.Component
          * References
          */
         this.setReference = this.setReference.bind(this);
-
+        
         this.state = {
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-range',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Range',
+            id: isString(props.id) ? props.id : '',
             min: isNumber(props.min) && 0 <= props.min ? parseInt(props.min) : 0,
             max: getRangeSliderMaxValue(props),
             size: isString(props.size) && ['xs', 's', 'l', 'xl'].includes(props.size) ? props.size : 'l',
@@ -141,7 +141,6 @@ class Range extends React.Component
             PropsCheck(
                 [
                     'addClass',
-                    'defaultClass',
                     'id',
                     'min',
                     'max',
@@ -167,9 +166,8 @@ class Range extends React.Component
         )
         {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-range',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 min: isNumber(props.min) && 0 <= props.min ? parseInt(props.min) : 0,
                 max: getRangeSliderMaxValue(props),
                 size: isString(props.size) && ['xs', 's', 'l', 'xl'].includes(props.size) ? props.size : '',
@@ -180,7 +178,7 @@ class Range extends React.Component
                 minMaxInputReadonly: isBoolean(props.minMaxInputReadonly) ? props.minMaxInputReadonly : false,
                 minMaxY: isString(props.minMaxY) && ['top', 'bottom'].includes(props.minMaxY) ? props.minMaxY : 'bottom',
                 minInputProps: isObject(props.minInputProps) ? props.minInputProps : {},
-                maxInputProps: isObject(props.maxInputProps) ? props.maxInputProps : {},
+                maxInputProps: isObject(props.maxInpu7tProps) ? props.maxInputProps : {},
                 format: isString(props.format) && ['integer', 'float'].includes(props.format) ? props.format : 'integer',
                 toFixed: isNumber(props.toFixed) && 0 <= props.toFixed ? parseInt(props.toFixed) : 2,
                 minMaxInputAutoWidth: isBoolean(props.minMaxInputAutoWidth) ? props.minMaxInputAutoWidth : true,
@@ -1000,7 +998,7 @@ class Range extends React.Component
             <span
                 key={`range-${this.state.uuid}`}
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 ref={ x => this.setReference(x, 'range') }
             >
                 {

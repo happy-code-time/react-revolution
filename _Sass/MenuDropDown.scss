@@ -1,0 +1,34 @@
+@import './globals.scss';
+
+.MenuDropDown{
+    display: inline-block;
+
+    .text{
+        box-sizing: border-box;
+        padding: 5px 10px;
+    }
+
+    .placeholder{
+        position: relative;
+    }
+
+    .placeholder .text:hover{
+        cursor: pointer;
+    }
+
+    .loading,
+    .data{
+        position: absolute;
+        top: 100%;
+        left:0;
+        min-width: 100%;
+        background-color: $white;
+        z-index: 10;
+        border: 1px solid $border-color;
+    }
+
+    .loading{
+        box-sizing: border-box;
+        padding: 10px 20px;
+    }
+}

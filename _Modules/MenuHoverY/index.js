@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class MenuHoverY extends React.Component {
@@ -9,9 +11,9 @@ class MenuHoverY extends React.Component {
 
         this.state = {
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-hover-y',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuHoverY',
+            id: isString(props.id) ? props.id : '',
             data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
             direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'right']) ? props.direction : 'right',
             uuid: internalUuid(),
@@ -25,11 +27,10 @@ class MenuHoverY extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'defaultClass', 'data', 'direction'], props, state)) {
+        if (PropsCheck(['addClass', 'id',  'data', 'direction'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-menu-hover-y',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
                 direction: (props.direction && typeof '8' == typeof props.direction && ['left', 'right']) ? props.direction : 'right',
             };
@@ -107,7 +108,7 @@ class MenuHoverY extends React.Component {
         return (
             <span
                 className={`${defaultClass} ${direction} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     this.buildRecursive(this.state.data, 'ol', 0, false)

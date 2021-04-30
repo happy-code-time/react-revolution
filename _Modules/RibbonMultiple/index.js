@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class RibbonMultiple extends React.Component {
     constructor(props) {
@@ -10,9 +12,9 @@ class RibbonMultiple extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-ribbon-multiple',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'RibbonMultiple',
+            id: isString(props.id) ? props.id : '',
             content: props.content ? props.content : '',
             ribbons: props.ribbons && typeof [] === typeof props.ribbons && 0 !== props.ribbons.lenth ? props.ribbons : [],
             uuid: `${internalUuid()}`
@@ -26,11 +28,10 @@ class RibbonMultiple extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'ribbons', 'content'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'ribbons', 'content'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-ribbon-multiple',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 content: props.content ? props.content : '',
                 ribbons: props.ribbons && typeof [] === typeof props.ribbons && 0 !== props.ribbons.lenth ? props.ribbons : [],
             };
@@ -45,7 +46,7 @@ class RibbonMultiple extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     ribbons && 0 !== ribbons.length &&

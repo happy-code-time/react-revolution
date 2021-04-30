@@ -1,8 +1,8 @@
 import React from 'react';
 import isArray from '../../_Functions/isArray';
 import isString from '../../_Functions/isString';
-import isBoolean from '../../_Functions/isBoolean';
 import isFunction from '../../_Functions/isFunction';
+import isBoolean from '../../_Functions/isBoolean';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isObject from '../../_Functions/isObject';
 import isNumber from '../../_Functions/isNumber';
@@ -32,7 +32,7 @@ class FilterMapping extends React.Component
              * User
              */
             addClass: isString(props.addClass) ? props.addClass : '',
-            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'rr-filter-mapping',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'FilterMapping',
             id: isString(props.id) ? props.id : '',
             data: isObject(props.data) ? props.data : {},
             mapping: isObject(props.mapping) ? props.mapping : {},
@@ -53,10 +53,9 @@ class FilterMapping extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'mapping', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'mapping', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
-                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'rr-filter-mapping',
                 id: isString(props.id) ? props.id : '',
                 data: isObject(props.data) ? props.data : {},
                 mapping: isObject(props.mapping) ? props.mapping : {},
@@ -702,7 +701,7 @@ class FilterMapping extends React.Component
 
         return (
             <span
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 className={`${defaultClass} ${addClass}`}
                 ref={this.refNode}
             >

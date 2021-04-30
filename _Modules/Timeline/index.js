@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Timeline extends React.Component {
 
@@ -11,9 +13,9 @@ class Timeline extends React.Component {
             // App
             uuid: internalUuid(),
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-timeline',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Timeline',
+            id: isString(props.id) ? props.id : '',
             data: (props.data && typeof {} == typeof props.data) ? props.data : undefined,
             direction: props.direction && typeof '8' == typeof props.direction && ['left', 'right'].includes(props.direction) ? props.direction : 'left',
             timelineStart: props.timelineStart ? props.timelineStart : '',
@@ -30,11 +32,10 @@ class Timeline extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'timelineStartProps', 'timelineEndProps', 'data', 'keysProps', 'direction', 'timelineStart', 'timelineEnd'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'timelineStartProps', 'timelineEndProps', 'data', 'keysProps', 'direction', 'timelineStart', 'timelineEnd'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-timeline',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof {} == typeof props.data) ? props.data : undefined,
                 direction: props.direction && typeof '8' == typeof props.direction && ['left', 'right'].includes(props.direction) ? props.direction : 'left',
                 timelineStart: props.timelineStart ? props.timelineStart : '',
@@ -155,7 +156,7 @@ class Timeline extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <span className={`timline-wrapper ${timelineStart ? 'timline-wrapper-has-start' : ''} ${timelineStart ? 'timline-wrapper-has-end' : ''} ${direction}`}>
                     {

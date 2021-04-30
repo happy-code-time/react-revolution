@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Ribbon extends React.Component {
     constructor(props) {
@@ -9,9 +11,9 @@ class Ribbon extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-ribbon',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Ribbon',
+            id: isString(props.id) ? props.id : '',
             content: props.content ? props.content : '',
             ribbon: props.ribbon ? props.ribbon : '',
             color: (props.color && typeof '8' == typeof props.color) ? props.color : '',
@@ -30,11 +32,10 @@ class Ribbon extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'ribbon', 'background', 'color', 'content', 'directionX', 'directionY', 'background', 'backgroundCorner', 'type'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'ribbon', 'background', 'color', 'content', 'directionX', 'directionY', 'background', 'backgroundCorner', 'type'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-ribbon',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 content: props.content ? props.content : '',
                 ribbon: props.ribbon ? props.ribbon : '',
                 color: (props.color && typeof '8' == typeof props.color) ? props.color : '',
@@ -70,7 +71,7 @@ class Ribbon extends React.Component {
         return (
             <div
                 className={`${defaultClass} ${addClass} ribbon-${directionY}-${directionX} ${type ? `ribbon-type-${type}` : ''}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 ref={x => this.ribbonNode = x }
             >
                 <span className='ribbon-holder'>

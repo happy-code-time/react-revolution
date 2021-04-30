@@ -1,0 +1,272 @@
+@import './globals.scss';
+
+.FullScreenListObject {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 4;
+  display: flex;
+  top: 0;
+  left:0;
+
+  .dimmed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    overflow: hidden;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .content {
+    position: relative;
+    z-index: 7;
+    max-height: calc(100vh - 60px);
+    margin: 30px auto;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-radius: $border-radius;
+    overflow: hidden;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    min-height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid rgb(169, 169, 169) !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  input:focus{
+    outline: none;
+  }
+
+  .ul {
+    height: calc(100% - 52px);
+    list-style: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+  }
+
+  .li {
+    list-style: none;
+    min-height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: none;
+    box-sizing: border-box;
+    padding: 0 30px;
+    width: 100%;
+    min-width: 360px;
+  }
+
+  .span-close {
+    position: absolute;
+    top: 3px;
+    right: 20px;
+    z-index: 6;
+  }
+
+  .span-close:hover {
+    cursor: pointer;
+  }
+
+  .no-data {
+    max-width: 90%;
+    margin: 0 5%;
+    height: 50px;
+    line-height: 50px;
+    color: rgba(0, 0, 0, 0.77);
+    text-align: center;
+  }
+}
+
+.FullScreenListObject.none{
+  top:0;
+  left:0;
+}
+
+// Animation scale
+
+.FullScreenListObject.scale{
+  @keyframes scaleIt {
+    0% {
+      top: 50vh;
+      left: 50vw;
+      width: 0;
+      height: 0;
+      transform: scale(0);
+    }
+    100% {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      transform: scale(1);
+    }
+  }
+  
+  top: 50vh;
+  left: 50vw;
+  width: 0;
+  height: 0;
+  animation: scaleIt $default-transition forwards ease-in;
+}
+
+.FullScreenListObject.scale-back {
+  @keyframes scaleItBack {
+    0% {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      transform: scale(1);
+    }
+    100% {
+      top: 50vh;
+      left: 50vw;
+      width: 0;
+      height: 0;
+      transform: scale(0);
+    }
+  }
+  animation: scaleItBack $default-transition forwards ease-in;
+}
+
+// Animation top
+.FullScreenListObject.top{
+  @keyframes topIt {
+    0% {
+      top: -100vh;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  
+  top: -100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  animation: topIt $default-transition forwards ease-in;
+}
+
+
+.FullScreenListObject.top-back {
+  @keyframes topItBack {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: -100vh;
+    }
+  }
+  animation: topItBack $default-transition forwards ease-in;
+}
+
+// Animation right
+.FullScreenListObject.right{
+  @keyframes rightIt {
+    0% {
+      right: -100vw;
+    }
+    100% {
+      right: 0;
+    }
+  }
+
+  top: 0;
+  right: -100vw;
+  width: 100vw;
+  height: 100vh;
+  animation: rightIt $default-transition forwards ease-in;
+}
+
+
+.FullScreenListObject.right-back {
+  @keyframes rightItBack {
+    0% {
+      right: 0;
+    }
+    100% {
+      right: -100vw;
+    }
+  }
+  animation: rightItBack $default-transition forwards ease-in;
+}
+
+// Animation bottom
+.FullScreenListObject.bottom{
+  @keyframes bottomIt {
+    0% {
+      bottom: -100vh;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+  
+  bottom: -100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  animation: bottomIt $default-transition forwards ease-in;
+}
+
+
+.FullScreenListObject.bottom-back {
+  @keyframes bottomItBack {
+    0% {
+      bottom: 0;
+    }
+    100% {
+      bottom: -100vh;
+    }
+  }
+  animation: bottomItBack $default-transition forwards ease-in;
+}
+
+// Animation right
+.FullScreenListObject.left{
+  @keyframes leftIt {
+    0% {
+      left: -100vw;
+    }
+    100% {
+      left: 0;
+    }
+  }
+
+  top: 0;
+  left: -100vw;
+  width: 100vw;
+  height: 100vh;
+  animation: leftIt $default-transition forwards ease-in;
+}
+
+
+.FullScreenListObject.left-back {
+  @keyframes leftItBack {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -100vw;
+    }
+  }
+  animation: leftItBack $default-transition forwards ease-in;
+}

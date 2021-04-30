@@ -1,4 +1,5 @@
 import React from 'react';
+import isString from '../../../../_Functions/isString';
 import PropsCheck from '../../../internalFunctions/PropsCheck';
 
 class InsideLeft extends React.Component {
@@ -223,7 +224,7 @@ class InsideLeft extends React.Component {
                 ref={e => this.refNode = e}
                 tabIndex="0"
                 className={`${defaultClass} left ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <span 
                     className={`data-holder data-inside`}

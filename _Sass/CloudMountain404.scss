@@ -1,0 +1,409 @@
+@import './globals.scss';
+
+.CloudMountain404 {
+
+    @keyframes moveclouds {
+        0% {
+            margin-left: 50%;
+        }
+
+        100% {
+            margin-left: -50%;
+        }
+    }
+
+    background-color: #b4ddf0;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    clear: both;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+
+    .content-404 {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 10% auto;
+        z-index: 2;
+
+        .text-404 {
+            font-size: 10rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 15px;
+        }
+
+        .text-1 {
+            text-align: center;
+            display: block;
+            position: relative;
+            letter-spacing: 0.0123rem;
+            font-size: 3rem;
+            line-height: 80%;
+        }
+
+        .text-2 {
+            text-align: center;
+            display: block;
+            position: relative;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .button-navigation {
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            display: inline-block;
+            padding: 10px 30px;
+            z-index: 5;
+            font-size: 0.87rem;
+            border: 1px solid rgba(69, 69, 69, 0.1);
+            color: rgba(69, 69, 69, 0.8);
+            text-decoration: none;
+            margin: 10px 0;
+            border-radius: $border-radius;
+            z-index: 1;
+        }
+
+        hr {
+            padding: 0;
+            border: none;
+            border-top: 5px solid #fff;
+            color: #fff;
+            text-align: center;
+            margin: 0 auto 30px auto;
+            width: 42%;
+            height: 10px;
+        }
+    }
+
+    .holder-404 {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+
+        .cloud {
+            width: 350px;
+            height: 120px;
+            background: #FFF;
+            background: linear-gradient(top, #FFF 100%);
+            border-radius: 100px;
+            position: absolute;
+            margin: 120px auto 20px;
+            z-index: -1;
+            transition: ease 1s;
+        }
+
+        .cloud:after,
+        .cloud:before {
+            content: '';
+            position: absolute;
+            background: #FFF;
+            z-index: -1
+        }
+
+        .cloud:before {
+            width: 180px;
+            height: 180px;
+            top: -90px;
+            right: 50px;
+            border-radius: 200px;
+        }
+
+        .cloud:after {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 50px;
+            border-radius: 100px;
+        }
+
+        .cloud-1 {
+            top: 80px;
+            left: 100px;
+            transform: scale(0.3);
+            opacity: 0.9;
+            animation: moveclouds 22s linear infinite;
+        }
+
+        .cloud-2 {
+            top: -15px;
+            left: 250px;
+            transform: scale(0.3);
+            animation: moveclouds 25s linear infinite;
+        }
+
+        .cloud-3 {
+            left: 250px;
+            top: -100px;
+            transform: scale(0.6);
+            opacity: 0.6;
+            animation: moveclouds 37s linear infinite;
+        }
+
+        .cloud-4 {
+            left: 250px;
+            bottom: -200px;
+            transform: scale(0.6);
+            opacity: 0.8;
+            animation: moveclouds 28s linear infinite;
+        }
+
+        .cloud-5 {
+            left: 470px;
+            bottom: -185px;
+            transform: scale(0.75);
+            opacity: 0.75;
+            animation: moveclouds 54s linear infinite;
+        }
+
+        .cloud-6 {
+            left: 200px;
+            top: -100px;
+            -webkit-transform: scale(0.5);
+            -moz-transform: scale(0.5);
+            transform: scale(0.5);
+            opacity: 0.8;
+            animation: moveclouds 26s linear infinite;
+        }
+
+        /*
+            BAD CLOUDS
+        */
+        .bad-cloud-3,
+        .bad-cloud-5 {
+            background: rgba(69, 69, 69, 1);
+        }
+
+        .bad-cloud-3:after,
+        .bad-cloud-3:before,
+        .bad-cloud-5:after,
+        .bad-cloud-5:before {
+            background-color: rgba(69, 69, 69, 1);
+        }
+
+        /*
+            BOLT
+        */
+        @keyframes bolt-part-1-color-appearance {
+            0% {
+                border-top: 20px solid #fcbe11;
+            }
+
+            100% {
+                border-top: 20px solid #ba3f38;
+            }
+        }
+
+        @keyframes bolt-part-2-color-appearance {
+            0% {
+                border-left: 12px solid #fcbe11;
+            }
+
+            100% {
+                border-left: 12px solid #ba3f38;
+            }
+        }
+
+        @keyframes bolt-part-3-color-appearance {
+            0% {
+                border-top: 20px solid #fcbe11;
+            }
+
+            100% {
+                border-top: 20px solid #ba3f38;
+            }
+        }
+
+        @keyframes bolt-opacity-1 {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .bolt {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+        }
+
+        .bolt-1 {
+            top: 130px;
+            opacity: 1;
+            left: 220px;
+            animation: bolt-opacity-1 3s infinite ease-in-out;
+            animation-delay: 3s;
+        }
+
+        .bolt-2 {
+            top: 150px;
+            left: 150px;
+            opacity: 1;
+            animation: bolt-opacity-1 3s infinite ease-in-out;
+            animation-delay: 4s;
+        }
+
+        .bolt-3 {
+            top: 150px;
+            opacity: 1;
+            left: 150px;
+            animation: bolt-opacity-1 4s infinite ease-in-out;
+            animation-delay: 7s;
+        }
+
+        .bolt-4 {
+            top: 135px;
+            left: 220px;
+            opacity: 1;
+            animation: bolt-opacity-1 4s infinite ease-in-out;
+            animation-delay: 6s;
+        }
+
+        .bolt-part-1 {
+            position: absolute;
+            top: 0;
+            left: calc(50% - 20px);
+            width: 0;
+            height: 0;
+            border-left: 0px solid transparent;
+            border-top: 20px solid #fcbe11;
+            border-right: 10px solid transparent;
+            animation: bolt-part-1-color-appearance 2s infinite ease-in-out;
+        }
+
+        .bolt-part-2 {
+            position: absolute;
+            top: -8px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #fcbe11;
+            border-bottom: 10px solid transparent;
+            border-right: 0px solid transparent;
+            transform: rotate3d(0, 0, 1, 10deg);
+            animation: bolt-part-2-color-appearance 2s infinite ease-in-out;
+        }
+
+        .bolt-part-3 {
+            position: absolute;
+            top: 0;
+            left: -7px;
+            width: 0;
+            height: 0;
+            border-left: 0px solid transparent;
+            border-top: 20px solid #fcbe11;
+            border-right: 7px solid transparent;
+            animation: bolt-part-3-color-appearance 2s infinite ease-in-out;
+        }
+    }
+
+    /*
+        MOUNTAINS
+    */
+    .mountains-holder-1,
+    .mountains-holder-2{
+        z-index: 1;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .mountains-holder-1{
+        left:0;
+    }
+
+    .mountains-holder-2{
+        right: 0;
+    }
+
+    .mountain,
+    .mountain-two,
+    .mountain-three {
+        position: absolute;
+        bottom: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-bottom: 180px solid #7ac1e4;
+        z-index: 1;
+    }
+
+    .mountain-two {
+        left: 80px;
+        bottom: -20px;
+        opacity: .3;
+        z-index: 0;
+    }
+
+    .mountain-three {
+        left: -60px;
+        bottom: -10px;
+        opacity: .5;
+        z-index: 0;
+    }
+
+    .mountain-top {
+        position: absolute;
+        right: -65px;
+        border-left: 65px solid transparent;
+        border-right: 65px solid transparent;
+        border-bottom: 77px solid #ceeaf6;
+        z-index: 2;
+    }
+
+    .mountain-cap-1,
+    .mountain-cap-2,
+    .mountain-cap-3 {
+        position: absolute;
+        top: 70px;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top: 25px solid #ceeaf6;
+    }
+
+    .mountain-cap-1 {
+        left: -55px;
+    }
+
+    .mountain-cap-2 {
+        left: -25px;
+    }
+
+    .mountain-cap-3 {
+        left: 5px;
+    }
+
+    .mountains-holder-2{
+        .mountain{
+            right:10px;
+            left:auto;
+        }
+
+        .mountain-two {
+            right: 80px;
+            left:auto;
+        }
+
+        .mountain-three {
+            right: -60px;
+            left:auto;
+        }
+    }
+}

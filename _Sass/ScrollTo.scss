@@ -1,0 +1,18 @@
+.ScrollTo
+{
+    .to-top,
+    .to-bottom{
+        width: 40px;
+        height:40px;
+        border-radius:50%;
+        border: 1px solid #dadce0;
+    }
+    .to-top:hover,
+    .to-bottom:hover{
+        cursor: pointer;
+    }
+    .arrow{
+        text-align:center;
+        line-height:40px;
+    }
+}

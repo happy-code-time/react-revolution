@@ -1,5 +1,6 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class Center extends React.Component {
@@ -321,7 +322,7 @@ class Center extends React.Component {
             <div
                 ref={e => this.refNode = e}
                 className={`${defaultClass} center ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
                 onMouseLeave={() => this.toggleMenu(true)}
             >
                 <div

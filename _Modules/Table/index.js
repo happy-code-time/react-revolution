@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Table extends React.Component 
 {
@@ -19,9 +21,9 @@ class Table extends React.Component
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-table',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Table',
+            id: isString(props.id) ? props.id : '',
             title: (props.title && typeof [] == typeof props.title) ? props.title : undefined,
             data: (props.data && typeof [] == typeof props.data) ? props.data : undefined,
             mediaBreak: props.mediaBreak && typeof 8 == typeof props.mediaBreak ? props.mediaBreak : undefined,
@@ -37,11 +39,10 @@ class Table extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'defaultClass', 'id', 'data', 'mediaBreak', 'title', 'keysToRead', 'titleOnMinified'], props, state)) {
+        if (PropsCheck(['addClass',  'id', 'data', 'mediaBreak', 'title', 'keysToRead', 'titleOnMinified'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-table',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 title: (props.title && typeof [] == typeof props.title) ? props.title : undefined,
                 data: (props.data && typeof [] == typeof props.data) ? props.data : undefined,
                 mediaBreak: props.mediaBreak && typeof 8 == typeof props.mediaBreak ? props.mediaBreak : undefined,
@@ -189,7 +190,7 @@ class Table extends React.Component
         const { addClass, defaultClass, id, dataJsx } = this.state;
 
         return (
-            <ul className={`${defaultClass} ${addClass}`} id={id}>
+            <ul className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 {
                     dataJsx && dataJsx.length && dataJsx.map(i => i)
                 }

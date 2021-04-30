@@ -1,6 +1,8 @@
 import React from 'react';
 import isObject from '../../_Functions/isObject';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class ImageBox extends React.Component 
 {
@@ -9,9 +11,9 @@ class ImageBox extends React.Component
 
         this.state = {
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-image-box',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ImageBox',
+            id: isString(props.id) ? props.id : '',
             image: (props.image && typeof '8' == typeof props.image) ? props.image : '',
             imageData: props.imageData ? props.imageData : '',
             imageProps: props.imageProps && typeof {} === typeof props.imageProps ? props.imageProps : {},
@@ -30,11 +32,10 @@ class ImageBox extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'defaultClass', 'image', 'imageData', 'imageProps', 'direction', 'boxData', 'boxProps', 'data', 'displayData'], props, state)) {
+        if (PropsCheck(['addClass', 'id',  'image', 'imageData', 'imageProps', 'direction', 'boxData', 'boxProps', 'data', 'displayData'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-image-box',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 image: (props.image && typeof '8' == typeof props.image) ? props.image : '',
                 imageData: props.imageData ? props.imageData : '',
                 imageProps: props.imageProps && typeof {} === typeof props.imageProps ? props.imageProps : {},
@@ -93,7 +94,7 @@ class ImageBox extends React.Component
         return (
             <div
                 className={`${defaultClass} ${addClass}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 <div className={`wrapper ${direction} flex`}>
                     {

@@ -1,6 +1,8 @@
 import React from 'react';
 import internalUuid from '../internalFunctions/internalUuid';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 class LoadOnScroll extends React.Component {
 
     constructor(props) {
@@ -21,12 +23,12 @@ class LoadOnScroll extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-load-on-scroll',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'LoadOnScroll',
+            id: isString(props.id) ? props.id : '',
             data: props.data && typeof [] == typeof props.data ? props.data : '',
             loading: props.loading ? props.loading : '',
-            callback: (props.callback && typeof function(){} == typeof props.callback) ? props.callback : undefined,
+            callback: isFunction(props.callback) ? props.callback : undefined,
             callbackProps: props.callbackProps ? props.callbackProps : undefined,
             minify: typeof 8 == typeof props.minify ? props.minify : 0,
             scrollReference: typeof true == typeof props.scrollReference ? props.scrollReference : true,
@@ -48,11 +50,10 @@ class LoadOnScroll extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['defaultClass', 'id', 'data', 'loading', 'minify', 'scrollReference', 'callbackProps', 'onReject', 'persistReject', 'fireScrollEvent', 'fireScrollBack', 'scrolledToBottom'], props, state)) {
+        if (PropsCheck([ 'id', 'data', 'loading', 'minify', 'scrollReference', 'callbackProps', 'onReject', 'persistReject', 'fireScrollEvent', 'fireScrollBack', 'scrolledToBottom'], props, state)) {
             return {
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-load-on-scroll',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data ? props.data : '',
                 loading: props.loading ? props.loading : '',
                 callbackProps: props.callbackProps ? props.callbackProps : undefined,
@@ -337,7 +338,7 @@ class LoadOnScroll extends React.Component {
             <div
                 ref={(node) => this.scrollReference = node}
                 className={`${defaultClass} ${addClass} ${scrollReference ? '' : 'ignore'}`}
-                id={id}
+                {...isString(id) && '' !== id && { id: id } }
             >
                 {
                     dataJsx && dataJsx.map(i => i)

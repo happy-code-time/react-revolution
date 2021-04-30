@@ -1,0 +1,307 @@
+@import './globals.scss';
+
+html,
+body{
+  margin: 0;
+  padding: 0;
+}
+
+// default css is for the left site
+// right site are on the bottom of this file
+.ContainerPopup {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  height: auto;
+  overflow: auto;
+
+  /*
+    * Z-index during an animation - show, hide, maxify, minify sidebar
+    */
+  .zIndex{
+    .area-sidebar{
+      z-index: 10;
+    }
+  }
+
+  .area-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--rr-container-sidebar-width);
+    height: 100vh;
+    overflow: hidden;
+    transition-duration: $default-transition;
+    z-index: 6;
+    border-right: 1px solid $border-color;
+
+    .Sidebar {
+      transition-duration: 0ms;
+
+      .logo-text {
+        display: flex;
+        height: 60px;
+        text-decoration: none;
+        color: $text-color;
+        border-bottom: 1px solid $border-color;
+
+        .logo {
+          margin: 8px 10px 0 7px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        .text {
+          display: flex;
+          flex-direction: column;
+
+          .long,
+          .short {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            word-wrap: none;
+            text-overflow: ellipsis;
+          }
+
+          .long {
+            margin: 15px 0 3px 5px;
+            font-size: 1.1rem;
+          }
+
+          .short {
+            margin-left: 5px;
+            font-size: 0.644rem;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes ContainerPopuparea-sidebar-showAnimationLeft {
+    0%{
+      left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+    }
+    100%{
+      left: 0px;
+    }
+  }
+
+  .area-sidebar-show{
+    transition-duration: $default-transition;
+    left: 0px;
+    z-index: 12;
+    animation: ContainerPopuparea-sidebar-showAnimationLeft $default-transition forwards ease-in;
+  }
+
+  @keyframes ContainerPopupSidebarHideAnimationLeft {
+    0%{
+      left: 0px;
+    }
+    100%{
+      left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+    }
+  }
+
+  .area-sidebar-hide{
+    transition-duration: $default-transition;
+    left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+    z-index: 12;
+    animation: ContainerPopupSidebarHideAnimationLeft $default-transition forwards ease-in;
+  }
+
+  .area-sidebar-hidden {
+    position: fixed;
+    width: var(--rr-container-sidebar-width);
+    left: 0px;
+    transition-duration: $default-transition;
+  }
+
+  .area-sidebar-hidden.closed{
+    left: calc(var(--rr-container-sidebar-width-hidden) - 1px) !important;
+    border-right: 1px solid transparent;
+  }
+
+  .area-sidebar-hidden.opened {
+    width: var(--rr-container-sidebar-width);
+    left: 0px;
+    z-index: 3;
+    transition-duration: $default-transition;
+  }
+
+  .area-content {
+    position: absolute;
+    left: calc(var(--rr-container-sidebar-width) + 1px);
+    width: calc(100% - 1px - var(--rr-container-sidebar-width));
+    z-index: 2;
+    transition-duration: $default-transition;
+    background-color: $white;
+    
+    .data-header {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 3;
+      border:none;
+      
+      i {
+        transition-duration: $default-transition;
+      }
+    }
+
+    .data-content {
+      position: relative;
+      left: unset;
+      width: 100%;
+      border-top: 1px solid $border-color;
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: calc(100vh - 110px);
+    }
+  }
+
+  .area-content-hidden {
+    left: 0;
+    width: 100vw;
+    z-index: 11;
+  }
+
+  @keyframes ContainerPopupContentShowAnimationLeft {
+    0%{
+      left: 0px;
+    }
+    100%{
+      left: var(--rr-container-sidebar-width);
+    }
+  }
+
+  .area-content-show{
+    animation: ContainerPopupContentShowAnimationLeft $default-transition forwards ease-in;
+  }
+
+  @keyframes ContainerPopupContentHideAnimationLeft {
+    0%{
+      left: var(--rr-container-sidebar-width);
+    }
+    100%{
+      left: 0px;
+    }
+  }
+
+  .area-content-hide{
+    animation: ContainerPopupContentHideAnimationLeft $default-transition forwards ease-in;
+  }
+}
+
+// Right site
+.ContainerPopup.right {
+  .Sidebar {
+    left: auto;
+    right: 0px;
+    border-right: none;
+    border-left: 1px solid $border-color;
+  }
+  .Sidebar-hidden.closed {
+    width: var(--rr-container-sidebar-width);
+    right: calc(var(--rr-container-sidebar-width-hidden) - 1px) !important;
+    border-left:1px solid transparent;
+  }
+  .Sidebar-hidden.opened {
+    left: auto;
+    right: 0px;
+  }
+
+  .Content {
+    left: 0px !important;
+    right: var(--rr-container-sidebar-width);
+  }
+
+  .area-content-hidden {
+    left: 0px;
+    right: 0px;
+    z-index: 11;
+  }
+
+  @keyframes ContainerPopuparea-sidebar-showAnimationRight {
+    0%{
+      right: var(--rr-container-sidebar-width-hidden);
+    }
+    100%{
+      right: 0px;
+    }
+  }
+
+  .area-sidebar-show{
+    transition-duration: $default-transition;
+    right: 0px;
+    left: auto;
+    z-index: 12;
+    animation: ContainerPopuparea-sidebar-showAnimationRight $default-transition forwards ease-in;
+  }
+
+  @keyframes ContainerPopupSidebarHideAnimationRight {
+    0%{
+      right: 0px;
+    }
+    100%{
+      right: var(--rr-container-sidebar-width-hidden);
+    }
+  }
+
+  .area-sidebar-hide{
+    transition-duration: $default-transition;
+    right: 0px;
+    z-index: 12;
+    animation: ContainerPopupSidebarHideAnimationRight $default-transition forwards ease-in;
+  }
+
+  @keyframes ContainerPopupContentShowAnimationRight {
+    0%{
+      right: 0px;
+    }
+    100%{
+      right: var(--rr-container-sidebar-width-hidden);
+    }
+  }
+
+  .ContentShow{
+    animation: ContainerPopupContentShowAnimationRight $default-transition forwards ease-in;
+  }
+
+  @keyframes ContainerPopupContentHideAnimationRight {
+    0%{
+      right: var(--rr-container-sidebar-width-hidden);
+    }
+    100%{
+      right: 0px;
+    }
+  }
+
+  .area-content-hide{
+    animation: ContainerPopupContentHideAnimationRight $default-transition forwards ease-in;
+  }
+}
+
+// Disable css animation time
+.ContainerPopup.td0{
+  .area-sidebar,
+  .Sidebar-hidden,
+  .Sidebar-hidden.opened,
+  .data-header,
+  .Sidebar,
+  .area-content,
+  .area-sidebar-show,
+  .ContentShow,
+  .area-content-hide,
+  .area-sidebar-hide{
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}

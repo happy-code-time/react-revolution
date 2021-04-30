@@ -1,4 +1,5 @@
 import React from 'react';
+import isString from '../../_Functions/isString';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class TextWriter extends React.Component 
@@ -18,10 +19,10 @@ class TextWriter extends React.Component
              * User
              */
             moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
-                        globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-text-writer',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'TextWriter',
+            id: isString(props.id) ? props.id : '',
             text: (props.text && props.text.length) ? props.text : '',
             speed: (props.speed && typeof 8 == typeof props.speed) ? props.speed : 300,
             pipeDisplay: (typeof true == typeof props.pipeDisplay) ? props.pipeDisplay : true,
@@ -186,7 +187,7 @@ class TextWriter extends React.Component
         const { addClass, defaultClass, id, internalUuid, written, pipeDisplay, pipeChar, pipeSite } = this.state;
 
         return (
-            <span className={`${defaultClass} ${addClass}`} id={id}>
+            <span className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 {
                     'left' == pipeSite && pipeDisplay &&
                     <span className="pipe">

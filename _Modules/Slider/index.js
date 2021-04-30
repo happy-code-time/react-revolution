@@ -1,5 +1,7 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 import uuid from '../internalFunctions/internalUuid';
 import Fullscreen from './Fullscreen';
 
@@ -33,9 +35,9 @@ class Slider extends React.Component {
             fullscreenactive: false,
             isUserCurrentlySliding: false,
             // User
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-slider',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Slider',
+            id: isString(props.id) ? props.id : '',
             data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
             slidersUuid: props.slidersUuid && typeof '8' === typeof props.slidersUuid ? props.slidersUuid : `${uuid()}`,
             displayPagination: typeof true == typeof props.displayPagination ? props.displayPagination : true,
@@ -75,7 +77,7 @@ class Slider extends React.Component {
             fsPreviewHeight: props.fsPreviewHeight && typeof 8 == typeof props.fsPreviewHeight ? props.fsPreviewHeight : 70,
             fsPreviewMarginX: props.fsPreviewMarginX && typeof 8 == typeof props.fsPreviewMarginX ? props.fsPreviewMarginX : 10,
             fsPreviewMarginY: props.fsPreviewMarginY && typeof 8 == typeof props.fsPreviewMarginY ? props.fsPreviewMarginY : 10,
-            fsAutoplayIcon: props.fsAutoplayIcon ? props.fsAutoplayIcon : '🎞',
+            fsAutoplayIcon: props.fsAutoplayIcon ? props.fsAutoplayIcon : '🎥',
             fsPreviewToggle: props.fsPreviewToggle ? props.fsPreviewToggle : '⇩',
             fsToggleDirection: (props.fsToggleDirection && typeof '8' == typeof props.fsToggleDirection && ['left', 'right'].includes(props.fsToggleDirection)) ? props.fsToggleDirection : 'right',
             fsNext: props.fsNext ? props.fsNext : '>>',
@@ -129,7 +131,7 @@ class Slider extends React.Component {
             'index',
             'addClass',
             'useLayerX',
-            'defaultClass',
+            
             'inlineStyle',
             'allowMouseTouch',
             'slideAfterMove',
@@ -186,9 +188,8 @@ class Slider extends React.Component {
         ], props, state)) {
             return {
                 index: state.index, // to handle indexes made by child fullscreen events
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-slider',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],
                 next: props.next ? props.next : '>',
                 previous: props.previous ? props.previous : '<',
@@ -222,7 +223,7 @@ class Slider extends React.Component {
                 fsPreviewHeight: props.fsPreviewHeight && typeof 8 == typeof props.fsPreviewHeight ? props.fsPreviewHeight : 70,
                 fsPreviewMarginX: props.fsPreviewMarginX && typeof 8 == typeof props.fsPreviewMarginX ? props.fsPreviewMarginX : 10,
                 fsPreviewMarginY: props.fsPreviewMarginY && typeof 8 == typeof props.fsPreviewMarginY ? props.fsPreviewMarginY : 10,
-                fsAutoplayIcon: props.fsAutoplayIcon ? props.fsAutoplayIcon : '🎞',
+                fsAutoplayIcon: props.fsAutoplayIcon ? props.fsAutoplayIcon : '🎥',
                 fsPreviewToggle: props.fsPreviewToggle ? props.fsPreviewToggle : '⇩',
                 fsToggleDirection: (props.fsToggleDirection && typeof '8' == typeof props.fsToggleDirection && ['left', 'right'].includes(props.fsToggleDirection)) ? props.fsToggleDirection : 'right',
                 fsNext: props.fsNext ? props.fsNext : '>>',
@@ -971,7 +972,7 @@ class Slider extends React.Component {
         const { isUserCurrentlySliding, addClass, defaultClass, id, onSlideTime, displayDots, staticData, allowMouseTouch, displayPagination, animationTime, paginationType, dotsInside, paginationInside, slidersUuid, data, slidesWidth, imageAsBackground, slidesTransform, slideWrapperWidth, fullscreenactive } = this.state;
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
 
                 {
                     fullscreenactive &&

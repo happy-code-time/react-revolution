@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropsCheck from '../internalFunctions/PropsCheck';
+import isString from '../../_Functions/isString';
+import isFunction from '../../_Functions/isFunction';
 
 class Picture404 extends React.Component {
     constructor(props) {
@@ -22,9 +24,9 @@ class Picture404 extends React.Component {
             /**
              * User
              */
-            addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-            defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-picture-404',
-            id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+            addClass: isString(props.addClass) ? props.addClass : '',
+            defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Picture404',
+            id: isString(props.id) ? props.id : '',
             reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,
             link: props.link && typeof {} == typeof props.link ? props.link : {},
             text404: props.text404 && typeof '8' == typeof props.text404 ? props.text404 : '404',
@@ -41,13 +43,12 @@ class Picture404 extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass', 'id', 'reactRouter', 'link', 'text404', 'text1', 'text2', 'imagePath'], props, state)) {
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'reactRouter', 'link', 'text404', 'text1', 'text2', 'imagePath'], props, state)) {
             return {
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
-                addClass: (props.addClass && typeof '8' == typeof props.addClass) ? props.addClass : '',
-                defaultClass: (props.defaultClass && typeof '8' == typeof props.defaultClass) ? props.defaultClass : 'rr-picture-404',
-                id: (props.id && typeof '8' == typeof props.id) ? props.id : '',
+                addClass: isString(props.addClass) ? props.addClass : '',
+                id: isString(props.id) ? props.id : '',
                 reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,
                 link: props.link && typeof {} == typeof props.link ? props.link : {},
                 text404: props.text404 && typeof '8' == typeof props.text404 ? props.text404 : '404',
@@ -113,7 +114,7 @@ class Picture404 extends React.Component {
         const { href, text, props } = link;
 
         return (
-            <div className={`${defaultClass} ${addClass}`} id={id}>
+            <div className={`${defaultClass} ${addClass}`} {...isString(id) && '' !== id && { id: id } }>
                 <div className="page">
                     <div className="content">
                         <h1>

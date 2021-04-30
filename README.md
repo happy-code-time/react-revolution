@@ -112,7 +112,7 @@ import { Breadcrumbs } from 'react-revolution';
     Ribbon
     RibbonMultiple
     ScrollTo
-    SideBar
+    Sidebar
     Slider
     SliderCards
     SliderFullscreen
