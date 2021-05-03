@@ -44,8 +44,9 @@ class Step extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'liveGeneration', 'iconBg', 'buttonsBg', 'progressBgSize', 'progressBgBlank', 'progressBgStripe',  'errorDataInside', 'errorAlignTop', 'id', 'data', 'next', 'previous', 'submit', 'progressBar', 'iconStep', 'callbackCheck', 'submitCallback', 'callbackCheckNavigate'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'liveGeneration', 'iconBg', 'buttonsBg', 'progressBgSize', 'progressBgBlank', 'progressBgStripe',  'errorDataInside', 'errorAlignTop', 'id', 'data', 'next', 'previous', 'submit', 'progressBar', 'iconStep', 'callbackCheck', 'submitCallback', 'callbackCheckNavigate'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Step',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],

@@ -111,7 +111,7 @@ class Suggestion extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'placeholder', 'inputEmpty', 'suggestionsEmpty', 'inputType', 'callback', 'callbackProps', 'data', 'multiple', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'removeChar', 'removeCharLeft', 'singleLiHeight', 'dataOnEmpty', 'clickEventAllreadyHandled', 'allowTyping'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'placeholder', 'inputEmpty', 'suggestionsEmpty', 'inputType', 'callback', 'callbackProps', 'data', 'multiple', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'removeChar', 'removeCharLeft', 'singleLiHeight', 'dataOnEmpty', 'clickEventAllreadyHandled', 'allowTyping'], props, state)) {
 
             if(state.prevInputValue !== props.inputValue){
                 return {
@@ -121,6 +121,7 @@ class Suggestion extends React.Component
             }
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Suggestion',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 callback: isFunction(props.callback) ? props.callback : undefined,

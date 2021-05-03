@@ -43,8 +43,9 @@ class Breadcrumb extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'hashRouter', 'domainName', 'reactRouter', 'moduleMenu', 'delimiter', 'overwriteText', 'removeHashFromDomain'], props, state)) {            
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass', 'id', 'hashRouter', 'domainName', 'reactRouter', 'moduleMenu', 'delimiter', 'overwriteText', 'removeHashFromDomain'], props, state)) {            
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Breadcrumb',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

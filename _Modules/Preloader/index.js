@@ -156,9 +156,10 @@ class Preloader extends React.Component
      */
     static getDerivedStateFromProps(props, state) 
     {
-        if (PropsCheck(['addClass',  'id', 'items', 'itemsPerLine', 'data', 'size', 'backgroundColor', 'backgroundLoader'], props, state)) 
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'items', 'itemsPerLine', 'data', 'size', 'backgroundColor', 'backgroundLoader'], props, state)) 
         {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Preloader',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: isArray(props.data) ? props.data : [],

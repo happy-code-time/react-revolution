@@ -53,8 +53,9 @@ class Modal extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'display', 'callback'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'display', 'callback'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Modal',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data ? props.data : undefined,

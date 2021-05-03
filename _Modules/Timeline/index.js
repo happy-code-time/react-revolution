@@ -32,8 +32,9 @@ class Timeline extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'timelineStartProps', 'timelineEndProps', 'data', 'keysProps', 'direction', 'timelineStart', 'timelineEnd'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'timelineStartProps', 'timelineEndProps', 'data', 'keysProps', 'direction', 'timelineStart', 'timelineEnd'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Timeline',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof {} == typeof props.data) ? props.data : undefined,

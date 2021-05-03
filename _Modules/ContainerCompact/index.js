@@ -4,6 +4,8 @@ import isObject from '../../_Functions/isObject';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isString from '../../_Functions/isString';
 import isFunction from '../../_Functions/isFunction';
+import isBoolean from '../../_Functions/isBoolean';
+import isNumber from '../../_Functions/isNumber';
 
 class ContainerCompact extends React.Component {
     constructor(props) {
@@ -19,6 +21,7 @@ class ContainerCompact extends React.Component {
             isMinified: true,
             showSidebar: false,
             hideSidebar: false,
+            compact: false,
             /**
              * User
              */
@@ -26,29 +29,22 @@ class ContainerCompact extends React.Component {
             defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerCompact',
             id: isString(props.id) ? props.id : '',
             hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
-
             headerProps: isObject(props.headerProps) ? props.headerProps : {},
             headerData: props.headerData ? props.headerData : '',
-            headerHeight: props.headerHeight && typeof 8 === typeof props.headerHeight ? props.headerHeight : 80,
-
+            headerHeight: isNumber(props.headerHeight) ? props.headerHeight : 80,
             contentProps: isObject(props.contentProps) ? props.contentProps : {},
             contentData: props.contentData ? props.contentData : '',
-
             sidebarProps: isObject(props.sidebarProps) ? props.sidebarProps : {},
             sidebarData: props.sidebarData ? props.sidebarData : '',
-            sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
-
-            align: (props.align && typeof '8' == typeof props.align) ? props.align : 'left',
-
-            callbackShow: props.callbackShow && typeof function () { } == typeof props.callbackShow ? props.callbackShow : undefined,
+            sidebarWidth: isNumber(props.sidebarWidth) ? props.sidebarWidth : 250,
+            align: isString(props.align) ? props.align : 'left',
+            callbackShow: isFunction(props.callbackShow) ? props.callbackShow : undefined,
             callbackShowProps: props.callbackShowProps,
-
-            callbackHide: props.callbackHide && typeof function () { } == typeof props.callbackHide ? props.callbackHide : undefined,
+            callbackHide: isFunction(props.callbackHide) ? props.callbackHide : undefined,
             callbackHideProps: props.callbackHideProps,
-
             minifySidebarOn: isArray(props.minifySidebarOn) ? props.minifySidebarOn : [],
             locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
-
+            minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
         };
 
         this.locationCheckInterval = null;
@@ -62,8 +58,10 @@ class ContainerCompact extends React.Component {
      */
     static getDerivedStateFromProps(props, state) {
         if (PropsCheck([
-            'addClass',
+            'addClass', 
+            'defaultClass',
             'id',
+            'defaultClass',
             'hideAt',
             'headerProps',
             'headerData',
@@ -79,34 +77,30 @@ class ContainerCompact extends React.Component {
             'callbackHideProps',
             'minifySidebarOn',
             'locationInterval',
-            'headerHeight'
+            'headerHeight',
+            'minifySidebarOnSwap'
         ], props, state)) {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerCompact',
                 id: isString(props.id) ? props.id : '',
                 hideAt: (typeof 8 == typeof props.hideAt) ? props.hideAt : 1024,
-                
                 headerProps: isObject(props.headerProps) ? props.headerProps : {},
                 headerData: props.headerData ? props.headerData : '',
-                headerHeight: props.headerHeight && typeof 8 === typeof props.headerHeight ? props.headerHeight : 80,
-
+                headerHeight: isNumber(props.headerHeight) ? props.headerHeight : 80,
                 contentProps: isObject(props.contentProps) ? props.contentProps : {},
                 contentData: props.contentData ? props.contentData : '',
-
                 sidebarProps: isObject(props.sidebarProps) ? props.sidebarProps : {},
                 sidebarData: props.sidebarData ? props.sidebarData : '',
-                sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
-
-                align: (props.align && typeof '8' == typeof props.align) ? props.align : 'left',
-
-                callbackShow: props.callbackShow && typeof function () { } == typeof props.callbackShow ? props.callbackShow : undefined,
+                sidebarWidth: isNumber(props.sidebarWidth) ? props.sidebarWidth : 250,
+                align: isString(props.align) ? props.align : 'left',
+                callbackShow: isFunction(props.callbackShow) ? props.callbackShow : undefined,
                 callbackShowProps: props.callbackShowProps,
-
-                callbackHide: props.callbackHide && typeof function () { } == typeof props.callbackHide ? props.callbackHide : undefined,
+                callbackHide: isFunction(props.callbackHide) ? props.callbackHide : undefined,
                 callbackHideProps: props.callbackHideProps,
-
                 minifySidebarOn: isArray(props.minifySidebarOn) ? props.minifySidebarOn : [],
                 locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
+                minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
             };
         }
 
@@ -196,8 +190,10 @@ class ContainerCompact extends React.Component {
 
     resizeView() 
     {
+        const { minifySidebarOn, minifySidebarOnSwap } = this.state;
+
         // If the container should be fullscreen on selected locations
-        if (this.checkSidebarOn()) {
+        if (!minifySidebarOn && this.checkSidebarOn()) {
             clearTimeout(this.animationTimeoutCloseIcon);
 
             if (false == this.state.isMinified) {
@@ -208,6 +204,21 @@ class ContainerCompact extends React.Component {
             }
 
             return this.setState({ href: window.location.href });
+        }
+
+        /**
+         * Swap logic
+         */
+        if (minifySidebarOnSwap && (!minifySidebarOn.includes(window.location.href) && !minifySidebarOn.includes(window.location.hash))) {
+
+            if(false == this.state.isMinified){
+                return this.setState({
+                    isMinified: true,
+                    href: window.location.href,
+                }, this.callbackHide);
+            }
+
+            return;
         }
 
         const { hideAt } = this.state;

@@ -99,8 +99,9 @@ class SliderCard extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['staticData', 'slideAfterMove', 'useLayerX', 'dotsInside', 'onSlideTime', 'inlineStyle', 'displayDots', 'buttonsAlwaysVisible', 'wrapDirection', 'itemsXS', 'allowMouseTouch', 'autoplay', 'autoplayTime', 'autoplayNext', 'animationTime', 'displayDotsIndex', 'paginationType', 'paginationInside', 'itemsS', 'itemsL', 'itemsXL', 'resizeS', 'resizeL', 'resizeXL', 'slideItemsXS', 'slideItemsS', 'slideItemsL', 'slideItemsXL', 'addClass',  'id', 'data', 'next', 'previous', 'displayPagination'], props, state)) {
+        if (PropsCheck(['staticData', 'slideAfterMove', 'useLayerX', 'dotsInside', 'onSlideTime', 'inlineStyle', 'displayDots', 'buttonsAlwaysVisible', 'wrapDirection', 'itemsXS', 'allowMouseTouch', 'autoplay', 'autoplayTime', 'autoplayNext', 'animationTime', 'displayDotsIndex', 'paginationType', 'paginationInside', 'itemsS', 'itemsL', 'itemsXL', 'resizeS', 'resizeL', 'resizeXL', 'slideItemsXS', 'slideItemsS', 'slideItemsL', 'slideItemsXL', 'addClass', 'defaultClass',  'id', 'data', 'next', 'previous', 'displayPagination'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SliderCard',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],

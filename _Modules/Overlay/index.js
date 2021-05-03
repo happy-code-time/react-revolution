@@ -27,8 +27,9 @@ class Overlay extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'display', 'callback', 'callbackProps'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'display', 'callback', 'callbackProps'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Overlay',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 display: typeof true == typeof props.display ? props.display : false,

@@ -54,8 +54,9 @@ class InputFile extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'label', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'multiple'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'label', 'errorCallback', 'readFileCallback', 'inputPlaceholder', 'errorCallbackCustomData', 'multiple'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputFile',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 label: (props.label && typeof '8' == typeof props.label) ? props.label : '',

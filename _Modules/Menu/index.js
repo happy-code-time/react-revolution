@@ -50,8 +50,9 @@ class Menu extends React.Component {
             };
         }
 
-        if (PropsCheck([ 'id', 'reactRouter', 'animation', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'reactRouter', 'animation', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Menu',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,

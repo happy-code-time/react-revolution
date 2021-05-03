@@ -32,8 +32,9 @@ class ImageBox extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'image', 'imageData', 'imageProps', 'direction', 'boxData', 'boxProps', 'data', 'displayData'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'image', 'imageData', 'imageProps', 'direction', 'boxData', 'boxProps', 'data', 'displayData'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ImageBox',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 image: (props.image && typeof '8' == typeof props.image) ? props.image : '',

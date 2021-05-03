@@ -129,9 +129,9 @@ class Slider extends React.Component {
             'onSlideTime',
             'fsOnSlideTime',
             'index',
-            'addClass',
+            'addClass', 
+            'defaultClass',
             'useLayerX',
-            
             'inlineStyle',
             'allowMouseTouch',
             'slideAfterMove',
@@ -187,6 +187,7 @@ class Slider extends React.Component {
             'callbackFsState'
         ], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Slider',
                 index: state.index, // to handle indexes made by child fullscreen events
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',

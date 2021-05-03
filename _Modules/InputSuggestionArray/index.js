@@ -93,11 +93,12 @@ class InputSuggestionArray extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'singleLiHeight',   'id','value', 'suggestions', 'suggestionsToFilter', 'callback', 'callbackSelection', 'applySelected', 'inputPlaceholder', 'props', 'inputType', 'getValueFromCallback', 'emptySuggestionAfterSelection', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'loading'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'singleLiHeight',   'id','value', 'suggestions', 'suggestionsToFilter', 'callback', 'callbackSelection', 'applySelected', 'inputPlaceholder', 'props', 'inputType', 'getValueFromCallback', 'emptySuggestionAfterSelection', 'sortSelected', 'sortSuggestions', 'searchSensitive', 'loading'], props, state)) {
             const getValueFromCallback = (typeof true == typeof props.getValueFromCallback) ? props.getValueFromCallback : false;
 
             if (getValueFromCallback) {
                 return {
+                    defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputSuggestionArray',
                     addClass: isString(props.addClass) ? props.addClass : '',
                     suggestionsToFilter: (props.suggestions && typeof [] == typeof props.suggestions) ? props.suggestions : [],
                     plainValue: props.value,
@@ -118,6 +119,7 @@ class InputSuggestionArray extends React.Component
             }
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'InputSuggestionArray',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 suggestionsToFilter: (props.suggestions && typeof [] == typeof props.suggestions) ? props.suggestions : [],
                 plainValue: state.plainValue,

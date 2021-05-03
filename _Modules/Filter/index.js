@@ -54,8 +54,9 @@ class Filter extends React.Component
      */
     static getDerivedStateFromProps(props, state) 
     {
-        if (PropsCheck(['addClass',  'id', 'data', 'reset', 'disabled', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'reset', 'disabled', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Filter',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: isArray(props.data) ? props.data : [],

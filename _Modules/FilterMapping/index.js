@@ -53,8 +53,9 @@ class FilterMapping extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'mapping', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'mapping', 'callback', 'callbackProps', 'supportKeyDown', 'dummy'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'FilterMapping',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: isObject(props.data) ? props.data : {},

@@ -49,11 +49,14 @@ class CustomSuggestion extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['value', 'suggestions', 'callback', 'inputPlaceholder', 'props', 'inputType', 'callbackRerender', 'allowOnlyAZ', 'searchSensitive', 'loading'], props, state)) {
+        if (PropsCheck(['id', 'addClass', 'defaultClass', 'value', 'suggestions', 'callback', 'inputPlaceholder', 'props', 'inputType', 'callbackRerender', 'allowOnlyAZ', 'searchSensitive', 'loading'], props, state)) {
             const { callbackRerender } = state;
 
             if(callbackRerender){
                 return {
+                    addClass: isString(props.addClass) ? props.addClass : '',
+                    defaultClass: isString(props.defaultClass) ? props.defaultClass : 'CustomSuggestion',
+                    id: isString(props.id) ? props.id : '',
                     suggestions: state.suggestions,
                     callback: isFunction(props.callback) ? props.callback : undefined,
                     inputPlaceholder: (props.inputPlaceholder && typeof '8' == typeof props.inputPlaceholder) ? props.inputPlaceholder : '',
@@ -67,6 +70,9 @@ class CustomSuggestion extends React.Component
             }
 
             return {
+                addClass: isString(props.addClass) ? props.addClass : '',
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'CustomSuggestion',
+                id: isString(props.id) ? props.id : '',
                 suggestions: props.suggestions,
                 plainValue: state.plainValue,
                 callback: isFunction(props.callback) ? props.callback : undefined,

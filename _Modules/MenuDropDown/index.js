@@ -42,8 +42,9 @@ class MenuDropDown extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'closeOnOutsideClick', 'closeOnEsc', 'callback', 'callbackProps', 'holderLoading', 'placeholder'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'closeOnOutsideClick', 'closeOnEsc', 'callback', 'callbackProps', 'holderLoading', 'placeholder'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuDropDown',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 placeholder: props.placeholder ? props.placeholder : '',

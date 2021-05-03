@@ -37,9 +37,10 @@ class Pill extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'multiple', 'readonly'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'multiple', 'readonly'], props, state)) {
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Pill',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],

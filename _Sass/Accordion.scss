@@ -1,18 +1,20 @@
 @import './globals.scss';
 
-.Accordion{
-    box-sizing: border-box;
-    padding: 5px 0;
-
-    .single-entry{
+.Accordion
+{
+    .single-entry
+    {
+        display: inline-block;
         box-sizing: border-box;
         overflow: hidden;
+        padding: 5px;
+        width: 100%;
     }
 
-    .single-data,
-    .children{
-      display: inline-block;
-      margin-top: 5px;
+    .single-data{
+        width: 100%;
+        display: inline-block;
+        padding: 2.5px 5px;
     }
 
     .text.hasChildren:hover,
@@ -22,14 +24,15 @@
 
     // Animation: height
     .toggling.animation-height .children,
-    .toggling.animation-height .static-data{
+    .toggling.animation-height .static-data
+    {
 
         @keyframes toggleMenuEntriesHeight {
             0%{
                 max-height: 0px;
             }
             100%{
-                max-height: 500px;
+                max-height: 250px;
                 overflow: visible;
             }
         }
@@ -40,7 +43,8 @@
     }
 
     .animation-height .children,
-    .animation-height .static-data{
+    .animation-height .static-data
+    {
         max-height: 3000px;
     }
 
@@ -52,9 +56,11 @@
             }
             100%{
                 max-height: 0px;
+                overflow: hidden;
             }
         }
         max-height: 250px;
+        overflow: hidden;
         animation: toggleMenuEntriesHeightBack $default-transition ease-in forwards;
     }
 

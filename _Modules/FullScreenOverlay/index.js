@@ -42,8 +42,9 @@ class FullScreenOverlay extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id', 'disableScroll', 'callbackClose', 'animation', 'closeOnClick', 'closeOnEsc', 'data', 'iconClose', 'display'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'disableScroll', 'callbackClose', 'animation', 'closeOnClick', 'closeOnEsc', 'data', 'iconClose', 'display'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'FullScreenOverlay',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 closeOnClick: (typeof true == typeof props.closeOnClick) ? props.closeOnClick : true,

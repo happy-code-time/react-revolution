@@ -54,7 +54,7 @@ class FullScreenListArray extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['id', 'data', 'display', 'lineNumber', 'iconClose', 'inputActive', 'closeOnDimmed', 'noDataText', 'inputPlaceholder', 'animation', 'callback', 'callbackClose', 'closeOnEsc', 'inputEmptyOnCallback'], props, state)) {
+        if (PropsCheck([ 'addClass', 'id', 'data', 'display', 'lineNumber', 'iconClose', 'inputActive', 'closeOnDimmed', 'noDataText', 'inputPlaceholder', 'animation', 'callback', 'callbackClose', 'closeOnEsc', 'inputEmptyOnCallback'], props, state)) {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',

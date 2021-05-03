@@ -2,7 +2,6 @@ import React from 'react';
 import isObject from '../../_Functions/isObject';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isString from '../../_Functions/isString';
-import isFunction from '../../_Functions/isFunction';
 import internalUuid from '../internalFunctions/internalUuid';
 
 class Carousel extends React.Component {
@@ -65,8 +64,9 @@ class Carousel extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Carousel',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],

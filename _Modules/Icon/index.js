@@ -150,7 +150,7 @@ class Icon extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id','callback', 'displayTabs', 'renderItems', 'translations', 'custom', 'itemsPerLine', 'noData'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id','callback', 'displayTabs', 'renderItems', 'translations', 'custom', 'itemsPerLine', 'noData'], props, state)) {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
                 defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Icon',

@@ -2,7 +2,7 @@ import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isString from '../../_Functions/isString';
-import isFunction from '../../_Functions/isFunction';
+import isBoolean from '../../_Functions/isBoolean';
 
 class Container extends React.Component {
     constructor(props) {
@@ -60,6 +60,7 @@ class Container extends React.Component {
             sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
             sidebarMinWidth: (typeof 8 == typeof props.sidebarMinWidth && 0 < props.sidebarMinWidth) ? props.sidebarMinWidth : 50,
             locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
+            minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
         };
 
         this.nodeSideBar = React.createRef();
@@ -75,8 +76,34 @@ class Container extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'moduleSidebar', 'minifyAt', 'animationDuration', 'maxifyAt', 'hideAt', 'displayMinifyMaxifyIcon', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'closeMenuHtml', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'sidebarMinWidth', 'locationInterval'], props, state)) {
+        if (PropsCheck([
+                'addClass', 
+                'defaultClass', 
+                'id', 
+                'moduleSidebar', 
+                'minifyAt', 
+                'animationDuration', 
+                'maxifyAt', 
+                'hideAt', 
+                'displayMinifyMaxifyIcon', 
+                'headerProps', 
+                'headerData', 
+                'contentProps', 
+                'contentData', 
+                'footerData', 
+                'footerProps', 
+                'closeMenuHtml', 
+                'toggleMenuHtml', 
+                'minifySidebarOn', 
+                'align', 
+                'headerDataRight', 
+                'sidebarWidth', 
+                'sidebarMinWidth', 
+                'locationInterval',
+                'minifySidebarOnSwap',
+            ], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Container',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
@@ -99,6 +126,7 @@ class Container extends React.Component {
                 sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
                 sidebarMinWidth: (typeof 8 == typeof props.sidebarMinWidth && 0 < props.sidebarMinWidth) ? props.sidebarMinWidth : 50,
                 locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
+                minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
             };
         }
 
@@ -213,11 +241,28 @@ class Container extends React.Component {
     }
 
     resizeView(e, persistCurrentSelection = false, isInterval = false) {
-        const { forceHidingSidebar } = this.state;
+        const { minifySidebarOn, minifySidebarOnSwap, forceHidingSidebar } = this.state;
 
         // If the container should be fullscreen on selected locations
-        if (this.checkSidebarOn()) {
-            return this.setState(forceHidingSidebar);
+        if (!minifySidebarOnSwap && this.checkSidebarOn()) {
+            return this.setState(
+                {
+                    href: window.location.href,
+                    ...forceHidingSidebar
+                }
+            );
+        }
+
+        /**
+         * Swap logic
+         */
+        if (minifySidebarOnSwap && (!minifySidebarOn.includes(window.location.href) && !minifySidebarOn.includes(window.location.hash))) {
+            return this.setState(
+                {
+                    href: window.location.href,
+                    ...forceHidingSidebar
+                }
+            );
         }
 
         /**
@@ -237,11 +282,29 @@ class Container extends React.Component {
 
     resize()
     {
+        const { minifySidebarOn, minifySidebarOnSwap, forceHidingSidebar } = this.state;
         const documentWidth = document.documentElement.getBoundingClientRect().width;
 
         // If the container should be fullscreen on selected locations
-        if (this.checkSidebarOn()) {
-            return this.setState(forceHidingSidebar);
+        if (!minifySidebarOnSwap && this.checkSidebarOn()) {
+            return this.setState(
+                {
+                    href: window.location.href,
+                    ...forceHidingSidebar
+                }
+            );
+        }
+
+        /**
+         * Swap logic
+         */
+         if (minifySidebarOnSwap && (!minifySidebarOn.includes(window.location.href) && !minifySidebarOn.includes(window.location.hash))) {
+            return this.setState(
+                {
+                    href: window.location.href,
+                    ...forceHidingSidebar
+                }
+            );
         }
 
         /**

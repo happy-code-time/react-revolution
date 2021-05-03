@@ -27,8 +27,9 @@ class ImageBanner extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'boxData', 'boxProps', 'image', 'imageAsSource', 'imageProps', 'direction'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'boxData', 'boxProps', 'image', 'imageAsSource', 'imageProps', 'direction'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ImageBanner',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 boxData: props.boxData ? props.boxData : '',

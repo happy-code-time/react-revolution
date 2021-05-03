@@ -39,8 +39,9 @@ class Table extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'mediaBreak', 'title', 'keysToRead', 'titleOnMinified'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'mediaBreak', 'title', 'keysToRead', 'titleOnMinified'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Table',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 title: (props.title && typeof [] == typeof props.title) ? props.title : undefined,

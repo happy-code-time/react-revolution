@@ -65,8 +65,9 @@ class ImageCarousel extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'data', 'allowMouseTouch', 'inlineStyle', 'useLayerX', 'transformationTime', 'autoplay', 'autoplayTime', 'nodeListener', 'disableX', 'disableY', 'innerData', 'onStartAnimation', 'onStartDirection'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ImageCarousel',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] === typeof props.data && props.data.length ? props.data : [],

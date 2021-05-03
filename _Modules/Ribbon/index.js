@@ -32,8 +32,9 @@ class Ribbon extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'ribbon', 'background', 'color', 'content', 'directionX', 'directionY', 'background', 'backgroundCorner', 'type'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'ribbon', 'background', 'color', 'content', 'directionX', 'directionY', 'background', 'backgroundCorner', 'type'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Ribbon',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 content: props.content ? props.content : '',

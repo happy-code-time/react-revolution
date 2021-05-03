@@ -36,8 +36,9 @@ class Star extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'count', 'filled', 'fillHover', 'callback', 'callbackProps', 'props', 'starsData', 'color'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'count', 'filled', 'fillHover', 'callback', 'callbackProps', 'props', 'starsData', 'color'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Star',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 count: (props.count && typeof 8 == typeof props.count) ? props.count : 0,

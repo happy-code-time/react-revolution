@@ -28,8 +28,9 @@ class RibbonMultiple extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'ribbons', 'content'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'ribbons', 'content'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'RibbonMultiple',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 content: props.content ? props.content : '',

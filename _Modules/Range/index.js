@@ -140,7 +140,8 @@ class Range extends React.Component
         if (
             PropsCheck(
                 [
-                    'addClass',
+                    'addClass', 
+                    'defaultClass',
                     'id',
                     'min',
                     'max',
@@ -166,6 +167,7 @@ class Range extends React.Component
         )
         {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Range',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 min: isNumber(props.min) && 0 <= props.min ? parseInt(props.min) : 0,

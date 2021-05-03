@@ -27,8 +27,9 @@ class MenuHoverX extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'data', 'direction'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'data', 'direction'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuHoverX',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],

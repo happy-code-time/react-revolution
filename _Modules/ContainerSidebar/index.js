@@ -2,7 +2,7 @@ import React from 'react';
 import isArray from '../../_Functions/isArray';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isString from '../../_Functions/isString';
-import isFunction from '../../_Functions/isFunction';
+import isBoolean from '../../_Functions/isBoolean';
 
 class ContainerSidebar extends React.Component {
     constructor(props) {
@@ -55,6 +55,7 @@ class ContainerSidebar extends React.Component {
             animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
             sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
             locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
+            minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
         };
 
         this.nodeSideBar = React.createRef();
@@ -71,8 +72,30 @@ class ContainerSidebar extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'moduleSidebar', 'closeMenuHtml', 'animationDuration', 'hideAt', 'headerProps', 'headerData', 'contentProps', 'contentData', 'footerData', 'footerProps', 'toggleMenuHtml', 'minifySidebarOn', 'align', 'headerDataRight', 'sidebarWidth', 'locationInterval'], props, state)) {
+        if (PropsCheck([
+                'addClass', 
+                'defaultClass', 
+                'id', 
+                'moduleSidebar', 
+                'closeMenuHtml', 
+                'animationDuration', 
+                'hideAt', 
+                'headerProps', 
+                'headerData', 
+                'contentProps', 
+                'contentData', 
+                'footerData', 
+                'footerProps', 
+                'toggleMenuHtml', 
+                'minifySidebarOn', 
+                'align', 
+                'headerDataRight', 
+                'sidebarWidth', 
+                'locationInterval', 
+                'minifySidebarOnSwap'
+            ], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ContainerSidebar',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 moduleSidebar: (props.moduleSidebar && typeof {} == typeof props.moduleSidebar) ? props.moduleSidebar : '',
@@ -91,6 +114,7 @@ class ContainerSidebar extends React.Component {
                 animationDuration: (typeof 8 == typeof props.animationDuration && 0 < props.animationDuration) ? props.animationDuration : 0,
                 sidebarWidth: (typeof 8 == typeof props.sidebarWidth && 0 < props.sidebarWidth) ? props.sidebarWidth : 250,
                 locationInterval: props.locationInterval && typeof 8 === typeof props.locationInterval ? props.locationInterval : 500,
+                minifySidebarOnSwap: isBoolean(props.minifySidebarOnSwap) ? props.minifySidebarOnSwap : false,
             };
         }
 
@@ -179,7 +203,7 @@ class ContainerSidebar extends React.Component {
         setTimeout(() => {
             // If is hidden, persist hidden values
             if (href !== window.location.href && isHidden) {
-                this.setState(this.state.forceHidingSidebar, this.resizeView);
+                this.setState(forceHidingSidebar, this.resizeView);
             }
             // If is not hidden, execute resize callback
             if (href !== window.location.href && !isHidden) {
@@ -206,10 +230,24 @@ class ContainerSidebar extends React.Component {
 
     resizeView(e, persistCurrentSelection = false, isInterval = false) 
     {
+        const { minifySidebarOn, minifySidebarOnSwap, forceHidingSidebar } = this.state;
         // If the container should be fullscreen on selected locations
-        if (this.checkSidebarOn()) {
+        if (!minifySidebarOnSwap && this.checkSidebarOn()) {
             clearTimeout(this.animationTimeoutCloseIcon);
-            return this.setState(this.state.forceHidingSidebar);
+            return this.setState({
+                href: window.location.href,
+                ...forceHidingSidebar
+            });
+        }
+
+        /**
+         * Swap logic
+         */
+        if (minifySidebarOnSwap && (!minifySidebarOn.includes(window.location.href) && !minifySidebarOn.includes(window.location.hash))) {
+            return this.setState({
+                href: window.location.href,
+                ...forceHidingSidebar
+            });
         }
 
         /**
@@ -228,10 +266,21 @@ class ContainerSidebar extends React.Component {
     }
 
     resize(){
+        const { minifySidebarOnSwap, minifySidebarOn, forceHidingSidebar } = this.state;
 
-        if (this.checkSidebarOn()) {
+        if (!minifySidebarOnSwap && this.checkSidebarOn()) {
             clearTimeout(this.animationTimeoutCloseIcon);
-            return this.setState(this.state.forceHidingSidebar);
+            return this.setState(forceHidingSidebar);
+        }
+
+        /**
+         * Swap logic
+         */
+         if (minifySidebarOnSwap && (!minifySidebarOn.includes(window.location.href) && !minifySidebarOn.includes(window.location.hash))) {
+            return this.setState({
+                href: window.location.href,
+                ...forceHidingSidebar
+            });
         }
 
         const { hideAt, animationDuration } = this.state;

@@ -61,8 +61,9 @@ class MenuHeight extends React.Component {
             };
         }
 
-        if (PropsCheck([ 'id', 'reactRouter', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon', 'singleItemsHeight', 'animationTime'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'reactRouter', 'dashed', 'headData', 'activeClassName', 'toggledClassName', 'isActiveTree', 'forceClose', 'forceCloseAll', 'closeOnClickOutside', 'align', 'alignIcon', 'singleItemsHeight', 'animationTime'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'MenuHeight',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 reactRouter: typeof true == typeof props.reactRouter ? props.reactRouter : false,

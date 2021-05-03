@@ -1,7 +1,6 @@
 import React from 'react';
 import PropsCheck from '../internalFunctions/PropsCheck';
 import isString from '../../_Functions/isString';
-import isFunction from '../../_Functions/isFunction';
 import buildDropDownStructure from '../internalFunctions/buildDropDownStructure';
 
 class Accordion extends React.Component {
@@ -34,8 +33,9 @@ class Accordion extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['data', 'id', 'closeOnClickOutside', 'animation', 'animationTimeout'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'data', 'id', 'closeOnClickOutside', 'animation', 'animationTimeout'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Accordion',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] == typeof props.data) ? buildDropDownStructure(props.data) : [],

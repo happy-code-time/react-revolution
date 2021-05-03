@@ -50,8 +50,9 @@ class LoadOnScroll extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id', 'data', 'loading', 'minify', 'scrollReference', 'callbackProps', 'onReject', 'persistReject', 'fireScrollEvent', 'fireScrollBack', 'scrolledToBottom'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'data', 'loading', 'minify', 'scrollReference', 'callbackProps', 'onReject', 'persistReject', 'fireScrollEvent', 'fireScrollBack', 'scrolledToBottom'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'LoadOnScroll',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data ? props.data : '',

@@ -91,8 +91,9 @@ class SliderItem extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['staticData', 'itemsS', 'itemsL', 'onSlideTime',  'itemsXL', 'useLayerX', 'inlineStyle', 'allowMouseTouch', 'slideAfterMove', 'wrapDirection', 'autoplay', 'autoplayTime', 'autoplayNext', 'animationTime', 'paginationType', 'resizeS', 'resizeL', 'resizeXL', 'dotsInside', 'paginationInside', 'addClass',  'id', 'data', 'next', 'previous', 'displayPagination', 'displayDots', 'displayDotsIndex', 'buttonsAlwaysVisible'], props, state)) {
+        if (PropsCheck(['staticData', 'itemsS', 'itemsL', 'onSlideTime',  'itemsXL', 'useLayerX', 'inlineStyle', 'allowMouseTouch', 'slideAfterMove', 'wrapDirection', 'autoplay', 'autoplayTime', 'autoplayNext', 'animationTime', 'paginationType', 'resizeS', 'resizeL', 'resizeXL', 'dotsInside', 'paginationInside', 'addClass', 'defaultClass',  'id', 'data', 'next', 'previous', 'displayPagination', 'displayDots', 'displayDotsIndex', 'buttonsAlwaysVisible'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SliderItem',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],

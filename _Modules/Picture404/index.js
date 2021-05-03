@@ -43,8 +43,9 @@ class Picture404 extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'reactRouter', 'link', 'text404', 'text1', 'text2', 'imagePath'], props, state)) {
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass',  'id', 'reactRouter', 'link', 'text404', 'text1', 'text2', 'imagePath'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Picture404',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

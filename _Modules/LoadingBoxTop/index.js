@@ -28,8 +28,9 @@ class LoadingBoxTop extends React.Component
      */
     static getDerivedStateFromProps(props, state) {
         
-        if (PropsCheck([ 'id', 'text', 'display'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'text', 'display'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'LoadingBoxTop',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 text: (props.text && typeof '8' == typeof props.text) ? props.text : '',

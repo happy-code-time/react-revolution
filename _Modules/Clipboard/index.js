@@ -45,8 +45,9 @@ class Clipboard extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id', 'callback', 'callbackProps', 'data', 'clipboard'], props, state)) {
+        if (PropsCheck([ 'id', 'callback', 'defaultClass', 'addClass', 'callbackProps', 'data', 'clipboard'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Clipboard',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 callback: isFunction(props.callback) ? props.callback : undefined,

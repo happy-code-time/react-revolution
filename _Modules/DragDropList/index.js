@@ -69,7 +69,7 @@ class DragDropList extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'placeholder', 'areaProps', 'callbackAllowDrop', 'callbackAllowDropProps', 'dropLoading', 'placeholderPosition', 'lineNumber', 'lineNumberChar'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'placeholder', 'areaProps', 'callbackAllowDrop', 'callbackAllowDropProps', 'dropLoading', 'placeholderPosition', 'lineNumber', 'lineNumberChar'], props, state)) {
 
             if (props.callback && 'function' == props.callback && props.data !== state.data) {
                 return {
@@ -84,6 +84,7 @@ class DragDropList extends React.Component {
             }
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'DragDropList',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] == typeof props.data) ? props.data : [],

@@ -39,8 +39,9 @@ class GlobalMessage extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'messageKey', 'codeMapping', 'timer', 'empty'], props, state)) {            
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass',  'id', 'messageKey', 'codeMapping', 'timer', 'empty'], props, state)) {            
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'GlobalMessage',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

@@ -52,8 +52,9 @@ class StepGenerator extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'maxSteps', 'data', 'stepRemovedCallback',  'id', 'submit', 'resetOnSubmit', 'submitCallback', 'submitCallbackProps', 'useInput', 'removeStepAlignTop', 'stepPrefix', 'displayStepCount', 'addStep', 'removeStep', 'addNewStepOn', 'callback', 'callbackProps', 'defaultSteps', 'stepsData', 'newStepData'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'maxSteps', 'data', 'stepRemovedCallback',  'id', 'submit', 'resetOnSubmit', 'submitCallback', 'submitCallbackProps', 'useInput', 'removeStepAlignTop', 'stepPrefix', 'displayStepCount', 'addStep', 'removeStep', 'addNewStepOn', 'callback', 'callbackProps', 'defaultSteps', 'stepsData', 'newStepData'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'StepGenerator',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 callback: props.callback && typeof function () { } == typeof props.callback ? props.callback : undefined,

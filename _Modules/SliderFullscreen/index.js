@@ -124,7 +124,7 @@ class SliderFullscreen extends React.Component {
     static getDerivedStateFromProps(props, state) {
         if (PropsCheck([
             'addClass',
-            
+            'defaultClass',
             'id',
             'displayPagination',
             'slideAfterMove',
@@ -157,6 +157,7 @@ class SliderFullscreen extends React.Component {
         ], props, state)) {
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SliderFullscreen',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof [] == typeof props.data && props.data.length ? props.data : [],

@@ -59,8 +59,9 @@ class DragDropArea extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'data', 'itemsPerLine', 'callbackAllowDrop', 'callbackAllowDropProps', 'lineNumber', 'lineNumberChar'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'data', 'itemsPerLine', 'callbackAllowDrop', 'callbackAllowDropProps', 'lineNumber', 'lineNumberChar'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'DragDropArea',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data && typeof {} == typeof props.data ? props.data : {},

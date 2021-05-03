@@ -42,8 +42,9 @@ class Box extends React.Component
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id',  'direction', 'type', 'animation', 'animationTime', 'data', 'itemsPerLine', 'animationDelay', 'scrollAdd'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id',  'direction', 'type', 'animation', 'animationTime', 'data', 'itemsPerLine', 'animationDelay', 'scrollAdd'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Box',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 direction: props.direction && typeof '8' == typeof props.direction && ['right', 'left'].includes(props.direction) ? props.direction : 'right',

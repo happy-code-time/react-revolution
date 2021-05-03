@@ -116,13 +116,14 @@ class PagerDynamic extends React.Component
             }
         }
 
-        if (PropsCheck([ 'minPages', 'totalPages', 'id', 'fallbackLoadingPage', 'searchOnKeys', 'globalCount', 'itemsPerSite', 'keysToRender', 'lineNumber', 'liCallback', 'inputCallback', 'displayTotal', 'paginationPages', 'totalPrefix', 'totalSufix', 'paginationTextPrefix', 'paginationTextMiddle', 'prevPages', 'nextPages', 'alignPagesItems', 'alignPagination', 'resetLineNumber', 'nextButton', 'previousButton', 'searchActive', 'searchPlaceholder', 'searchIcon', 'searchSensitive', 'searchValue', 'searchOnKeyDown', 'searchTitle', 'paginationTitle', 'fallbackLoading', 'fallbackLoadingTime', 'fallbackNoData', 'fallbackNoDataSearch', 'fallbackMounting', 'getDataCallback'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'minPages', 'totalPages', 'id', 'fallbackLoadingPage', 'searchOnKeys', 'globalCount', 'itemsPerSite', 'keysToRender', 'lineNumber', 'liCallback', 'inputCallback', 'displayTotal', 'paginationPages', 'totalPrefix', 'totalSufix', 'paginationTextPrefix', 'paginationTextMiddle', 'prevPages', 'nextPages', 'alignPagesItems', 'alignPagination', 'resetLineNumber', 'nextButton', 'previousButton', 'searchActive', 'searchPlaceholder', 'searchIcon', 'searchSensitive', 'searchValue', 'searchOnKeyDown', 'searchTitle', 'paginationTitle', 'fallbackLoading', 'fallbackLoadingTime', 'fallbackNoData', 'fallbackNoDataSearch', 'fallbackMounting', 'getDataCallback'], props, state)) {
             const prevPages = (props.prevPages && typeof 8 === typeof props.prevPages) ? props.prevPages : 2;
             const nextPages = (props.nextPages && typeof 8 === typeof props.nextPages) ? props.nextPages : 2;
             const itemsPerSite = (props.itemsPerSite && typeof 8 === typeof props.itemsPerSite) ? props.itemsPerSite : 10;
             const minPages = prevPages + nextPages + 1;
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PagerDynamic',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 searchOnKeys: (props.searchOnKeys && typeof [] === typeof props.searchOnKeys) ? props.searchOnKeys : [],

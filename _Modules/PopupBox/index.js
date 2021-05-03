@@ -45,8 +45,9 @@ class PopupBox extends React.Component
     static getDerivedStateFromProps(props, state) {
         const defaultAnimationTypes = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
-        if (PropsCheck([ 'id', 'data', 'icon', 'iconCallback', 'animationTime', 'animation'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'data', 'icon', 'iconCallback', 'animationTime', 'animation'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupBox',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: props.data ? props.data : '',

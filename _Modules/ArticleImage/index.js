@@ -47,8 +47,9 @@ class ArticleImage extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'data', 'animation', 'itemsPerLine', 'mediaBreak', 'toggleOn', 'toggleForwards', 'persist', 'toggleBackwards'], props, state)) {
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'defaultClass', 'id', 'data', 'animation', 'itemsPerLine', 'mediaBreak', 'toggleOn', 'toggleForwards', 'persist', 'toggleBackwards'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ArticleImage',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

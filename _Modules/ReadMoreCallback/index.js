@@ -44,8 +44,9 @@ class ReadMoreCallback extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'animation', 'toggleForwards', 'toggleBackwards', 'toggleOnReject', 'toggleReject', 'callback', 'callbackProps', 'loading', 'data'], props, state)) {
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass',  'id', 'animation', 'toggleForwards', 'toggleBackwards', 'toggleOnReject', 'toggleReject', 'callback', 'callbackProps', 'loading', 'data'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ReadMoreCallback',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

@@ -56,8 +56,9 @@ class ListSwitch extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass', 'id', 'holderLoading', 'direction', 'callback', 'callbackProps', 'animation', 'animationTimeout', 'closeAfterCallback', 'arrowNextClick',  'placeholder', 'data', 'closeOnEsc', 'closeOnOutsideClick', 'previous', 'next', 'title'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass', 'id', 'holderLoading', 'direction', 'callback', 'callbackProps', 'animation', 'animationTimeout', 'closeAfterCallback', 'arrowNextClick',  'placeholder', 'data', 'closeOnEsc', 'closeOnOutsideClick', 'previous', 'next', 'title'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ListSwitch',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 placeholder: props.placeholder ? props.placeholder : '',

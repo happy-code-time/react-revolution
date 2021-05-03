@@ -36,8 +36,9 @@ class PopupHover extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'useMouseEnter'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'useMouseEnter'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupHover',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 holderData: props.holderData,

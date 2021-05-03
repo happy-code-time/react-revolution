@@ -144,13 +144,14 @@ class PagerStatic extends React.Component
             }
         }
 
-        if (PropsCheck([ 'id', 'data', 'searchOnKeys','itemsPerSite','keysToRender', 'totalSufix', 'lineNumber','liCallback','inputCallback','displayTotal','paginationPages','totalPrefix','paginationTextPrefix','paginationTextMiddle','prevPages','nextPages','alignPagesItems','alignPagination','resetLineNumber','nextButton','previousButton','searchActive','searchPlaceholder','searchIcon','searchSensitive','searchValue','searchOnKeyDown','searchTitle','paginationTitle','fallbackLoading','fallbackLoadingTime','fallbackNoData','fallbackNoDataSearch','fallbackMounting', 'minPages' ], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'data', 'searchOnKeys','itemsPerSite','keysToRender', 'totalSufix', 'lineNumber','liCallback','inputCallback','displayTotal','paginationPages','totalPrefix','paginationTextPrefix','paginationTextMiddle','prevPages','nextPages','alignPagesItems','alignPagination','resetLineNumber','nextButton','previousButton','searchActive','searchPlaceholder','searchIcon','searchSensitive','searchValue','searchOnKeyDown','searchTitle','paginationTitle','fallbackLoading','fallbackLoadingTime','fallbackNoData','fallbackNoDataSearch','fallbackMounting', 'minPages' ], props, state)) {
             const prevPages = (props.prevPages && typeof 8 === typeof props.prevPages) ? props.prevPages : 2;
             const nextPages = (props.nextPages && typeof 8 === typeof props.nextPages) ? props.nextPages : 2;
             const minPages = prevPages + nextPages + 1;
             const itemsPerSite = (props.itemsPerSite && typeof 8 === typeof props.itemsPerSite) ? props.itemsPerSite : 10;
 
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PagerStatic',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 data: (props.data && typeof [] === typeof props.data) ? props.data.slice(0, itemsPerSite) : [],

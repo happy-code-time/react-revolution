@@ -71,8 +71,9 @@ class SourceCode extends React.Component {
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id', 'code', 'lineNumber', 'promise', 'promiseLine', 'matcher', 'inputActive', 'inputCallback', 'inputPlaceholder', 'searchSensitive', 'promiseTime', 'lineNumberNewLine', 'noDataText', 'sourceCode', 'fallbackNoData', 'fallbackNoDataSearch'], props, state)) {
+        if (PropsCheck([ 'id', 'addClass', 'defaultClass', 'code', 'lineNumber', 'promise', 'promiseLine', 'matcher', 'inputActive', 'inputCallback', 'inputPlaceholder', 'searchSensitive', 'promiseTime', 'lineNumberNewLine', 'noDataText', 'sourceCode', 'fallbackNoData', 'fallbackNoDataSearch'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'SourceCode',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 code: (props.code && typeof '8' == typeof props.code) ? props.code : undefined,

@@ -35,8 +35,9 @@ class Card extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck([ 'id', 'itemsPerLine', 'data', 'mediaBreak'], props, state)) {
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id', 'itemsPerLine', 'data', 'mediaBreak'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'Card',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 itemsPerLine: props.itemsPerLine && typeof 8 == typeof props.itemsPerLine ? props.itemsPerLine : 3,

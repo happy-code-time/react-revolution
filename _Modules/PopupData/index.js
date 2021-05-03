@@ -39,8 +39,9 @@ class PopupData extends React.Component {
      * @param {object} state
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['addClass',  'id', 'closeOnEsc', 'closeOnOutsideClick', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'holderInside'], props, state)) {
+        if (PropsCheck(['addClass', 'defaultClass',  'id', 'closeOnEsc', 'closeOnOutsideClick', 'animation', 'animationTimeout', 'holderData', 'contentData', 'direction', 'holderInside'], props, state)) {
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'PopupData',
                 addClass: isString(props.addClass) ? props.addClass : '',
                 id: isString(props.id) ? props.id : '',
                 holderData: props.holderData,

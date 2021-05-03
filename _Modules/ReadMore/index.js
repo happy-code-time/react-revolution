@@ -37,8 +37,9 @@ class ReadMore extends React.Component
      * @param {object} state 
      */
     static getDerivedStateFromProps(props, state) {
-        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass',  'id', 'animation', 'toggleForwards', 'toggleBackwards', 'data', 'dataToggle'], props, state)) {            
+        if (PropsCheck(['moduleStyle', 'globalStyle', 'addClass', 'defaultClass',  'id', 'animation', 'toggleForwards', 'toggleBackwards', 'data', 'dataToggle'], props, state)) {            
             return {
+                defaultClass: isString(props.defaultClass) ? props.defaultClass : 'ReadMore',
                 moduleStyle: (typeof true == typeof props.moduleStyle) ? props.moduleStyle : false,
                 globalStyle: (typeof true == typeof props.globalStyle) ? props.globalStyle : false,
                 addClass: isString(props.addClass) ? props.addClass : '',

@@ -155,7 +155,7 @@ class IconText extends React.Component
      */
     static getDerivedStateFromProps(props, state) 
     {
-        if (PropsCheck([ 'id','callback', 'displayTabs', 'renderItems', 'translations', 'custom', 'itemsPerLine', 'noData', 'text', 'textDirection', 'noText'], props, state)) 
+        if (PropsCheck([ 'addClass', 'defaultClass', 'id','callback', 'displayTabs', 'renderItems', 'translations', 'custom', 'itemsPerLine', 'noData', 'text', 'textDirection', 'noText'], props, state)) 
         {
             return {
                 addClass: isString(props.addClass) ? props.addClass : '',
