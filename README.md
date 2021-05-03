@@ -35,7 +35,9 @@ import Breadcrumbs from 'react-revolution/Breadcrumbs';
 // Global file
 @import 'react-revolution/css/react-revolution.css';
 // Single module file
-@import 'react-revolution/css/rr-breadcrumbs.css';
+@import 'react-revolution/css/Article.css';
+@import 'react-revolution/css/Breadcrumbs.css';
+@import 'react-revolution/css/Star.css';
 ```
 
 ### Example

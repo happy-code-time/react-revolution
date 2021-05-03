@@ -84,7 +84,7 @@ body{
 
   @keyframes ContainerPopuparea-sidebar-showAnimationLeft {
     0%{
-      left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+      left: var(--rr-container-sidebar-width-hidden);
     }
     100%{
       left: 0px;
@@ -103,13 +103,13 @@ body{
       left: 0px;
     }
     100%{
-      left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+      left: calc(var(--rr-container-sidebar-width-hidden) - 1px);
     }
   }
 
   .area-sidebar-hide{
     transition-duration: $default-transition;
-    left: calc(var(--rr-container-sidebar-width-hidden) + 1px);
+    left: calc(var(--rr-container-sidebar-width-hidden) - 1px);
     z-index: 12;
     animation: ContainerPopupSidebarHideAnimationLeft $default-transition forwards ease-in;
   }

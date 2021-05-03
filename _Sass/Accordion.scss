@@ -6,12 +6,13 @@
 
     .single-entry{
         box-sizing: border-box;
-        padding: 10px;
         overflow: hidden;
-        
-        .data{
-            margin: 10px 0;
-        }
+    }
+
+    .single-data,
+    .children{
+      display: inline-block;
+      margin-top: 5px;
     }
 
     .text.hasChildren:hover,
