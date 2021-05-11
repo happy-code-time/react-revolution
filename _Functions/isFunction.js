@@ -1,6 +1,7 @@
-const isFunction = (fn) => {
-    
-    if(undefined === fn || null === fn || typeof function(){} !== typeof fn){
+const isFunction = (fn) => 
+{    
+    if(undefined === fn || null === fn || typeof function(){} !== typeof fn || '[object Function]' !== Object.prototype.toString.call(fn))
+    {
         return false;
     }
 

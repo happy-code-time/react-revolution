@@ -1,25 +1,29 @@
-const isArray = (array) => {
-    let isArray = true;
-    
-    if(typeof [] !== typeof array || !array){
-        isArray = false;
+import isObject from "./isObject";
+
+const isArray = (array) => 
+{    
+    if(typeof [] !== typeof array || undefined === array || null === array || isObject(array) || '[object Array]' !== Object.prototype.toString.call(array))
+    {
+        return false;
     }
 
     try{
 
-        if(isArray.length){
+        if(array.length)
+        {
 
-            for(let x = 0; x <= isArray.length-1; x++){
-                isArray[x];
+            for(let x = 0; x <= array.length-1; x++)
+            {
+                array[x];
                 break;
             }
         }
     }
     catch(e){
-        isArray = false;
+        return false;
     }
 
-    return isArray;
+    return true;
 }
 
 export default isArray;
