@@ -1,78 +1,88 @@
-# React Revolution
-
-React Revolution is a light javascript library to generate interactive modules for react projects.
-
 ## Website: 
 
-[https://react-revolution.j.pl/](https://react-revolution.j.pl/)
+[http://react-revolution.byethost33.com](http://react-revolution.byethost33.com/)
+
+## Git
+
+[https://github.com/janitzed/react-revolution](https://github.com/janitzed/react-revolution/)
 
 ### Installation 
 - npm i react-revolution
 - yarn add react-revolution
 
-### Desctructuring module import
+### Import a single component from the global module
 
 ```
-import { Breadcrumbs } from 'react-revolution';
+import { Breadcrumb } from 'react-revolution';
 ```
 
-### Default module import
+### Import a single component
 
 ```
-import Breadcrumbs from 'react-revolution/Breadcrumbs';
+import Breadcrumb from 'react-revolution/Breadcrumb';
 ```
 
-### Additional sass file import
+### Style (.scss file) import
 ```
-// Global file
+// Original style file with all imports for all modules
+
 @import 'react-revolution/scss/react-revolution.scss';
+
 // Single module file
-@import 'react-revolution/scss/rr-breadcrumbs.scss';
+
+@import 'react-revolution/scss/Breadcrumb.scss';
 ```
 
-### Additional compiled sass file import
+### Compiled style (.css file) import
 ```
 // Global file
+
 @import 'react-revolution/css/react-revolution.css';
-// Single module file
+
+// Single compiled file
+
 @import 'react-revolution/css/Article.css';
-@import 'react-revolution/css/Breadcrumbs.css';
+
+@import 'react-revolution/css/Breadcrumb.css';
+
 @import 'react-revolution/css/Star.css';
 ```
 
-### Example
+### Example of <Breadcrumb/> usage:
 
 ```
-import { Breadcrumbs } from 'react-revolution';
+// import
 
-// or default import 
-// import Breadcrumbs from 'react-revolution/Breadcrumbs';
+import { Breadcrumb } from 'react-revolution';
 
-<Breadcrumbs 
-    hashRouter={true}
-/>
+// or  
+
+import Breadcrumb from 'react-revolution/Breadcrumb';
+
+// Usage
+<Breadcrumb />
 ```
 
-### Available modules
+### Available components
 
     Accordion
-    Articles
-    ArticlesImages
+    Article
+    ArticleImage
     Astronaut404
-    Boxes
-    Breadcrumbs
-    Cards
-    CardsScroll
-    CardsScrollCallback
+    Box
+    Breadcrumb
+    Card
+    CardScroll
+    CardScrollCallback
     Carousel
     Clipboard
     Clouds404
-    CloudsMountains404
+    CloudMountain404
     Container
     ContainerPopup
     ContainerSidebar
     CustomSuggestion
-    DarkLines404
+    DarkLine404
     DragDropArea
     DragDropList
     Filter
@@ -80,8 +90,8 @@ import { Breadcrumbs } from 'react-revolution';
     FullScreenListArray
     FullScreenListObject
     FullScreenOverlay
-    GlobalMessages
-    Icons
+    GlobalMessage
+    Icon
     ImageBanner
     ImageBox
     ImageCarousel
@@ -116,15 +126,15 @@ import { Breadcrumbs } from 'react-revolution';
     ScrollTo
     Sidebar
     Slider
-    SliderCards
+    SliderCard
     SliderFullscreen
-    SliderItems
+    SliderItem
     SourceCode
-    Stars
-    Steps
-    StepsGenerator
-    StepsGeneratorDragDrop
-    Suggestions
+    Star
+    Step
+    StepGenerator
+    StepGeneratorDragDrop
+    Suggestion
     Table
     TextWriter
     Timeline
@@ -148,3 +158,7 @@ import { Breadcrumbs } from 'react-revolution';
     isFunction
     isNumber
     isString
+
+### For mor details visit
+
+[http://react-revolution.byethost33.com](http://react-revolution.byethost33.com/)
