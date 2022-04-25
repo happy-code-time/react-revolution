@@ -1,0 +1,51 @@
+.ImageBanner{
+    width: 100vw;
+    max-width: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    display: flex;
+    overflow: hidden;
+
+    .banner{
+        position: relative;
+        z-index: 2;
+        align-items: center;
+        display: block;
+        margin: 2.5rem;
+    }
+
+    .banner-box{
+        width: 100%;
+        max-width: 33%;
+        min-width: 200px;
+        border-radius: $border-radius;
+        padding: 2.5rem;
+        background-color: $white;
+    }
+
+    .banner-image{
+        position: absolute;
+        top: 0;
+        left:0 ;
+        z-index: 1;
+        width: 100%;
+    }
+
+    img{
+        width: 100%;
+    }
+
+    .banner.right{
+        .banner-box{
+            float: right;
+        }
+    }
+
+    .banner.center{
+        .banner-box{
+            margin: 0 auto;
+        }
+    }
+}

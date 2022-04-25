@@ -1,0 +1,38 @@
+.divpager-pagination {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    list-style: none;
+
+    .page-item {
+        list-style: none;
+        overflow: hidden;
+        color: #007bff;
+        background-color: #fff;
+    }
+
+    .page-item.active {
+        background-color: dodgerblue;
+        color: rgb(255, 255, 255);
+    }
+
+    .page-item:first-child {
+        border-top-left-radius: 0.2rem;
+        border-bottom-left-radius: 0.2rem;
+    }
+
+    .page-item:last-child {
+        border-top-right-radius: 0.2rem;
+        border-bottom-right-radius: 0.2rem;
+    }
+
+    .page-link {
+        margin-left: 0;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        position: relative;
+        display: block;
+        border: 1px solid #dee2e6;
+    }
+}

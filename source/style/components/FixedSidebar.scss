@@ -1,0 +1,106 @@
+.FixedSidebar {
+    .overlay-wrapper {
+        @keyframes FixedSidebar-show-bg {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        animation: FixedSidebar-show-bg $default_transition forwards ease-in-out;
+    }
+
+    .overlay-wrapper.overlay-wrapper-closing {
+        @keyframes FixedSidebar-close-bg {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        animation: FixedSidebar-close-bg $default_transition forwards ease-in-out;
+    }
+
+    .sidebar-menu {
+        width: 100vw;
+        max-width: 100vw;
+    }
+
+    @media screen and (min-width: $media-break-md) {
+        .sidebar-menu {
+            width: 40vw;
+            max-width: 90vw;
+            min-width: 500px;
+        }
+    }
+
+    @media screen and (min-width: $media-break-xxl) {
+        .sidebar-menu {
+            width: 25vw;
+            max-width: 90vw;
+            min-width: 300px;
+        }
+    }
+
+    .sidebar-menu-left {
+        @keyframes FixedSidebar-open-sidebar {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+
+        animation: FixedSidebar-open-sidebar $default_transition forwards ease-in-out;
+    }
+
+    .sidebar-menu-left.sidebar-menu-left-close {
+        @keyframes FixedSidebar-close-sidebar {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: -100%;
+            }
+        }
+
+        animation: FixedSidebar-close-sidebar $default_transition forwards ease-in-out;
+    }
+
+    .sidebar-menu-right {
+        @keyframes FixedSidebar-open-sidebar-right {
+            0% {
+                right: -100%;
+            }
+
+            100% {
+                right: 0;
+            }
+        }
+
+        animation: FixedSidebar-open-sidebar-right $default_transition forwards ease-in-out;
+    }
+
+    .sidebar-menu-right.sidebar-menu-right-close {
+        @keyframes FixedSidebar-close-sidebar-right {
+            0% {
+                right: 0;
+            }
+
+            100% {
+                right: -100%;
+            }
+        }
+
+        animation: FixedSidebar-close-sidebar-right $default_transition forwards ease-in-out;
+    }
+}

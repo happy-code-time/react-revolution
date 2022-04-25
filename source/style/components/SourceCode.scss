@@ -1,0 +1,44 @@
+.SourceCode {
+  white-space: pre-wrap;
+
+  .code{
+    padding: 10px 5px;
+
+    li{
+      min-height: 20px;
+      line-height: 20px;
+    }
+
+    .line-number{
+      user-select: none;
+    }
+  }
+
+  ul,
+  ul li {
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search {
+    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+      min-height: 30px;
+      line-height: 30px;
+      border: 1px solid $border-color;
+      box-sizing: border-box;
+      padding: 5px 20px;
+      border-radius: $border-radius;
+    }
+  }
+
+  .line,
+  .line-code{
+    display: flex;
+  }
+}

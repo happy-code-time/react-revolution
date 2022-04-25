@@ -4,27 +4,29 @@ const path = require('path');
 const config = {
   cache: false,
   mode: '',
-  entry: './production.js',
+  entry: './source/react-revolution.ts',
   output: {
     path: path.resolve(__dirname, './'),
-    filename: 'react-revolution.js',
+    filename: './public/react-revolution.js',
     libraryTarget: 'commonjs2'
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        resolve: {
-          fullySpecified: false
-        },
-        exclude: /(node_modules|bower_components|public)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
+        test: /\.(js|jsx|ts|tsx)?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader'
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg|png|jpg|jpeg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
       },
       {
         test: /\.scss$/,
@@ -37,7 +39,10 @@ const config = {
     ]
   },
   externals: {
-    'react': 'commonjs react'
+    'react': 'commonjs react',
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
   }
 };
 
@@ -46,7 +51,7 @@ module.exports = (env, argv) => {
     config.watch = true;
     config.watchOptions = {
       ignored: /node_modules/,
-      poll: 1000
+      poll: 100
     };
     config.mode = 'development';
     config.devtool = false;
@@ -67,9 +72,7 @@ module.exports = (env, argv) => {
     config.optimization = {
       minimizer: [
         new TerserPlugin({
-          cache: true,
           parallel: true,
-          sourceMap: true, // Must be set to true if using source-maps in production
           terserOptions: {
             ecma: undefined,
             warnings: false,

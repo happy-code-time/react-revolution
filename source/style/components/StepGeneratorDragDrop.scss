@@ -1,0 +1,49 @@
+.StepGeneratorDragDrop
+{    
+    .handle-drop{
+        margin: 0;
+        padding:0;
+        list-style: none;
+        position: relative;
+    }
+
+    .single-step{
+        box-sizing: border-box;
+        padding: 5px 10px;
+        list-style: none;
+    }
+
+    .drag-drop-handler:hover,
+    .drag-drop-handler-li:hover{
+        cursor: grab;
+    }
+
+    .drag-drop-handler:active,
+    .drag-drop-handler-li:active{
+        cursor: grabbing;
+    }
+
+    .placeholder{
+        box-sizing: border-box;
+        padding: 5px 10px;
+        border:1px dashed $border-color;
+        border-radius: $border-radius;
+    }
+    
+    .step-prefix{
+        box-sizing: border-box;
+        padding: 5px 0;        
+    }
+
+    .input-area{
+        textarea,
+        input{
+            box-sizing: border-box;
+            padding: 5px 10px;
+            border: none;
+            box-shadow: 0px 0px 6px $border-color;
+            background-color: $white;
+            border-radius: $border-radius;
+        }
+    }
+}

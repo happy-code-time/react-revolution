@@ -1,0 +1,102 @@
+.ReadMoreCallback{
+
+    // Animation: height
+    .toggling.animation-height{
+
+        @keyframes toggleReadMoreCallbackHeight {
+            0%{
+                max-height: 0px;
+            }
+            100%{
+                max-height: 1000vh;
+                overflow: visible;
+            }
+        }
+
+        max-height: 0px;
+        overflow: hidden;
+        animation: toggleReadMoreCallbackHeight $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-height{
+        max-height: 1000vh;
+    }
+
+    .animation-height-back{
+        @keyframes toggleReadMoreCallbackHeightBack {
+            0%{
+                max-height: 500px;
+            }
+            100%{
+                max-height: 0px;
+            }
+        }
+        animation: toggleReadMoreCallbackHeightBack $default-transition ease-in forwards;
+    }
+
+    // Animation: scale
+    .toggling.animation-scale{
+
+        @keyframes toggleReadMoreCallbackScale {
+            0%{
+                transform: scaleY(0);
+            }
+            100%{
+                transform: scaleY(1);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(0);
+        animation: toggleReadMoreCallbackScale $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-scale{
+        transform: scaleY(1);
+    }
+
+    .animation-scale-back{
+        @keyframes toggleReadMoreCallbackScaleBack {
+            0%{
+                transform: scaleY(1);
+            }
+            100%{
+                transform: scaleY(0);
+            }
+        }
+        transform-origin: top;
+        transform: scaleY(1);
+        animation: toggleReadMoreCallbackScaleBack $default-transition ease-in forwards;
+    }
+
+    // Animation: opacity
+    .toggling.animation-opacity{
+
+        @keyframes toggleReadMoreCallbackOpacity {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        opacity: 0;
+        animation: toggleReadMoreCallbackOpacity $default-transition ease-in forwards;
+    }
+
+    .toggled.animation-opacity{
+        opacity: 1;
+    }
+
+    .animation-opacity-back {
+        @keyframes toggleReadMoreCallbackOpacityBack {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        opacity: 1;
+        animation: toggleReadMoreCallbackOpacityBack $default-transition ease-in forwards;
+    }
+}

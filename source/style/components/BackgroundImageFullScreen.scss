@@ -1,0 +1,15 @@
+.BackgroundImageFullScreen.bg-fullscreen {
+    background-color: transparent;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.BackgroundImageFullScreen.bg-blend-mode-darken {
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.44);
+}

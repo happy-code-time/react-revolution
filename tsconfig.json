@@ -18,10 +18,11 @@
         ],
     },
     "include": [
-        "_Modules"
+        "source/components",
+        "source/functions"
     ],
     "exclude": [
-        "Distribution",
-        "Images"
+        "./node_modules",
+        "./public",
     ]
 }

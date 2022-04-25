@@ -1,0 +1,57 @@
+// default css is for the left site
+// right site are on the bottom of this file
+.ContainerCompact {
+  min-height: 100vh;
+  position: relative;
+
+  .area-header {
+    width: 100%;
+    height: var(--rr-container-compact-headerHeight);
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-bottom: 1px solid $border-color;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: $white;
+    z-index: 2;
+  }
+
+  .area-sidebar {
+    width: var(--rr-container-compact-width);
+    background-color: $white;
+    border-right: 1px solid $border-color;
+    display: block;
+    overflow: auto;
+    height: calc(100vh - var(--rr-container-compact-headerHeight));
+    box-sizing: border-box;
+    padding: 10px 20px;
+    position: fixed;
+    top: var(--rr-container-compact-headerHeight);
+    left:0;
+    scrollbar-width: thin;
+  }
+
+  .area-content {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    width: calc(100% - 1px - var(--rr-container-compact-width));
+    top: var(--rr-container-compact-headerHeight);
+    left: var(--rr-container-compact-width);
+    z-index: 1;
+    scrollbar-width: thin;
+  }
+
+  .area-content.w-100{
+    width: 100%;
+    left: 0px;
+  }
+}
+
+// Right site
+.ContainerCompact.right {
+  .area-content {
+    flex-direction: row-reverse !important;
+  }
+}

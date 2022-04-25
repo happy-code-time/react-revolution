@@ -1,0 +1,35 @@
+.InputFileDragDrop {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  .label {
+    position: relative;
+    display: block;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    z-index: 1;
+
+    .drag-drop{
+      width: 100%;
+      height: 100%;
+      border: 2px dashed $border-color;
+      box-sizing: border-box;
+      padding: 10px 20px;
+      transition-duration: $default-transition;
+      background-color: $white;
+      color: dodgerblue;
+      position: relative;
+    }
+
+    .cursor-pointer:hover{
+      cursor: pointer;
+    }
+  
+    .drag-drop.dragging{
+      border: 2px dashed dodgerblue;
+      background-color: rgba(222,222,222,.44);
+    }
+  }
+}
